@@ -1,17 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 03:47:36 by bena              #+#    #+#             */
-/*   Updated: 2023/09/11 21:09:11 by bena             ###   ########.fr       */
+/*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
+/*   Updated: 2023/09/11 22:51:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#ifndef TREE_H
+# define TREE_H
 
-typedef float vector[3];
+# include "object.h"
+# include "s_list.h"
+
+typedef struct s_tree	t_tree;
+
+enum	e_axis_type
+{
+	M_AXIS_X = 0,
+	M_AXIS_Y = 1,
+	M_AXIS_Z = 2
+};
+
+struct s_tree
+{
+	t_tree		*parent;
+	t_tree		*left;
+	t_tree		*right;
+	t_list		*objects;
+	int			axis;
+};
 #endif
