@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/12 12:19:43 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/12 16:19:04 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,31 @@ typedef struct s_texture
 typedef struct s_sphere
 {
 	vector	position;
-	float	radius;
+	t_real	radius;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	vector	position;
 	vector	normal;
+	t_real	width_2;
+	t_real	height_2;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	vector	position;
 	vector	normal;
-	float	height;
-	float	radius;
+	t_real	height;
+	t_real	radius;
 }	t_cylinder;
 
 typedef struct s_cone
 {
 	vector	position;
 	vector	normal;
-	float	height;
-	float	radius;
+	t_real	height;
+	t_real	radius;
 }	t_cone;
 
 typedef struct s_bounding_volume

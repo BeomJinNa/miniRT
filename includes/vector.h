@@ -6,12 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:47:36 by bena              #+#    #+#             */
-/*   Updated: 2023/09/11 21:09:11 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/12 16:18:38 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
 
-typedef float vector[3];
+# include "type.h"
+
+typedef t_real vector[3];
 #endif
