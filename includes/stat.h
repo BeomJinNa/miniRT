@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/08/30 11:17:12 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/12 11:16:41 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ typedef struct s_status
 	int		win_width_2;
 	int		win_height_2;
 	int		down_sampling_ratio;
-}			t_status;
+}	t_status;
 #endif
