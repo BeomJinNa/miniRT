@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/12 16:18:05 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/13 00:13:05 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ enum e_config
 	M_WINDOW_WIDTH_MIN = 300,
 	M_WINDOW_WIDTH_MAX = 2550,
 	M_WINDOW_HEIGHT_MIN = 300,
-	M_WINDOW_HEIGHT_MAX = 1380,
+	M_WINDOW_HEIGHT_MAX = 1380
 };
 
 typedef struct s_status
