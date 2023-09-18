@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/12 16:19:04 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/14 21:49:18 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ typedef struct s_object
 {
 	int			type;
 	t_bv		bv;
-	union		u_data
+	union
 	{
 		t_sphere	sphere;
 		t_plane		plane;
 		t_cylinder	cylinder;
 		t_cone		cone;
-	};
+	}	u_data;
 	t_texture	texture;
 }	t_object;
 #endif
