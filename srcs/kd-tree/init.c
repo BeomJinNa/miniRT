@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 16:34:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 03:24:45 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/22 08:44:32 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ t_tree	*init_tree(t_list *obj_list)
 	output->left = NULL;
 	output->right = NULL;
 	output->axis = -1;
+	init_bounding_volume(&output->bv);
 	return (output);
 }

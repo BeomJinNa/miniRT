@@ -6,14 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 02:43:44 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/22 08:40:12 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_H
 # define TREE_H
 
-# include "s_list.h"
+# include "object.h"
 
 typedef struct s_tree	t_tree;
 
@@ -31,6 +31,7 @@ struct s_tree
 	t_tree		*right;
 	t_list		*objects;
 	int			axis;
+	t_bv		bv;
 };
 
 t_tree	*init_tree(t_list *obj_list);

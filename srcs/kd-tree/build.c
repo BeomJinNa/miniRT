@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:20:42 by bena              #+#    #+#             */
-/*   Updated: 2023/09/21 04:15:33 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/22 08:45:34 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	split_node(t_tree *node, int depth)
 	t_tree	*child[2];
 	t_list	*child_object_lists[2];
 
+	get_integrated_bounding_volume(&node->bv, node->objects);
 	if (depth >= M_TREE_MAX_DEPTH
 		|| ft_lstsize(node->objects) <= M_TREE_MIN_LEAF_SIZE)
 		return (0);
