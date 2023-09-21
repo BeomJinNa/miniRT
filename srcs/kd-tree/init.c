@@ -6,12 +6,11 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 16:34:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/17 14:01:27 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/22 03:24:45 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
 #include "tree.h"
 
 t_tree	*init_tree(t_list *obj_list)
@@ -32,6 +31,6 @@ t_tree	*init_tree(t_list *obj_list)
 	output->parent = NULL;
 	output->left = NULL;
 	output->right = NULL;
-	output->axis = 0;
+	output->axis = -1;
 	return (output);
 }

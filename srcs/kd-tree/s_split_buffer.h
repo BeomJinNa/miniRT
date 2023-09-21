@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree.h                                             :+:      :+:    :+:   */
+/*   s_split_buffer.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 02:43:44 by bena             ###   ########.fr       */
+/*   Created: 2023/09/21 22:45:18 by bena              #+#    #+#             */
+/*   Updated: 2023/09/22 03:53:59 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TREE_H
-# define TREE_H
+#ifndef S_SPLIT_BUFFER_H
+# define S_SPLIT_BUFFER_H
 
-# include "s_list.h"
+# include "type.h"
 
-typedef struct s_tree	t_tree;
-
-enum	e_axis_type
+typedef struct s_split_buffer
 {
-	M_AXIS_X = 0,
-	M_AXIS_Y = 1,
-	M_AXIS_Z = 2,
-};
-
-struct s_tree
-{
-	t_tree		*parent;
-	t_tree		*left;
-	t_tree		*right;
-	t_list		*objects;
-	int			axis;
-};
-
-t_tree	*init_tree(t_list *obj_list);
-void	remove_tree(t_tree **root_ptr);
-void	remove_node(t_tree **node_ptr);
-void	clean_object_list(t_list *list);
+	int		total;
+	int		included;
+	int		remainder;
+	int		axis;
+	t_real	divider;
+	t_real	cost;
+}	t_sp_buffer;
 #endif

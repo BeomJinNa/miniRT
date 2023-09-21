@@ -6,12 +6,11 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 17:01:32 by bena              #+#    #+#             */
-/*   Updated: 2023/09/21 02:08:28 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/22 03:24:54 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
 #include "tree.h"
 
 void	remove_node(t_tree **node_ptr);
