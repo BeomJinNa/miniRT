@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/12 16:19:04 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/22 06:03:49 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "vector.h"
 # include "image.h"
+# include "s_list.h"
 
 enum e_object_type
 {
@@ -78,13 +79,17 @@ typedef struct s_object
 {
 	int			type;
 	t_bv		bv;
-	union		u_data
+	union
 	{
 		t_sphere	sphere;
 		t_plane		plane;
 		t_cylinder	cylinder;
 		t_cone		cone;
-	};
+	}	u_data;
 	t_texture	texture;
 }	t_object;
+
+void	init_bounding_volume(t_bv *bv);
+void	get_integrated_bounding_volume(t_bv *buffer, t_list *object_list);
+void	update_min_max_boundary(t_bv *buffer, t_bv *target);
 #endif

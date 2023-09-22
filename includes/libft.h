@@ -6,20 +6,15 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:21:31 by bena              #+#    #+#             */
-/*   Updated: 2023/09/12 11:16:14 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/17 14:02:06 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdlib.h>
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+# include <stddef.h>
+# include "s_list.h"
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
