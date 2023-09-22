@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 03:23:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 11:05:10 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/22 11:17:20 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "object.h"
 
 static void		init_groups(t_list *list, t_bv *front, t_bv *back);
-static void		update_target_ptr(t_list **ptr_of_ptr, t_sp_buffer *buffer);
+static void		update_target_ptr(t_list **ptr, t_sp_buffer *buffer, t_bv *bv);
 static void		calc_cost(t_sp_buffer *buffer, t_bv front, t_bv back);
 static t_real	get_surface_area(t_bv *bv);
 
@@ -39,7 +39,7 @@ void	get_division_cost(t_sp_buffer *buffer, t_real divider, t_list *list)
 			update_min_max_boundary(&group_front, ptr_bv);
 		else
 			update_min_max_boundary(&group_back, ptr_bv);
-		update_target_ptr(&ptr, buffer);
+		update_target_ptr(&ptr, buffer, ptr_bv);
 	}
 	calc_cost(buffer, group_front, group_back);
 }
@@ -50,11 +50,14 @@ static void	init_groups(t_list *list, t_bv *front, t_bv *back)
 	init_bounding_volume(back);
 }
 
-static void	update_target_ptr(t_list **ptr_of_ptr, t_sp_buffer *buffer)
+static void	update_target_ptr(t_list **ptr, t_sp_buffer *buffer, t_bv *bv)
 {
-	*ptr_of_ptr = (*ptr_of_ptr)->next;
-	buffer->included++;
-	buffer->remainder--;
+	*ptr = (*ptr)->next;
+	if (bv->min[buffer->axis] < buffer->divider)
+	{
+		buffer->included++;
+		buffer->remainder--;
+	}
 }
 
 static void	calc_cost(t_sp_buffer *buffer, t_bv front, t_bv back)
