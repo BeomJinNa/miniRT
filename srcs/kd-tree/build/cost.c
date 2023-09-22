@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 03:23:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 07:59:12 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/22 11:05:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "object.h"
 
 static void		init_groups(t_list *list, t_bv *front, t_bv *back);
-static void	update_target_ptr(t_list **ptr_of_ptr, t_sp_buffer *buffer);
+static void		update_target_ptr(t_list **ptr_of_ptr, t_sp_buffer *buffer);
 static void		calc_cost(t_sp_buffer *buffer, t_bv front, t_bv back);
 static t_real	get_surface_area(t_bv *bv);
 
@@ -75,5 +75,5 @@ static t_real	get_surface_area(t_bv *bv)
 
 	if (x < 0 || y < 0 || z < 0)
 		return (0);
-	return (2 * (x * y + y * z + z * x));
+	return (x * y + y * z + z * x);
 }
