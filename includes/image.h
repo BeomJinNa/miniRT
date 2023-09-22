@@ -6,12 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:42:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/12 11:19:01 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/23 03:04:54 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMAGE_H
 # define IMAGE_H
+
+# include "vector.h"
 
 typedef struct s_pixel_8bit
 {
@@ -27,6 +29,13 @@ typedef struct s_image_8bit
 	unsigned int	size_height;
 	t_pixel8		*data;
 }	t_image8;
+
+typedef struct s_sensor
+{
+	unsigned int	size_width;
+	unsigned int	size_height;
+	vector			*data;
+}	t_sensor;
 
 typedef struct s_img
 {
