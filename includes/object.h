@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 06:03:49 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/25 21:16:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ typedef struct s_plane
 {
 	vector	position;
 	vector	normal;
-	t_real	width_2;
-	t_real	height_2;
+	t_real	radius;
 }	t_plane;
 
 typedef struct s_cylinder
