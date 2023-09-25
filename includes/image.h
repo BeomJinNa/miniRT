@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:42:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/23 03:04:54 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/25 15:37:14 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ typedef struct s_pixel_8bit
 
 typedef struct s_image_8bit
 {
-	unsigned int	size_width;
-	unsigned int	size_height;
-	t_pixel8		*data;
+	int			size_width;
+	int			size_height;
+	t_pixel8	*data;
 }	t_image8;
 
 typedef struct s_sensor
 {
-	unsigned int	size_width;
-	unsigned int	size_height;
-	vector			*data;
+	int		size_width;
+	int		size_height;
+	vector	*data;
 }	t_sensor;
 
 typedef struct s_img
@@ -48,4 +48,6 @@ typedef struct s_img
 
 void	img_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	get_image_address(t_img *img);
+int		get_index(int row, int column, t_image8 *image);
+void	resize_image8(t_image8 *buffer, t_image8 *source);
 #endif
