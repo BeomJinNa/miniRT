@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/25 21:16:10 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/26 22:45:19 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,37 @@ typedef struct s_texture
 
 typedef struct s_sphere
 {
-	vector	position;
-	t_real	radius;
+	t_vector	position;
+	t_real		radius;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	vector	position;
-	vector	normal;
-	t_real	radius;
+	t_vector	position;
+	t_vector	normal;
+	t_real		radius;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	vector	position;
-	vector	normal;
-	t_real	height;
-	t_real	radius;
+	t_vector	position;
+	t_vector	normal;
+	t_real		height;
+	t_real		radius;
 }	t_cylinder;
 
 typedef struct s_cone
 {
-	vector	position;
-	vector	normal;
-	t_real	height;
-	t_real	radius;
+	t_vector	position;
+	t_vector	normal;
+	t_real		height;
+	t_real		radius;
 }	t_cone;
 
 typedef struct s_bounding_volume
 {
-	vector	min;
-	vector	max;
+	t_vector	min;
+	t_vector	max;
 }	t_bv;
 
 typedef struct s_object
@@ -88,6 +88,13 @@ typedef struct s_object
 	t_texture	texture;
 }	t_object;
 
+void	init_sphere(t_object *object, t_vector position, t_real radius);
+void	init_plane(t_object *object, t_vector position,
+			t_vector normal, t_real radius);
+void	init_cylinder(t_object *object, t_vector position,
+			t_vector normal, t_real radius);
+void	init_cone(t_object *object, t_vector position,
+			t_vector normal, t_real radius);
 void	init_bounding_volume(t_bv *bv);
 void	get_integrated_bounding_volume(t_bv *buffer, t_list *object_list);
 void	update_min_max_boundary(t_bv *buffer, t_bv *target);

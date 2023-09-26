@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:42:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/25 15:37:14 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/26 19:47:14 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_image_8bit
 
 typedef struct s_sensor
 {
-	int		size_width;
-	int		size_height;
-	vector	*data;
+	int			size_width;
+	int			size_height;
+	t_vector	*data;
 }	t_sensor;
 
 typedef struct s_img

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/23 03:05:27 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/26 19:48:17 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_data
 
 typedef struct s_camera
 {
-	vector		position;
-	vector		angle;
+	t_vector	position;
+	t_vector	angle;
 	t_real		fov;
 	t_sensor	*image;
 }	t_camera;
