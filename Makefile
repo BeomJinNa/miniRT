@@ -4,7 +4,7 @@ CC			= cc
 
 COMMONFLAGS	=
 
-CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror
+CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter
 
 LDFLAGS		= $(COMMONFLAGS) \
 			  $(foreach lib, $(TARGET_LIBDIR), -L$(lib)) \
@@ -26,11 +26,11 @@ MLX			= mlx/libmlx.dylib
 
 #sources=======================================================================
 
-SRCS	= srcs/main.c \
-		  srcs/color/color.c \
+SRCS	= srcs/color/color.c \
 		  srcs/color/color_mix.c \
 		  srcs/hooks/hooks.c \
 		  srcs/hooks/reset_settings.c \
+		  srcs/image/bicubic.c \
 		  srcs/image/mlx_img.c \
 		  srcs/kd-tree/build.c \
 		  srcs/kd-tree/build/bounding_volume.c \
@@ -38,9 +38,16 @@ SRCS	= srcs/main.c \
 		  srcs/kd-tree/build/split.c \
 		  srcs/kd-tree/init.c \
 		  srcs/kd-tree/remove_tree.c \
+		  srcs/object/init_object.c \
+		  srcs/object/set_bounding_volume.c \
 		  srcs/run_mlx.c \
 		  srcs/sort_memory.c \
-		  srcs/vector/vector_operation.c
+		  srcs/vector/vector_condition.c \
+		  srcs/vector/vector_operation.c \
+		  srcs/vector/vector_scalar_operation.c \
+		  srcs/vector/vector_transformation.c \
+		  srcs/testfiles/test_vector_operations.c #testcode
+		  #srcs/main.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -65,6 +72,7 @@ $(LIBFT) :
 
 $(MLX) :
 	make -C mlx
+	cp mlx/libmlx.dylib .
 
 #const options=================================================================
 
@@ -84,6 +92,7 @@ clean :
 .PHONY: fclean
 fclean :
 	rm -f $(NAME)
+	rm -f libmlx.dylib
 	make clean
 
 .PHONY: re

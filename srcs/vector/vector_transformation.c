@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_transformaion.c                             :+:      :+:    :+:   */
+/*   vector_transformation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 20:10:24 by bena              #+#    #+#             */
-/*   Updated: 2023/09/26 21:00:05 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/27 13:27:29 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 t_real	vec_size(t_vector vec)
 {
-	return (sqrt(vec_dot_product(vec, vec)));
+	const t_real	square = vec_dot_product(vec, vec);
+
+	if (square <= 0)
+		return (0);
+	return (sqrt(square));
 }
 
 void	*vec_norm(t_vector buffer, t_vector vec)
