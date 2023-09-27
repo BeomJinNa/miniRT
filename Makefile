@@ -4,7 +4,7 @@ CC			= cc
 
 COMMONFLAGS	=
 
-CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter
+CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter -g
 
 LDFLAGS		= $(COMMONFLAGS) \
 			  $(foreach lib, $(TARGET_LIBDIR), -L$(lib)) \
@@ -37,6 +37,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/kd-tree/build/cost.c \
 		  srcs/kd-tree/build/split.c \
 		  srcs/kd-tree/init.c \
+		  srcs/kd-tree/print.c \
 		  srcs/kd-tree/remove_tree.c \
 		  srcs/object/init_object.c \
 		  srcs/object/set_bounding_volume.c \
@@ -46,7 +47,8 @@ SRCS	= srcs/color/color.c \
 		  srcs/vector/vector_operation.c \
 		  srcs/vector/vector_scalar_operation.c \
 		  srcs/vector/vector_transformation.c \
-		  srcs/testfiles/test_vector_operations.c #testcode
+		  testfiles/test_kd_tree_building.c
+		  #testfiles/test_bicubic_resizing.c
 		  #srcs/main.c
 
 OBJS	= $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
-/*   Updated: 2023/09/26 19:48:53 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 12:58:53 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ struct s_tree
 };
 
 t_tree	*init_tree(t_list *obj_list);
+int		build_tree(t_tree *root);
+void	print_tree(t_tree *root);
 void	remove_tree(t_tree **root_ptr);
 void	remove_node(t_tree **node_ptr);
+void	print_object_list(t_list *list);
 void	clean_object_list(t_list *list);
 #endif
