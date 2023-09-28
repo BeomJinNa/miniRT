@@ -6,14 +6,13 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 18:06:42 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 22:08:41 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STAT_H
 # define STAT_H
 
-# include "image.h"
 # include "tree.h"
 
 # define M_VECTOR_MIN_SCALE 1e-5f
@@ -28,21 +27,19 @@ enum e_config
 	M_TREE_MIN_LEAF_SIZE = 1,
 };
 
-typedef struct s_data
-{
-	t_tree	*tree;
-	t_list	*objects;
-}	t_data;
+typedef struct s_data	t_data;
+typedef struct s_status	t_status;
 
-typedef struct s_camera
+struct s_data
 {
-	t_vector	position;
-	t_vector	angle;
-	t_real		fov;
-	t_sensor	*image;
-}	t_camera;
+	t_tree		*tree;
+	t_list 		*objects;
+	t_list		*lights;
+	t_cam		cam;
+	t_alight	alight;
+};
 
-typedef struct s_status
+struct s_status
 {
 	char	*title;
 	void	*mlx;
@@ -53,5 +50,5 @@ typedef struct s_status
 	int		win_height_2;
 	int		down_sampling_ratio;
 	t_data	*data;
-}	t_status;
+};
 #endif

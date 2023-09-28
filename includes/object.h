@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:50:32 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 22:07:43 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,27 @@ enum e_object_marker
 	M_OBJECT_MARK_FRONT_GROUP = 1,
 	M_OBJECT_MARK_BACK_GROUP = 2,
 };
+
+typedef struct s_ambient_light
+{
+	t_real		intensity;
+	t_pixel8	color;
+}	t_alight;
+
+typedef struct s_cam
+{
+	t_vector	position;
+	t_vector	normal_unit;
+	t_real		fov;
+	t_sensor	*image;
+}	t_cam;
+
+typedef struct s_light
+{
+	t_vector	position;
+	t_real		intensity;
+	t_pixel8	color;
+}	t_light;
 
 typedef struct s_texture
 {
