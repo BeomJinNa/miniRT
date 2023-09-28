@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 18:59:16 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:50:32 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ enum e_texture_flags
 {
 	FLAG_TEXTURE_IMAGE = 1 << 0,
 	FLAG_TEXTURE_BUMP = 1 << 1
+};
+
+enum e_object_marker
+{
+	M_OBJECT_MARK_INIT = -1,
+	M_OBJECT_MARK_NOMARK = 0,
+	M_OBJECT_MARK_FRONT_GROUP = 1,
+	M_OBJECT_MARK_BACK_GROUP = 2,
 };
 
 typedef struct s_texture

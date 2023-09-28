@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 03:23:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:20:18 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:51:29 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	get_division_cost(t_sp_buffer *buffer, t_real divider, t_list *list)
 	while (ptr)
 	{
 		ptr_bv = &((t_object *)ptr->content)->bv;
-		((t_object *)ptr->content)->marker = 0;
+		((t_object *)ptr->content)->marker = M_OBJECT_MARK_FRONT_GROUP;
 		if (ptr_bv->min[buffer->axis] < divider)
 			update_min_max_boundary(&group_front, ptr_bv);
 		else
 		{
 			update_min_max_boundary(&group_back, ptr_bv);
-			((t_object *)ptr->content)->marker = 1;
+			((t_object *)ptr->content)->marker = M_OBJECT_MARK_BACK_GROUP;
 		}
 		update_target_ptr(&ptr, buffer, ptr_bv);
 	}

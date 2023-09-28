@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 01:02:15 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:20:21 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:52:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ static void	split_list_data(t_list *buffer[2], t_tree *node, t_sp_buffer *data)
 	{
 		next = ptr->next;
 		ptr->next = NULL;
-		if (((t_object *)ptr->content)->marker == 0)
+		if (((t_object *)ptr->content)->marker == M_OBJECT_MARK_FRONT_GROUP)
 			ft_lstadd_back(&buffer[0], ptr);
 		else
 			ft_lstadd_back(&buffer[1], ptr);
+		((t_object *)ptr->content)->marker = M_OBJECT_MARK_INIT;
 		ptr = next;
 	}
 	node->objects = NULL;
