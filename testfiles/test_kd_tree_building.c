@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define NUM_OBJECTS 140
+#define NUM_OBJECTS 80
 
 // 각 오브젝트의 속성 값 범위를 위한 임의의 상수
 #define MAX_RADIUS 10.0
@@ -25,7 +25,6 @@ void	random_vector(t_vector vec)
 t_list	*create_random_objects()
 {
 	time_t	seed = time(NULL);
-
 	srand(seed); // 랜덤 시드 초기화
 
 	printf("seed : %ld\n", seed);
@@ -46,22 +45,35 @@ t_list	*create_random_objects()
 		{
 		case 0: // sphere
 			random_vector(temp_pos);
-			init_sphere(obj, temp_pos, rand() % (int)MAX_RADIUS);
+			while (init_sphere(obj, temp_pos, rand() % (int)MAX_RADIUS))
+				random_vector(temp_pos);
 			break ;
 		case 1: // plane
 			random_vector(temp_pos);
 			random_vector(temp_normal);
-			init_plane(obj, temp_pos, temp_normal, rand() % (int)MAX_RADIUS);
+			while (init_plane(obj, temp_pos, temp_normal, rand() % (int)MAX_RADIUS))
+			{
+				random_vector(temp_pos);
+				random_vector(temp_normal);
+			}
 			break ;
 		case 2: // cylinder
 			random_vector(temp_pos);
 			random_vector(temp_normal);
-			init_cylinder(obj, temp_pos, temp_normal, rand() % (int)MAX_RADIUS);
+			while (init_cylinder(obj, temp_pos, temp_normal, rand() % (int)MAX_RADIUS))
+			{
+				random_vector(temp_pos);
+				random_vector(temp_normal);
+			}
 			break ;
 		case 3: // cone
 			random_vector(temp_pos);
 			random_vector(temp_normal);
-			init_cone(obj, temp_pos, temp_normal, rand() % (int)MAX_RADIUS);
+			while (init_cone(obj, temp_pos, temp_normal, rand() % (int)MAX_RADIUS))
+			{
+				random_vector(temp_pos);
+				random_vector(temp_normal);
+			}
 			break ;
 		}
 

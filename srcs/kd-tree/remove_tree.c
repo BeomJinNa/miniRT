@@ -6,12 +6,12 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 17:01:32 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 17:47:29 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:29 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "tree.h"
+#include <stdlib.h>
 
 void	remove_tree(t_tree **root_ptr)
 {

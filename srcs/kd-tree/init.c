@@ -6,12 +6,12 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 16:34:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 14:44:48 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:24 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "tree.h"
+#include <stdlib.h>
 
 t_tree	*init_tree(t_list *obj_list)
 {

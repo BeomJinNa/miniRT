@@ -6,14 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:20:42 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 17:47:58 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:09 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 #include "tree.h"
 #include "stat.h"
+#include <stdlib.h>
 
 int			split_object_lists(t_list *buffer_splited[2], t_tree *node);
 static int	split_node(t_tree *node, int depth);

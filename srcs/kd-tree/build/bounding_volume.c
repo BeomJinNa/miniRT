@@ -6,13 +6,13 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 03:23:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/26 21:01:34 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:14 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "object.h"
 #include <stddef.h>
 #include <math.h>
-#include "object.h"
 
 void	init_bounding_volume(t_bv *bv);
 void	update_min_max_boundary(t_bv *buffer, t_bv *target);

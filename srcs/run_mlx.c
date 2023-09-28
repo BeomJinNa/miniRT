@@ -6,13 +6,13 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 06:50:53 by bena              #+#    #+#             */
-/*   Updated: 2023/08/30 11:38:50 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:19:41 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "mlx.h"
 #include "stat.h"
+#include <stddef.h>
 
 int			close_window(t_status *stat);
 void		alloc_hooks(t_status *stat);

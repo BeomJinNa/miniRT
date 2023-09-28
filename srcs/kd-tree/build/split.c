@@ -6,15 +6,15 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 01:02:15 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 14:45:22 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:21 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "libft.h"
 #include "tree.h"
 #include "s_split_buffer.h"
 #include "object.h"
+#include <math.h>
 
 void		get_division_cost(t_sp_buffer *buffer,
 				t_real divider, t_list *list);
@@ -92,7 +92,6 @@ static void	split_list_data(t_list *buffer[2], t_tree *node, t_sp_buffer *data)
 	t_list		*ptr;
 	t_list		*next;
 	const int	axis = data->axis;
-	const int	divider = data->divider;
 
 	buffer[0] = NULL;
 	buffer[1] = NULL;
@@ -101,7 +100,7 @@ static void	split_list_data(t_list *buffer[2], t_tree *node, t_sp_buffer *data)
 	{
 		next = ptr->next;
 		ptr->next = NULL;
-		if (divider > ((t_object *)ptr->content)->bv.min[axis])
+		if (((t_object *)ptr->content)->marker == 0)
 			ft_lstadd_back(&buffer[0], ptr);
 		else
 			ft_lstadd_back(&buffer[1], ptr);
@@ -109,4 +108,5 @@ static void	split_list_data(t_list *buffer[2], t_tree *node, t_sp_buffer *data)
 	}
 	node->objects = NULL;
 	node->axis = axis;
+	node->divider = data->divider;
 }

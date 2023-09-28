@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 17:47:04 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 18:57:15 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ struct s_tree
 	t_tree	*right;
 	t_list	*objects;
 	int		axis;
+	t_real	divider;
 	t_bv	bv;
 };
 

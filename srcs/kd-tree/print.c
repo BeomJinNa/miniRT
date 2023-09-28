@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:58:38 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 17:09:50 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:15:41 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	print_node(t_tree *node, int depth,
 	print_node_connection(depth, last_sibling, last_level);
 	if (number_of_objects == 0)
 		printf("Node \033[33m(depth: %d) \033[0m"
-			"\033[90m[%c]\033[0m\n",
-			depth, axis[node->axis]);
+			"\033[90m[%c=%.2f]\033[0m\n",
+			depth, axis[node->axis], node->divider);
 	else
 		printf("\033[35mLeaf\033[0m \033[36m(objects: %d)\033[0m\n",
 			number_of_objects);
@@ -90,19 +90,19 @@ static void	print_object(void *object)
 
 	obj = (t_object *)object;
 	if (obj->type == M_OBJECT_TYPE_SPHERE)
-		printf("Type : Sphere ");
+		printf("\033[33mType\033[0m : Sphere ");
 	else if (obj->type == M_OBJECT_TYPE_CONE)
-		printf("Type : Cone ");
+		printf("\033[33mType\033[0m : Cone ");
 	else if (obj->type == M_OBJECT_TYPE_CYLINDER)
-		printf("Type : Cylinder ");
+		printf("\033[33mType\033[0m : Cylinder ");
 	else if (obj->type == M_OBJECT_TYPE_PLANE)
-		printf("Type : Plane ");
+		printf("\033[33mType\033[0m : Plane ");
 	else
 	{
-		printf("Type : Unknown(%d) ", obj->type);
+		printf("\033[33mType\033[0m : Unknown(%d) ", obj->type);
 		return ;
 	}
-	printf("[%.1f ~ %.1f, %1.f ~ %1.f, %1.f ~ %1.f]\n", obj->bv.min[0],
-		obj->bv.max[0], obj->bv.min[1], obj->bv.max[1], obj->bv.min[2],
-		obj->bv.max[2]);
+	printf("\033[90m[(%.1f ~ %.1f), (%1.f ~ %1.f), (%1.f ~ %1.f)]\033[0m\n",
+		obj->bv.min[0], obj->bv.max[0], obj->bv.min[1],
+		obj->bv.max[1], obj->bv.min[2], obj->bv.max[2]);
 }

@@ -6,12 +6,12 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:07:25 by bena              #+#    #+#             */
-/*   Updated: 2023/09/26 22:36:23 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:34 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "object.h"
+#include <math.h>
 
 static t_bv	get_plane_bv(t_vector position, t_vector normal, t_real radius);
 static t_bv	get_point_bv(t_vector point);

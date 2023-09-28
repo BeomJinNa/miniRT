@@ -6,12 +6,12 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 20:10:24 by bena              #+#    #+#             */
-/*   Updated: 2023/09/27 13:27:29 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:42 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "vector.h"
+#include <math.h>
 
 t_real	vec_size(t_vector vec)
 {

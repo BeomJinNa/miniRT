@@ -6,12 +6,12 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 22:23:16 by bena              #+#    #+#             */
-/*   Updated: 2023/09/25 16:11:29 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:06 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
 #include "image.h"
+#include <mlx.h>
 
 void	img_mlx_pixel_put(t_img *data, int x, int y, int color)
 {

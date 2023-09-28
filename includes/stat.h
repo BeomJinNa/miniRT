@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/26 19:48:17 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 18:06:42 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "image.h"
 # include "tree.h"
+
+# define M_VECTOR_MIN_SCALE 1e-5f
 
 enum e_config
 {

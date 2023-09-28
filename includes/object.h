@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/27 12:38:43 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 18:59:16 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_object
 {
 	int			type;
 	t_bv		bv;
+	int			marker;
 	union
 	{
 		t_sphere	sphere;
@@ -91,12 +92,12 @@ typedef struct s_object
 	t_texture	texture;
 }	t_object;
 
-void	init_sphere(t_object *object, t_vector position, t_real radius);
-void	init_plane(t_object *object, t_vector position,
+int		init_sphere(t_object *object, t_vector position, t_real radius);
+int		init_plane(t_object *object, t_vector position,
 			t_vector normal, t_real radius);
-void	init_cylinder(t_object *object, t_vector position,
+int		init_cylinder(t_object *object, t_vector position,
 			t_vector normal, t_real radius);
-void	init_cone(t_object *object, t_vector position,
+int		init_cone(t_object *object, t_vector position,
 			t_vector normal, t_real radius);
 void	init_bounding_volume(t_bv *bv);
 void	get_integrated_bounding_volume(t_bv *buffer, t_list *object_list);

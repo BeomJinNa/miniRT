@@ -6,13 +6,13 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:13:22 by bena              #+#    #+#             */
-/*   Updated: 2023/08/30 09:41:26 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:01 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "mlx.h"
 #include "hooks.h"
+#include <stdlib.h>
 
 int			close_window(t_status *stat);
 static int	press_key(int keycode, t_status *stat);

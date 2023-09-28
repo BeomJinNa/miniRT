@@ -6,13 +6,13 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 03:23:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 14:43:42 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 19:20:18 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "s_split_buffer.h"
 #include "object.h"
+#include <stddef.h>
 
 static void		init_groups(t_list *list, t_bv *front, t_bv *back);
 static void		update_target_ptr(t_list **ptr, t_sp_buffer *buffer, t_bv *bv);
@@ -35,10 +35,14 @@ void	get_division_cost(t_sp_buffer *buffer, t_real divider, t_list *list)
 	while (ptr)
 	{
 		ptr_bv = &((t_object *)ptr->content)->bv;
+		((t_object *)ptr->content)->marker = 0;
 		if (ptr_bv->min[buffer->axis] < divider)
 			update_min_max_boundary(&group_front, ptr_bv);
 		else
+		{
 			update_min_max_boundary(&group_back, ptr_bv);
+			((t_object *)ptr->content)->marker = 1;
+		}
 		update_target_ptr(&ptr, buffer, ptr_bv);
 	}
 	calc_cost(buffer, group_front, group_back);
