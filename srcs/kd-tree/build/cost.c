@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 03:23:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 11:17:20 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:43:42 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void	init_groups(t_list *list, t_bv *front, t_bv *back)
 static void	update_target_ptr(t_list **ptr, t_sp_buffer *buffer, t_bv *bv)
 {
 	*ptr = (*ptr)->next;
+	if (buffer->included < 0 || buffer->remainder < 0)
+		return ;
 	if (bv->min[buffer->axis] < buffer->divider)
 	{
 		buffer->included++;

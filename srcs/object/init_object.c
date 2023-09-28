@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:53:36 by bena              #+#    #+#             */
-/*   Updated: 2023/09/27 13:35:13 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:45:59 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	init_plane(t_object *object, t_vector position,
 	object->type = M_OBJECT_TYPE_PLANE;
 	vec_copy(object->u_data.plane.position, position);
 	vec_copy(object->u_data.plane.normal, normal);
-	vec_divide_scalar(object->u_data.plane.normal_unit, normal, vec_size(normal));
+	vec_divide_scalar(object->u_data.plane.normal_unit,
+		normal, vec_size(normal));
 	object->u_data.plane.radius = radius;
 	set_bv_on_plane(object);
 }

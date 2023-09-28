@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 16:34:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 08:44:32 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:44:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,11 @@ t_tree	*init_tree(t_list *obj_list)
 	output = (t_tree *)malloc(sizeof(t_tree));
 	if (output == NULL)
 		return (NULL);
-	output->objects = obj_list;
-	if (output->objects == NULL)
-	{
-		free(output);
-		return (NULL);
-	}
 	output->parent = NULL;
 	output->left = NULL;
 	output->right = NULL;
 	output->axis = -1;
+	output->objects = obj_list;
 	init_bounding_volume(&output->bv);
 	return (output);
 }

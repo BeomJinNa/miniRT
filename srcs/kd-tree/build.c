@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:20:42 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 08:45:34 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:51:05 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	split_node(t_tree *node, int depth);
 static int	return_malloc_fail(t_tree *child[2], t_list *list[2]);
 static void	link_current_node_to_child_nodes(t_tree *parent, t_tree *child[2]);
 
+//the argument root must be a FREE-ABLE list
 int	build_tree(t_tree *root)
 {
 	if (root == NULL || root->objects == NULL)

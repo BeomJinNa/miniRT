@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:58:38 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 13:02:20 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 16:27:36 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_tree(t_tree *root)
 {
 	int	last_level[M_TREE_MAX_DEPTH];
 
-	ft_memset(last_level, 0, sizeof(int) * M_TREE_MAX_DEPTH);
+	ft_memset(last_level, 0, sizeof(last_level));
 	print_node(root, 0, 1, last_level);
 }
 

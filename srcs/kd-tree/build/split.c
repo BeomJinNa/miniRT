@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 01:02:15 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 07:31:44 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:45:22 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ static void	get_optimized_divider(t_tree *node, t_sp_buffer *data)
 	minimum_cost = INFINITY;
 	while (ptr)
 	{
-		data->included = 0;
-		data->remainder = data->total;
 		get_division_cost(data,
 			((t_object *)ptr->content)->bv.max[data->axis], node->objects);
 		if (minimum_cost > data->cost)
@@ -84,6 +82,8 @@ static void	get_optimized_divider(t_tree *node, t_sp_buffer *data)
 		}
 		ptr = ptr->next;
 	}
+	data->included = 0;
+	data->remainder = data->total;
 	get_division_cost(data, divider_that_has_minimum_cost, node->objects);
 }
 

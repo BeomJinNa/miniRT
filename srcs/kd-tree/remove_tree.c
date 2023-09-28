@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 17:01:32 by bena              #+#    #+#             */
-/*   Updated: 2023/09/22 03:24:54 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 14:31:26 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	clean_object_list(t_list *list);
 
 void	remove_tree(t_tree **root_ptr)
 {
-	if ((*root_ptr)->left != NULL)
-		remove_tree(&(*root_ptr)->left);
-	if ((*root_ptr)->right != NULL)
-		remove_tree(&(*root_ptr)->right);
+	if (root_ptr == NULL || *root_ptr == NULL)
+		return ;
+	remove_tree(&(*root_ptr)->left);
+	remove_tree(&(*root_ptr)->right);
 	remove_node(root_ptr);
 }
 
