@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:58:38 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 16:27:36 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 17:09:50 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	print_tree(t_tree *root)
 	print_node(root, 0, 1, last_level);
 }
 
+/*
+ * When the node is right-child or left-child with NULL on the right,
+ * it is the last sibling. (binary tree characteristic)
+ */
 static void	print_node(t_tree *node, int depth,
 				int last_sibling, int *last_level)
 {
@@ -43,8 +47,7 @@ static void	print_node(t_tree *node, int depth,
 			"\033[90m[%c]\033[0m\n",
 			depth, axis[node->axis]);
 	else
-		printf("Node \033[36m(objects: %d)\033[0m "
-			"\033[32m[leaf]\033[0m\n",
+		printf("\033[35mLeaf\033[0m \033[36m(objects: %d)\033[0m\n",
 			number_of_objects);
 	last_level[depth] = last_sibling;
 	print_node(node->left, depth + 1, node->right == NULL, last_level);
@@ -59,17 +62,19 @@ static void	print_node_connection(int depth, int last_sibling, int *last_level)
 	while (i < depth)
 	{
 		if (last_level[i++])
-			printf("    ");
+			printf("      ");
 		else
-			printf("\033[32m|\033[0m   ");
+			printf("\033[32m|\033[0m     ");
 	}
 	if (depth > 0)
 	{
 		if (last_sibling)
-			printf("\033[32m+-- \033[0m");
+			printf("\033[32m+---- \033[0m");
 		else
-			printf("\033[32m|-- \033[0m");
+			printf("\033[32m|---- \033[0m");
 	}
+	else
+		printf("\033[31m[ROOT]\033[0m");
 }
 
 void	print_object_list(t_list *list)

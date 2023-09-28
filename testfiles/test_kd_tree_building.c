@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define NUM_OBJECTS 100
+#define NUM_OBJECTS 140
 
 // 각 오브젝트의 속성 값 범위를 위한 임의의 상수
 #define MAX_RADIUS 10.0
@@ -24,8 +24,11 @@ void	random_vector(t_vector vec)
 
 t_list	*create_random_objects()
 {
-	srand(time(NULL)); // 랜덤 시드 초기화
+	time_t	seed = time(NULL);
 
+	srand(seed); // 랜덤 시드 초기화
+
+	printf("seed : %ld\n", seed);
 	t_list *obj_list = NULL;
 	for (int i = 0; i < NUM_OBJECTS; ++i)
 	{
@@ -79,7 +82,7 @@ int	main(void)
 	}
 
 	printf("\n");
-	printf("\033[35m[OBJECT LIST]==========================================\033[0m\n");
+	printf("\033[32m[OBJECT LIST]==============================================================\033[0m\n");
 	print_object_list(obj_list);
 
 	t_tree *root = init_tree(obj_list);
@@ -90,17 +93,16 @@ int	main(void)
 		return (1);
 	}
 
-	printf("\033[35m[ROOT NODE(total number)]==============================\033[0m\n");
+	printf("\033[32m[ROOT NODE(total number)]==================================================\033[0m\n");
 	print_tree(root);
 
 	if (build_tree(root) != 0)
 	{
 		printf("Failed to build tree.\n");
-		remove_tree(&root);
 		return (1);
 	}
 
-	printf("\033[35m[k-d tree]=============================================\033[0m\n");
+	printf("\033[32m[k-d tree]=================================================================\033[0m\n");
 	print_tree(root);
 	printf("\n");
 

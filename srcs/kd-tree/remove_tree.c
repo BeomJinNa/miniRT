@@ -6,15 +6,12 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 17:01:32 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 14:31:26 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/28 17:47:29 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "tree.h"
-
-void	remove_node(t_tree **node_ptr);
-void	clean_object_list(t_list *list);
 
 void	remove_tree(t_tree **root_ptr)
 {
@@ -29,7 +26,7 @@ void	remove_node(t_tree **node_ptr)
 {
 	t_tree	*node;
 
-	if (node_ptr == NULL)
+	if (node_ptr == NULL || *node_ptr == NULL)
 		return ;
 	node = *node_ptr;
 	if (node != NULL)
