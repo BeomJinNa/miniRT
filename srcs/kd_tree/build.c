@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:20:42 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:20:09 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:36:36 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ static int	return_malloc_fail(t_tree *child[2], t_list *list[2])
 	if (child[0] != NULL)
 		remove_node(&child[0]);
 	else
-		clean_object_list(list[0]);
+		ft_lstclear(&list[0], NULL);
 	if (child[1] != NULL)
 		remove_node(&child[1]);
 	else
-		clean_object_list(list[1]);
+		ft_lstclear(&list[1], NULL);
 	return (-1);
 }
 

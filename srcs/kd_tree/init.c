@@ -6,13 +6,19 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 16:34:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:20:24 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:50:21 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stdlib.h>
 
+/*
+ * Caution!!!
+ *
+ * This function destroys obj_list entered as an argument. Use a copied list.
+ * It will not destroy the objects in the list, but the list will be destroyed.
+ */
 t_tree	*init_tree(t_list *obj_list)
 {
 	t_tree	*output;

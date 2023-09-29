@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 18:57:15 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:50:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,16 @@ struct s_tree
 	t_bv	bv;
 };
 
+/*
+ * Caution!!! (init_tree)
+ *
+ * This function destroys obj_list entered as an argument. Use a copied list.
+ * It will not destroy the objects in the list, but the list will be destroyed.
+ */
 t_tree	*init_tree(t_list *obj_list);
 int		build_tree(t_tree *root);
 void	print_tree(t_tree *root);
 void	remove_tree(t_tree **root_ptr);
 void	remove_node(t_tree **node_ptr);
 void	print_object_list(t_list *list);
-void	clean_object_list(t_list *list);
 #endif

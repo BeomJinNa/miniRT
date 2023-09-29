@@ -32,18 +32,20 @@ SRCS	= srcs/color/color.c \
 		  srcs/hooks/reset_settings.c \
 		  srcs/image/bicubic.c \
 		  srcs/image/mlx_img.c \
-		  srcs/kd-tree/build.c \
-		  srcs/kd-tree/build/bounding_volume.c \
-		  srcs/kd-tree/build/cost.c \
-		  srcs/kd-tree/build/split.c \
-		  srcs/kd-tree/init.c \
-		  srcs/kd-tree/print.c \
-		  srcs/kd-tree/remove_tree.c \
+		  srcs/kd_tree/build.c \
+		  srcs/kd_tree/build/bounding_volume.c \
+		  srcs/kd_tree/build/cost.c \
+		  srcs/kd_tree/build/split.c \
+		  srcs/kd_tree/init.c \
+		  srcs/kd_tree/print.c \
+		  srcs/kd_tree/remove_tree.c \
 		  srcs/object/init_object.c \
 		  srcs/object/set_bounding_volume.c \
+		  srcs/ray_tracer/shoot_a_ray.c \
 		  srcs/run_mlx.c \
 		  srcs/sort_memory.c \
 		  srcs/vector/vector_condition.c \
+		  srcs/vector/vector_constant.c \
 		  srcs/vector/vector_operation.c \
 		  srcs/vector/vector_scalar_operation.c \
 		  srcs/vector/vector_transformation.c \

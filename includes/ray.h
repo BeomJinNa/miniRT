@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 19:14:29 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 17:37:39 by bena             ###   ########.fr       */
+/*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
+/*   Updated: 2023/09/29 17:04:52 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "s_list.h"
+#ifndef RAY_H
+# define RAY_H
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	if (lst == 0)
-		return ;
-	if (del != NULL)
-		del(lst->content);
-	free(lst);
-}
+# include "object.h"
+
+void	*shoot_a_ray(t_vector buffer, t_ray ray);
+#endif

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 16:24:01 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 18:10:02 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ enum e_object_marker
 	M_OBJECT_MARK_BACK_GROUP = 2,
 };
 
+enum e_hit_flag
+{
+	M_HIT_NONE = 0,
+	M_HIT_PLANE = 1,
+	M_HIT_SPHERE = 2,
+	M_HIT_CYLINDER = 3,
+	M_HIT_CONE = 4,
+};
+
 typedef struct s_intersection
 {
 	t_vector	position;
@@ -48,7 +57,15 @@ typedef struct s_intersection
 	t_vector	reflection_direction_unit;
 	t_real		reflection_ratio;
 	t_real		distance;
+	int			hit_object;
 }	t_intersection;
+
+typedef struct s_ray
+{
+	t_vector	position;
+	t_vector	normal_unit;
+	t_real		weight;
+}	t_ray;
 
 typedef struct s_cam
 {

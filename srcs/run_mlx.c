@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 06:50:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:19:41 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:15:35 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "stat.h"
 #include <stddef.h>
 
-int			close_window(t_status *stat);
-void		alloc_hooks(t_status *stat);
-static void	init_mlx(t_status *stat);
+int			close_window(t_stat *stat);
+void		alloc_hooks(t_stat *stat);
+static void	init_mlx(t_stat *stat);
 
-void	run_mlx(t_status *stat)
+void	run_mlx(t_stat *stat)
 {
 	init_mlx(stat);
 	if (stat->win == NULL)
@@ -33,7 +33,7 @@ void	run_mlx(t_status *stat)
 	mlx_loop(stat->mlx);
 }
 
-static void	init_mlx(t_status *stat)
+static void	init_mlx(t_stat *stat)
 {
 	stat->title = "miniRT";
 	stat->mlx = NULL;

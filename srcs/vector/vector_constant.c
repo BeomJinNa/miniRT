@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   vector_constant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 19:14:29 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 17:37:39 by bena             ###   ########.fr       */
+/*   Created: 2023/09/29 18:10:44 by bena              #+#    #+#             */
+/*   Updated: 2023/09/29 18:11:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "s_list.h"
+#include "vector.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	*vec_zero(t_vector buffer)
 {
-	if (lst == 0)
-		return ;
-	if (del != NULL)
-		del(lst->content);
-	free(lst);
+	buffer[0] = 0;
+	buffer[1] = 0;
+	buffer[2] = 0;
+	return (buffer);
 }

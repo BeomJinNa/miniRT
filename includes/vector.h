@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:47:36 by bena              #+#    #+#             */
-/*   Updated: 2023/09/27 13:34:45 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 18:11:49 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ t_real	vec_cosine_similarity(t_vector a, t_vector b);
 void	*vec_min(t_vector buffer, t_vector a, t_vector b);
 void	*vec_max(t_vector buffer, t_vector a, t_vector b);
 int		is_vector_zero(t_vector vec);
+void	*vec_zero(t_vector buffer);
 #endif

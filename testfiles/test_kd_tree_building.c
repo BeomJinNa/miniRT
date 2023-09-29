@@ -34,7 +34,7 @@ t_list	*create_random_objects()
 		t_object *obj = malloc(sizeof(t_object));
 		if (!obj)
 		{
-			clean_object_list(obj_list);
+			ft_lstclear(&obj_list, NULL);
 			return (NULL);
 		}
 
@@ -101,7 +101,7 @@ int	main(void)
 	if (!root)
 	{
 		printf("Failed to initialize tree.\n");
-		clean_object_list(obj_list);
+		ft_lstclear(&obj_list, NULL);
 		return (1);
 	}
 

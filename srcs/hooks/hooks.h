@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:38:24 by bena              #+#    #+#             */
-/*   Updated: 2023/08/30 09:37:02 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:16:31 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ enum e_keycodes
 	KEY_R = 15
 };
 
-void	reset_settings(t_status *stat);
+void	reset_settings(t_stat *stat);
 #endif

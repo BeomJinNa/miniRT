@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 01:02:15 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:52:39 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 17:34:30 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	split_object_lists(t_list *buffer_splited[2], t_tree *node)
 	if (data.included == 0 || data.remainder == 0)
 		return (terminate_without_split(buffer_splited));
 	split_list_data(buffer_splited, node, &data);
-	clean_object_list(node->objects);
-	node->objects = NULL;
+	ft_lstclear(&node->objects, NULL);
 	return (0);
 }
 
