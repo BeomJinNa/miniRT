@@ -28,6 +28,7 @@ MLX			= mlx/libmlx.dylib
 
 SRCS	= srcs/color/color.c \
 		  srcs/color/color_mix.c \
+		  srcs/free.c \
 		  srcs/hooks/hooks.c \
 		  srcs/hooks/reset_settings.c \
 		  srcs/image/bicubic.c \

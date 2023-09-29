@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 06:50:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 17:15:35 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 18:20:04 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,4 @@ static void	init_mlx(t_stat *stat)
 	if (stat->mlx != NULL)
 		stat->win = mlx_new_window(stat->mlx, stat->win_width, stat->win_height,
 				stat->title);
-	stat->down_sampling_ratio = 256;
 }

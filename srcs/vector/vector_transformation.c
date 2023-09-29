@@ -6,14 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 20:10:24 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:20:42 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 21:18:16 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include <math.h>
 
-t_real	vec_size(t_vector vec)
+t_real	vec_size(const t_vector vec)
 {
 	const t_real	square = vec_dot_product(vec, vec);
 
@@ -32,7 +32,7 @@ void	*vec_norm(t_vector buffer, t_vector vec)
 	return (buffer);
 }
 
-t_real	vec_cosine_similarity(t_vector a, t_vector b)
+t_real	vec_cosine_similarity(const t_vector a, const t_vector b)
 {
 	return (vec_dot_product(a, b) / (vec_size(a) * vec_size(b)));
 }

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 18:10:02 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 22:26:01 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,46 @@
 
 enum e_object_type
 {
-	M_OBJECT_TYPE_PLANE = 0,
-	M_OBJECT_TYPE_SPHERE = 1,
-	M_OBJECT_TYPE_CYLINDER = 2,
-	M_OBJECT_TYPE_CONE = 3
-};
-
-enum e_texture_flags
-{
-	FLAG_TEXTURE_IMAGE = 1 << 0,
-	FLAG_TEXTURE_BUMP = 1 << 1
+	M_OBJECT_TYPE_PLANE		= 0,
+	M_OBJECT_TYPE_SPHERE	= 1,
+	M_OBJECT_TYPE_CYLINDER	= 2,
+	M_OBJECT_TYPE_CONE		= 3,
 };
 
 enum e_object_marker
 {
-	M_OBJECT_MARK_INIT = -1,
-	M_OBJECT_MARK_NOMARK = 0,
-	M_OBJECT_MARK_FRONT_GROUP = 1,
-	M_OBJECT_MARK_BACK_GROUP = 2,
+	M_OBJECT_MARK_INIT			= -1,
+	M_OBJECT_MARK_NOMARK		= 0,
+	M_OBJECT_MARK_FRONT_GROUP	= 1,
+	M_OBJECT_MARK_BACK_GROUP	= 2,
 };
 
-enum e_hit_flag
+enum e_rayhit
 {
-	M_HIT_NONE = 0,
-	M_HIT_PLANE = 1,
-	M_HIT_SPHERE = 2,
-	M_HIT_CYLINDER = 3,
-	M_HIT_CONE = 4,
+	M_HIT_NONE		= 0,
+	M_HIT_PLANE		= 1,
+	M_HIT_SPHERE	= 2,
+	M_HIT_CYLINDER	= 3,
+	M_HIT_CONE		= 4,
+};
+
+enum e_texture_flags
+{
+	FLAG_TEXTURE_IMAGE	= 1 << 0,
+	FLAG_TEXTURE_BUMP	= 1 << 1,
+};
+
+enum e_plane_flags
+{
+	FLAG_BV_REGION_X		= 1 << 0,
+	FLAG_BV_REGION_Y		= 1 << 1,
+	FLAG_BV_REGION_Z		= 1 << 2,
+	FLAG_BV_REGION_X_BOTTOM	= 1 << 3,
+	FLAG_BV_REGION_X_TOP	= 1 << 4,
+	FLAG_BV_REGION_Y_BOTTOM	= 1 << 5,
+	FLAG_BV_REGION_Y_TOP	= 1 << 6,
+	FLAG_BV_REGION_Z_BOTTOM	= 1 << 7,
+	FLAG_BV_REGION_Z_TOP	= 1 << 8,
 };
 
 typedef struct s_intersection
@@ -153,4 +166,9 @@ int		init_cone(t_object *object, t_vector position,
 void	init_bounding_volume(t_bv *bv);
 void	get_integrated_bounding_volume(t_bv *buffer, t_list *object_list);
 void	update_min_max_boundary(t_bv *buffer, t_bv *target);
+int		is_point_in_bv(t_vector position, t_bv *bv);
+int		is_point_in_plane(t_vector point, t_bv *bv, int axis1, int axis2);
+int		get_flag_region_info(t_vector point, t_bv *bv);
+void	*move_point_onto_plane(t_vector point, t_vector normal_unit,
+			t_real position, int axis);
 #endif

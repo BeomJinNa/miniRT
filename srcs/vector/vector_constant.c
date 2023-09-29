@@ -6,13 +6,13 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:10:44 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 18:11:39 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 21:16:05 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-void	*vec_zero(t_vector buffer)
+void	*vec_set_zero(t_vector buffer)
 {
 	buffer[0] = 0;
 	buffer[1] = 0;
