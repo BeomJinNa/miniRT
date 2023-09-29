@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 16:03:28 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 16:24:01 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ enum e_object_marker
 
 typedef struct s_intersection
 {
-	t_real		distance;
 	t_vector	position;
 	t_vector	reflectance;
 	t_vector	transmittance;
 	t_vector	normal_unit;
+	t_vector	reflection_direction_unit;
+	t_real		reflection_ratio;
+	t_real		distance;
 }	t_intersection;
 
 typedef struct s_cam
