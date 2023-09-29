@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define NUM_OBJECTS 80
+#define NUM_OBJECTS 300
 
 // 각 오브젝트의 속성 값 범위를 위한 임의의 상수
 #define MAX_RADIUS 10.0

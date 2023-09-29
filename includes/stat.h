@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 22:08:41 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 16:04:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ struct s_data
 	t_list 		*objects;
 	t_list		*lights;
 	t_cam		cam;
-	t_alight	alight;
+	t_vector	ambient;
 };
 
 struct s_status

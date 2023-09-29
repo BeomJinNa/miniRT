@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:58:38 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:15:41 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/29 16:01:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	print_object(void *object);
 
 void	print_tree(t_tree *root)
 {
-	int	last_level[M_TREE_MAX_DEPTH];
+	int	last_level[M_TREE_MAX_DEPTH + 1];
 
 	ft_memset(last_level, 0, sizeof(last_level));
 	print_node(root, 0, 1, last_level);
@@ -35,8 +35,7 @@ void	print_tree(t_tree *root)
 static void	print_node(t_tree *node, int depth,
 				int last_sibling, int *last_level)
 {
-	int			number_of_objects;
-	const char	axis[3] = {'X', 'Y', 'Z'};
+	int	number_of_objects;
 
 	if (node == NULL)
 		return ;
@@ -45,7 +44,7 @@ static void	print_node(t_tree *node, int depth,
 	if (number_of_objects == 0)
 		printf("Node \033[33m(depth: %d) \033[0m"
 			"\033[90m[%c=%.2f]\033[0m\n",
-			depth, axis[node->axis], node->divider);
+			depth, "XYZ"[node->axis], node->divider);
 	else
 		printf("\033[35mLeaf\033[0m \033[36m(objects: %d)\033[0m\n",
 			number_of_objects);
