@@ -6,12 +6,16 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:53:36 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:53:20 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/30 21:32:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "set_bv.h"
+#include "object.h"
+
+void	set_bv_on_plane(t_object *plane);
+void	set_bv_on_cylinder(t_object *cylinder);
+void	set_bv_on_cone(t_object *cone);
 
 /*
  * If initialization failed, return 1

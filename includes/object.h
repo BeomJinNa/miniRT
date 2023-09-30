@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 22:26:01 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/30 20:42:12 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 # include "image.h"
 # include "s_list.h"
 
+typedef struct s_object	t_object;
+
 enum e_object_type
 {
-	M_OBJECT_TYPE_PLANE		= 0,
-	M_OBJECT_TYPE_SPHERE	= 1,
-	M_OBJECT_TYPE_CYLINDER	= 2,
-	M_OBJECT_TYPE_CONE		= 3,
+	M_OBJECT_TYPE_NONE		= 0,
+	M_OBJECT_TYPE_PLANE		= 1,
+	M_OBJECT_TYPE_SPHERE	= 2,
+	M_OBJECT_TYPE_CYLINDER	= 3,
+	M_OBJECT_TYPE_CONE		= 4,
 };
 
 enum e_object_marker
@@ -31,15 +34,6 @@ enum e_object_marker
 	M_OBJECT_MARK_NOMARK		= 0,
 	M_OBJECT_MARK_FRONT_GROUP	= 1,
 	M_OBJECT_MARK_BACK_GROUP	= 2,
-};
-
-enum e_rayhit
-{
-	M_HIT_NONE		= 0,
-	M_HIT_PLANE		= 1,
-	M_HIT_SPHERE	= 2,
-	M_HIT_CYLINDER	= 3,
-	M_HIT_CONE		= 4,
 };
 
 enum e_texture_flags
@@ -60,25 +54,6 @@ enum e_plane_flags
 	FLAG_BV_REGION_Z_BOTTOM	= 1 << 7,
 	FLAG_BV_REGION_Z_TOP	= 1 << 8,
 };
-
-typedef struct s_intersection
-{
-	t_vector	position;
-	t_vector	reflectance;
-	t_vector	transmittance;
-	t_vector	normal_unit;
-	t_vector	reflection_direction_unit;
-	t_real		reflection_ratio;
-	t_real		distance;
-	int			hit_object;
-}	t_intersection;
-
-typedef struct s_ray
-{
-	t_vector	position;
-	t_vector	normal_unit;
-	t_real		weight;
-}	t_ray;
 
 typedef struct s_cam
 {
@@ -141,7 +116,7 @@ typedef struct s_bounding_volume
 	t_vector	max;
 }	t_bv;
 
-typedef struct s_object
+struct s_object
 {
 	int			type;
 	t_bv		bv;
@@ -154,7 +129,7 @@ typedef struct s_object
 		t_cone		cone;
 	}	u_data;
 	t_texture	texture;
-}	t_object;
+};
 
 int		init_sphere(t_object *object, t_vector position, t_real radius);
 int		init_plane(t_object *object, t_vector position,
