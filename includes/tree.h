@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 20:50:41 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/30 14:12:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	print_tree(t_tree *root);
 void	remove_tree(t_tree **root_ptr);
 void	remove_node(t_tree **node_ptr);
 void	print_object_list(t_list *list);
+
+/*
+ * Traverse the k-d tree and apply the given function `f` to objects that
+ * intersect with the ray. The function `f` is invoked with the object and
+ * the `arg` parameter from `traverse_tree` as its arguments.
+ */
 void	traverse_tree(t_tree *tree, t_ray *ray,
 			void (*f)(t_object *, void *), void *arg);
 #endif

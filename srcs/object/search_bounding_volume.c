@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 20:25:54 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 22:05:49 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/30 13:57:52 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ int	is_point_in_plane(t_vector point, t_bv *bv, int axis1, int axis2)
 	return (1);
 }
 
+/*
+ * Determine the region of the bounding volume (bv) in which the point resides.
+ * Return a flag indicating the region.
+ */
 int	get_flag_region_info(t_vector point, t_bv *bv)
 {
 	int	output;
@@ -62,14 +66,18 @@ int	get_flag_region_info(t_vector point, t_bv *bv)
 	return (output);
 }
 
+/*
+ * Move the given point to the plane specified by the normal unit and position.
+ * Return the modified point.
+ */
 void	*move_point_onto_plane(t_vector point, t_vector normal_unit,
 			t_real position, int axis)
 {
-	const t_vector	unit_x = {1.0, 0, 0};
-	const t_vector	unit_y = {0, 1.0, 0};
-	const t_vector	unit_z = {0, 0, 1.0};
-	t_real			unit_distance_to_the_plane;
-	t_vector		path_onto_the_plane;
+	static const t_vector	unit_x = {1.0, 0, 0};
+	static const t_vector	unit_y = {0, 1.0, 0};
+	static const t_vector	unit_z = {0, 0, 1.0};
+	t_real					unit_distance_to_the_plane;
+	t_vector				path_onto_the_plane;
 
 	if (are_values_same(point[axis], position))
 		return (point);
