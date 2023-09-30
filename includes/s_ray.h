@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_bv.h                                           :+:      :+:    :+:   */
+/*   s_ray.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 22:39:48 by bena              #+#    #+#             */
-/*   Updated: 2023/09/26 22:40:30 by bena             ###   ########.fr       */
+/*   Created: 2023/09/30 20:46:37 by bena              #+#    #+#             */
+/*   Updated: 2023/09/30 20:46:58 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SET_BV_H
-# define SET_BV_H
+#ifndef S_RAY_H
+# define S_RAY_H
 
-# include "object.h"
+#include "vector.h"
 
-void	set_bv_on_plane(t_object *plane);
-void	set_bv_on_cylinder(t_object *cylinder);
-void	set_bv_on_cone(t_object *cone);
+typedef struct s_ray
+{
+	t_vector	position;
+	t_vector	normal_unit;
+	t_real		weight;
+}	t_ray;
 #endif

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
-/*   Updated: 2023/09/30 14:12:28 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/30 20:47:31 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TREE_H
 
 # include "object.h"
+# include "s_ray.h"
 
 typedef struct s_tree	t_tree;
 

@@ -6,14 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 19:56:47 by bena              #+#    #+#             */
-/*   Updated: 2023/09/30 14:11:56 by bena             ###   ########.fr       */
+/*   Updated: 2023/09/30 19:57:44 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stddef.h>
 
-static void	traverse_objects(t_list *list,
+static void	traverse_objects(t_list *list, t_ray *ray,
 				void (*f)(t_object *, void *), void *arg);
 static int	is_bv_in_raypath(t_ray *ray, t_bv *bv);
 static int	can_ray_hit_the_plane(t_ray *ray, t_bv *bv, int flag, int axis);
@@ -29,19 +29,20 @@ void	traverse_tree(t_tree *node, t_ray *ray,
 	if (node == NULL || is_bv_in_raypath(ray, &node->bv) == 0)
 		return ;
 	if (node->objects != NULL)
-		traverse_objects(node->objects, f, arg);
+		traverse_objects(node->objects, ray, f, arg);
 	if (node->left != NULL)
 		traverse_tree(node->left, ray, f, arg);
 	if (node->right != NULL)
 		traverse_tree(node->right, ray, f, arg);
 }
 
-static void	traverse_objects(t_list *list,
+static void	traverse_objects(t_list *list, t_ray *ray,
 				void (*f)(t_object *, void *), void *arg)
 {
 	while (list != NULL)
 	{
-		f(list->content, arg);
+		if (is_bv_in_raypath(ray, &((t_object *)list->content)->bv))
+			f(list->content, arg);
 		list = list->next;
 	}
 }
