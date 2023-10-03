@@ -6,13 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
-/*   Updated: 2023/09/30 21:22:28 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/06 10:57:19 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_H
 # define RAY_H
 
+# include "object.h"
 # include "s_ray.h"
 # include "stat.h"
 
@@ -31,4 +32,9 @@ typedef struct s_intersection
 
 void			*shoot_a_ray(t_vector buffer, t_ray ray, t_data *data);
 t_intersection	get_intersection(t_ray *ray, t_object *object);
+t_intersection	return_void_intersection(void);
+int				is_point_in_plane(t_vector point_position,
+					t_vector plane_position, t_vector plane_normal);
+void			*get_reflected_ray(t_vector buffer, t_vector ray_normal_unit,
+					t_vector surface_normal_unit);
 #endif

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:47:36 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 21:30:27 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/06 08:45:44 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_real	vec_cosine_similarity(const t_vector a, const t_vector b);
 void	*vec_min(t_vector buffer, t_vector a, t_vector b);
 void	*vec_max(t_vector buffer, t_vector a, t_vector b);
 void	*vec_set_zero(t_vector buffer);
+int		is_real_zero(t_real real);
 int		is_vector_zero(const t_vector vec);
 int		are_values_same(t_real value1, t_real value2);
+int		is_point_in_range(t_vector point, t_vector center, t_real range);
 #endif
