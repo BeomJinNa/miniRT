@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 20:10:24 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 21:18:16 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/06 11:31:05 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_real	vec_size(const t_vector vec)
 
 	if (square <= 0)
 		return (0);
-	return (sqrt(square));
+	return (sqrtf(square));
 }
 
 void	*vec_norm(t_vector buffer, t_vector vec)
