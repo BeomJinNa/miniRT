@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
-/*   Updated: 2023/10/06 10:57:19 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/08 18:45:54 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ int				is_point_in_plane(t_vector point_position,
 					t_vector plane_position, t_vector plane_normal);
 void			*get_reflected_ray(t_vector buffer, t_vector ray_normal_unit,
 					t_vector surface_normal_unit);
+t_real			get_nearest_point_with_ray(t_ray *ray,
+					t_vector position, t_vector normal_unit);
 #endif

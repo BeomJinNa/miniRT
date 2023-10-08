@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 20:10:24 by bena              #+#    #+#             */
-/*   Updated: 2023/10/06 11:31:05 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/08 18:50:20 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,17 @@
 
 t_real	vec_size(const t_vector vec)
 {
-	const t_real	square = vec_dot_product(vec, vec);
-
-	if (square <= 0)
-		return (0);
-	return (sqrtf(square));
+	return (sqrtf(vec_dot_product(vec, vec)));
 }
 
 void	*vec_norm(t_vector buffer, t_vector vec)
 {
-	const t_real	length = vec_size(vec);
+	const t_real	square_lenth = vec_dot_product(vec, vec);
+	const t_real	length = 1 / sqrtf(square_lenth);
 
-	buffer[0] = vec[0] / length;
-	buffer[1] = vec[1] / length;
-	buffer[2] = vec[2] / length;
+	buffer[0] = vec[0] * length;
+	buffer[1] = vec[1] * length;
+	buffer[2] = vec[2] * length;
 	return (buffer);
 }
 
