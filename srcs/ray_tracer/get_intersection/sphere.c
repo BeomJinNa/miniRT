@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/06 13:35:58 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/17 03:28:34 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_intersection	return_intersection(t_ray *ray,
 {
 	t_intersection	output;
 
-	vec_product_scalar(output.normal_unit, normal, 1 / vec_size(normal));
+	vec_norm(output.normal_unit, normal);
 	vec_add(output.position, sphere->u_data.sphere.position, normal);
 	output.distance = dist;
 	output.ray = ray;

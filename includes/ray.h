@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
-/*   Updated: 2023/10/08 18:45:54 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/17 03:36:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include "object.h"
 # include "s_ray.h"
 # include "stat.h"
+
+typedef struct s_intersection_buffer
+{
+	t_vector	position;
+	t_vector	normal_unit;
+	t_real		dist;
+}	t_hit_buffer;
 
 typedef struct s_intersection
 {
