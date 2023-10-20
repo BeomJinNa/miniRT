@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 20:25:54 by bena              #+#    #+#             */
-/*   Updated: 2023/09/30 13:57:52 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/06 08:51:32 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_point_in_bv(t_vector point, t_bv *bv)
 	return (1);
 }
 
-int	is_point_in_plane(t_vector point, t_bv *bv, int axis1, int axis2)
+int	is_point_in_plane_bv(t_vector point, t_bv *bv, int axis1, int axis2)
 {
 	if (point[axis1] < bv->min[axis1])
 		return (0);

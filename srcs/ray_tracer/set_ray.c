@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_constant.c                                  :+:      :+:    :+:   */
+/*   set_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:10:44 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 01:01:43 by bena             ###   ########.fr       */
+/*   Created: 2023/10/20 18:41:08 by bena              #+#    #+#             */
+/*   Updated: 2023/10/20 18:50:13 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include <math.h>
+#include "s_ray.h"
+#include "stat.h"
 
-void	*vec_set_zero(t_vector buffer)
-{
-	buffer[0] = 0;
-	buffer[1] = 0;
-	buffer[2] = 0;
-	return (buffer);
-}
+void	*shoot_a_ray(t_vector buffer, t_ray ray, t_data *data);
 
-t_real	vec_get_polar_angle_phi(t_vector normal_unit)
+t_ray	set_ray(t_vector position, t_vector normal_unit, t_real weight)
 {
-	return (acosf(normal_unit[2]));
-}
+	t_ray	output;
 
-t_real	vec_get_polar_angle_theta(t_vector normal_unit)
-{
-	return (atan2f(normal_unit[1], normal_unit[0]));
+	vec_copy(output.position, position);
+	vec_copy(output.normal_unit, normal_unit);
+	output.weight = weight;
+	return (output);
 }

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 19:56:47 by bena              #+#    #+#             */
-/*   Updated: 2023/09/30 19:57:44 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/20 20:43:49 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 static void	traverse_objects(t_list *list, t_ray *ray,
 				void (*f)(t_object *, void *), void *arg);
-static int	is_bv_in_raypath(t_ray *ray, t_bv *bv);
 static int	can_ray_hit_the_plane(t_ray *ray, t_bv *bv, int flag, int axis);
 
 /*
@@ -47,7 +46,7 @@ static void	traverse_objects(t_list *list, t_ray *ray,
 	}
 }
 
-static int	is_bv_in_raypath(t_ray *ray, t_bv *bv)
+int	is_bv_in_raypath(t_ray *ray, t_bv *bv)
 {
 	int			region_info;
 	t_vector	temp_point;
@@ -84,7 +83,7 @@ static int	can_ray_hit_the_plane(t_ray *ray, t_bv *bv, int flag, int axis)
 		return (0);
 	vec_copy(temp_point, ray->position);
 	move_point_onto_plane(temp_point, ray->normal_unit, position, axis);
-	if (is_point_in_plane(temp_point, bv, side1[axis], side2[axis]))
+	if (is_point_in_plane_bv(temp_point, bv, side1[axis], side2[axis]))
 		return (1);
 	return (0);
 }
