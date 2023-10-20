@@ -40,17 +40,31 @@ SRCS	= srcs/color/color.c \
 		  srcs/kd_tree/init.c \
 		  srcs/kd_tree/print.c \
 		  srcs/kd_tree/remove_tree.c \
+		  srcs/kd_tree/traverse_tree.c \
 		  srcs/object/init_object.c \
+		  srcs/object/search_bounding_volume.c \
 		  srcs/object/set_bounding_volume.c \
+		  srcs/ray_tracer/compute_lighting_from_spotlights.c \
+		  srcs/ray_tracer/compute_scattering_lights.c \
+		  srcs/ray_tracer/get_closest_intersection.c \
+		  srcs/ray_tracer/get_intersection.c \
+		  srcs/ray_tracer/get_intersection/cylinder.c \
+		  srcs/ray_tracer/get_intersection/cylinder_utils.c \
+		  srcs/ray_tracer/get_intersection/plane.c \
+		  srcs/ray_tracer/get_intersection/sphere.c \
+		  srcs/ray_tracer/ray_condition.c \
+		  srcs/ray_tracer/ray_operations.c \
+		  srcs/ray_tracer/set_ray.c \
 		  srcs/ray_tracer/shoot_a_ray.c \
 		  srcs/run_mlx.c \
 		  srcs/sort_memory.c \
 		  srcs/vector/vector_condition.c \
 		  srcs/vector/vector_constant.c \
+		  srcs/vector/vector_create.c \
+		  srcs/vector/vector_elementwise_operation.c \
 		  srcs/vector/vector_operation.c \
 		  srcs/vector/vector_scalar_operation.c \
-		  srcs/vector/vector_transformation.c \
-		  testfiles/test_kd_tree_building.c
+		  srcs/vector/vector_transformation.c
 		  #testfiles/test_bicubic_resizing.c
 		  #srcs/main.c
 
