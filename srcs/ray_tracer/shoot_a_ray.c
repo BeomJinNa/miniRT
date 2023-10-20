@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:51:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/20 19:54:05 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/21 01:48:07 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@
 static void	*get_value_from_hitpoint(t_vector buffer,
 				t_intersection *hitpoint, t_data *data, int depth);
 
-void	*shoot_a_ray(t_vector buffer, t_ray ray, t_data *data, int depth)
+void	shoot_a_ray(t_vector buffer, t_ray ray, t_data *data, int depth)
 {
 	t_intersection	hitpoint;
 
 	vec_set_zero(buffer);
 	if (depth > M_SCATTER_MAX_DEPTH)
-		return (buffer);
+		return ;
 	hitpoint = get_closest_intersection(&ray, data);
 	if (hitpoint.object == M_OBJECT_TYPE_NONE)
-		return (buffer);
+		return ;
 	get_value_from_hitpoint(buffer, &hitpoint, data, depth);
 	vec_product_scalar(buffer, buffer, ray.weight);
-	return (buffer);
 }
 
 static void	*get_value_from_hitpoint(t_vector buffer,
@@ -42,7 +41,7 @@ static void	*get_value_from_hitpoint(t_vector buffer,
 			hitpoint->reflection_direction_unit, hitpoint->reflection_ratio);
 	shoot_a_ray(temp_output, temp_ray, data, depth + 1);
 	vec_add(buffer, buffer, temp_output);
-	get_spot_lights(temp_output, hitpoint, data->lights);
-	get_scattered_lights(temp_output, hitpoint, data, depth + 1);
+	compute_lighting_from_spotlights(temp_output, hitpoint, data);
+	compute_scattering_lights(temp_output, hitpoint, data, depth + 1);
 	return (buffer);
 }

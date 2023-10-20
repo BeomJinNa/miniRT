@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_constant.c                                  :+:      :+:    :+:   */
+/*   vector_elementwise_operation.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:10:44 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 01:01:43 by bena             ###   ########.fr       */
+/*   Created: 2023/05/14 16:52:35 by bena              #+#    #+#             */
+/*   Updated: 2023/10/20 23:35:24 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
-#include <math.h>
 
-void	*vec_set_zero(t_vector buffer)
+void	*vec_product_element_wise(t_vector buffer, t_vector a, t_vector b)
 {
-	buffer[0] = 0;
-	buffer[1] = 0;
-	buffer[2] = 0;
+	buffer[0] = a[0] * b[0];
+	buffer[1] = a[1] * b[1];
+	buffer[2] = a[2] * b[2];
 	return (buffer);
 }
 
-t_real	vec_get_polar_angle_phi(t_vector normal_unit)
+void	*vec_divide_element_wise(t_vector buffer, t_vector a, t_vector b)
 {
-	return (acosf(normal_unit[2]));
-}
-
-t_real	vec_get_polar_angle_theta(t_vector normal_unit)
-{
-	return (atan2f(normal_unit[1], normal_unit[0]));
+	buffer[0] = a[0] / b[0];
+	buffer[1] = a[1] / b[1];
+	buffer[2] = a[2] / b[2];
+	return (buffer);
 }
