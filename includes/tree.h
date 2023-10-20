@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:55:13 by bena              #+#    #+#             */
-/*   Updated: 2023/09/30 20:47:31 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/20 20:43:29 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	print_object_list(t_list *list);
  */
 void	traverse_tree(t_tree *tree, t_ray *ray,
 			void (*f)(t_object *, void *), void *arg);
+int		is_bv_in_raypath(t_ray *ray, t_bv *bv);
 #endif

@@ -6,12 +6,11 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/17 08:03:42 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/20 18:18:02 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
-#include <math.h>
 
 t_intersection			cylinder_intersection_on_plane(t_ray *ray,
 							t_object *cylinder);
