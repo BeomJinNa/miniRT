@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 01:48:32 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/21 02:09:16 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ typedef struct s_intersection
 	t_object	*object;
 }	t_intersection;
 
-t_ray			set_ray(t_vector position, t_vector normal_unit, t_real weight);
 void			shoot_a_ray(t_vector buffer, t_ray ray,
 					t_data *data, int depth);
+t_ray			set_ray(t_vector position, t_vector normal_unit, t_real weight);
 t_intersection	get_intersection(t_ray *ray, t_object *object);
 t_intersection	return_void_intersection(void);
 t_intersection	get_closest_intersection(t_ray *ray, t_data *data);

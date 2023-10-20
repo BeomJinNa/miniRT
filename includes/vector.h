@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:47:36 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 01:37:02 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/21 02:50:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int		are_values_same(t_real value1, t_real value2);
 int		is_point_in_range(t_vector point, t_vector center, t_real range);
 t_real	vec_get_polar_angle_phi(t_vector normal_unit);
 t_real	vec_get_polar_angle_theta(t_vector normal_unit);
-void	*get_new_unit_vector_by_polar(t_vector buffer,
+void	get_new_unit_vector_by_polar(t_vector buffer,
 			t_real theta, t_real phi);
 #endif
