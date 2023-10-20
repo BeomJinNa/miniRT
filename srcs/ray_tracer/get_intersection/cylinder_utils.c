@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/20 21:33:56 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/21 03:02:18 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 	t_raygap		gap;
 	t_real			disp_to_plane;
 	t_real			dist_to_normal;
-	t_hit_buffer	output;
 
 	gap.cosine = vec_dot_product(ray->normal_unit, cylinder->normal_unit);
 	gap.sine = sqrtf(1 - gap.cosine * gap.cosine);

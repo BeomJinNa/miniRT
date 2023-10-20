@@ -64,9 +64,9 @@ SRCS	= srcs/color/color.c \
 		  srcs/vector/vector_elementwise_operation.c \
 		  srcs/vector/vector_operation.c \
 		  srcs/vector/vector_scalar_operation.c \
-		  srcs/vector/vector_transformation.c
+		  srcs/vector/vector_transformation.c \
+		  srcs/main.c
 		  #testfiles/test_bicubic_resizing.c
-		  #srcs/main.c
 
 OBJS	= $(SRCS:.c=.o)
 

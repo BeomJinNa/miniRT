@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:53:11 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 17:15:21 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/21 03:02:32 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	set_window_size(int ac, char **av, t_stat *stat);
 
 int	main(int argc, char **argv)
 {
-	int		fd;
+	//int		fd;
 	t_stat	stat; //super structure (like as global variable set)
 
 	if (argc != 2 && argc != 4)

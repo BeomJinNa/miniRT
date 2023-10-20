@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:52:52 by bena              #+#    #+#             */
-/*   Updated: 2023/10/20 19:53:17 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/21 02:59:35 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void	find_closest_object(t_object *object, void *arg);
 t_intersection	get_closest_intersection(t_ray *ray, t_data *data)
 {
 	t_intersection	output;
-	t_object		*hit_object;
-	t_real			distance;
 
 	ft_memset(&output, 0, sizeof(output));
 	output.ray = ray;

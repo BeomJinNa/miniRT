@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 20:25:54 by bena              #+#    #+#             */
-/*   Updated: 2023/10/06 08:51:32 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/21 02:58:38 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	*move_point_onto_plane(t_vector point, t_vector normal_unit,
 
 	if (are_values_same(point[axis], position))
 		return (point);
+	unit_distance_to_the_plane = 0;
 	if (axis == M_AXIS_X)
 		unit_distance_to_the_plane = vec_dot_product(normal_unit, unit_x);
 	else if (axis == M_AXIS_Y)

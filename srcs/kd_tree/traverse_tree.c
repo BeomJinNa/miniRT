@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 19:56:47 by bena              #+#    #+#             */
-/*   Updated: 2023/10/20 20:43:49 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/21 02:57:33 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ static void	traverse_objects(t_list *list, t_ray *ray,
 int	is_bv_in_raypath(t_ray *ray, t_bv *bv)
 {
 	int			region_info;
-	t_vector	temp_point;
-	t_real		position;
 
 	region_info = get_flag_region_info(ray->position, bv);
 	if (region_info == 0)
