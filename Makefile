@@ -47,6 +47,24 @@ SRCS	= srcs/color/color.c \
 		  srcs/object/list.c \
 		  srcs/object/search_bounding_volume.c \
 		  srcs/object/set_bounding_volume.c \
+		  srcs/parse/converter/convert_line_to_ambient_light.c \
+		  srcs/parse/converter/convert_line_to_camera.c \
+		  srcs/parse/converter/convert_line_to_cylinder.c \
+		  srcs/parse/converter/convert_line_to_light.c \
+		  srcs/parse/converter/convert_line_to_obj.c \
+		  srcs/parse/converter/convert_line_to_plane.c \
+		  srcs/parse/converter/convert_line_to_sphere.c \
+		  srcs/parse/converter/rgb_to_ratio.c \
+		  srcs/parse/parse.c \
+		  srcs/parse/parse_utils/parse_degree.c \
+		  srcs/parse/parse_utils/parse_normalized_vector.c \
+		  srcs/parse/parse_utils/parse_ratio.c \
+		  srcs/parse/parse_utils/parse_real_number.c \
+		  srcs/parse/parse_utils/parse_rgb.c \
+		  srcs/parse/parse_utils/parse_unsigned_number.c \
+		  srcs/parse/parse_utils/parse_vector.c \
+		  srcs/parse/tokenize.c \
+		  srcs/parse/utils/ptr_utils.c \
 		  srcs/print.c \
 		  srcs/ray_tracer/compute_lighting_from_spotlights.c \
 		  srcs/ray_tracer/compute_scattering_lights.c \
@@ -71,26 +89,6 @@ SRCS	= srcs/color/color.c \
 		  srcs/vector/vector_operation.c \
 		  srcs/vector/vector_scalar_operation.c \
 		  srcs/vector/vector_transformation.c \
-		  srcs/parse/converter/convert_line_to_ambient_light.c \
-		  srcs/parse/converter/convert_line_to_camera.c \
-		  srcs/parse/converter/convert_line_to_cylinder.c \
-		  srcs/parse/converter/convert_line_to_light.c \
-		  srcs/parse/converter/convert_line_to_obj.c \
-		  srcs/parse/converter/convert_line_to_plane.c \
-		  srcs/parse/converter/convert_line_to_sphere.c \
-		  srcs/parse/converter/rgb_to_ratio.c \
-		  srcs/parse/parse.c \
-		  srcs/parse/parse_utils/parse_degree.c \
-		  srcs/parse/parse_utils/parse_normalized_vector.c \
-		  srcs/parse/parse_utils/parse_ratio.c \
-		  srcs/parse/parse_utils/parse_real_number.c \
-		  srcs/parse/parse_utils/parse_rgb.c \
-		  srcs/parse/parse_utils/parse_unsigned_number.c \
-		  srcs/parse/parse_utils/parse_vector.c \
-		  srcs/parse/tokenize.c \
-		  srcs/parse/utils/ptr_utils.c \
-		  srcs/object/list.c \
-		  srcs/print.c \
 		  srcs/main.c
 		  #testfiles/test_bicubic_resizing.c
 
