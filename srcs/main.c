@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:53:11 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 03:02:32 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 16:40:31 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
 #include "libft.h"
+#include "parse/parse.h"
+#include <stdio.h>
 
 void		run_mlx(t_stat *stat);
 static void	set_window_size(int ac, char **av, t_stat *stat);
@@ -24,6 +26,11 @@ int	main(int argc, char **argv)
 	if (argc != 2 && argc != 4)
 		return (-1);
 	//OPEN, PARSE
+	if (parse(argv[1], &stat.data))
+	{
+		printf("parse error\n");
+		return (1);
+	}
 	set_window_size(argc, argv, &stat);
 	run_mlx(&stat);
 	//free memories
