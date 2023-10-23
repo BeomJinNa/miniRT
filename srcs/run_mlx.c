@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 06:50:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 13:07:27 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 17:18:35 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int			close_window(t_stat *stat);
 void		alloc_hooks(t_stat *stat);
 void		print_data(t_data *data);
+void		render_map(t_stat *stat);
 static void	init_mlx(t_stat *stat);
 static int	create_map(t_stat *stat);
 
@@ -29,7 +30,7 @@ void	run_mlx(t_stat *stat)
 	if (create_map(stat))
 		close_window(stat);
 	print_data(&stat->data);
-	//draw picture
+	render_map(stat);
 	mlx_loop(stat->mlx);
 }
 
@@ -49,6 +50,9 @@ static int	create_map(t_stat *stat)
 	t_list	*obj_list;
 	t_tree	*root;
 
+	if (stat->data.cam.image.size_height < 1
+		|| stat->data.cam.image.size_width < 1)
+		return (-1);
 	obj_list = listdup(stat->data.objects);
 	if (obj_list == NULL)
 		return (-1);

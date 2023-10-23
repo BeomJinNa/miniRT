@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 08:45:56 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 16:20:17 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ typedef struct s_cam
 {
 	t_vector	position;
 	t_vector	normal_unit;
+	t_real		spherical_theta;
+	t_real		spherical_phi;
 	t_real		fov;
-	t_sensor	*image;
+	t_sensor	image;
 }	t_cam;
 
 typedef struct s_light
