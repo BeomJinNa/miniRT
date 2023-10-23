@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 17:14:12 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 08:28:45 by bena             ###   ########.fr       */
+/*   Created: 2023/10/23 08:39:04 by bena              #+#    #+#             */
+/*   Updated: 2023/10/23 08:45:35 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stat.h"
 #include "libft.h"
-#include <stdlib.h>
 
-void	free_malloced_memories(t_stat *stat)
+t_list	*listdup(t_list *list)
 {
-		remove_tree(&stat->data.tree);
-		ft_lstclear(&stat->data.objects, free);
-		ft_lstclear(&stat->data.lights, free);
-		ft_lstclear(&stat->data.images, free);
+	t_list	*output;
+	t_list	*ptr;
+	t_list	*temp;
+
+	output = NULL;
+	ptr = list;
+	while (ptr != NULL)
+	{
+		temp = ft_lstnew(ptr->content);
+		if (temp == NULL)
+		{
+			ft_lstclear(&output, NULL);
+			return (NULL);
+		}
+		ft_lstadd_back(&output, temp);
+		ptr = ptr->next;
+	}
+	return (output);
 }
