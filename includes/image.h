@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:42:53 by bena              #+#    #+#             */
-/*   Updated: 2023/09/26 19:47:14 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 20:40:24 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ typedef struct s_img
 }	t_img;
 
 void	img_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	img_mlx_image_put(t_img *data, t_image8 *image);
 void	get_image_address(t_img *img);
 int		get_index(int row, int column, t_image8 *image);
+void	init_image8(t_image8 *image, int width, int height);
 void	resize_image8(t_image8 *buffer, t_image8 *source);
+void	tone_map_to_pixel8(t_pixel8 *buffer, t_vector pixel);
+void	tone_map_image(t_image8 *image, t_sensor *sensor);
 #endif

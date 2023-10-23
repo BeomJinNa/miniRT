@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 17:14:48 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 18:54:43 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	render_map(t_stat *stat)
 
 	cam->spherical_theta = vec_get_polar_angle_theta(cam->normal_unit);
 	cam->spherical_phi = vec_get_polar_angle_phi(cam->normal_unit);
+	printf("rendering...\n");
 	i = 0;
 	while (i < cam->image.size_height)
 	{
@@ -36,6 +37,8 @@ void	render_map(t_stat *stat)
 			get_a_pixel(stat, fov_unit, i, j++);
 		i++;
 	}
+	printf("\r                                                          \r");
+	printf("Done!\n");
 }
 
 static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
@@ -52,9 +55,12 @@ static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
 		+ (i - ((cam->image.size_height - 1) / 2.0f)) * fov_unit;
 	get_new_unit_vector_by_polar(direction, pixel_theta, pixel_phi);
 	ray = set_ray(cam->position, direction, 1);
-	printf("rendering... (%d/%d)", i * cam->image.size_width + j,
-		cam->image.size_width * cam->image.size_height);
+	if ((i * cam->image.size_width + j) % 65536 == 0)
+	{
+		printf("\r                                                          \r");
+		printf("(%d/%d)", i * cam->image.size_width + j,
+			cam->image.size_width * cam->image.size_height);
+	}
 	shoot_a_ray(cam->image.data[i * cam->image.size_width + j],
 		ray, &stat->data, 1);
-	printf("\r                                 \r");
 }

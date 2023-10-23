@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 08:45:46 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 20:40:35 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ struct s_status
 };
 
 void	free_malloced_memories(t_stat *stat);
+void	draw_image(t_stat *stat);
 #endif
