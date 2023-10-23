@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 16:14:44 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/23 20:35:20 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,24 @@ t_object	*convert_line_to_cylinder(char *line)
 	return (new_obj);
 }
 
-static int	parse_words_to_cylinder(char** words, t_object *cylinder)
+static int	parse_words_to_cylinder(char **words, t_object *cylinder)
 {
-	t_vector	pos;
-	t_vector	normal;
+	t_vector	pos_norm[2];
 	t_real		diameter;
 	t_real		height;
+	t_vector	rgb;
+	int			result;
 
-	if (parse_vector(words[1], pos)
-		|| parse_normalized_vector(words[2], normal)
+	if (parse_vector(words[1], pos_norm[0])
+		|| parse_normalized_vector(words[2], pos_norm[1])
 		|| parse_unsigned_number(words[3], &diameter)
 		|| parse_unsigned_number(words[4], &height)
-		|| parse_rgb(words[5], cylinder->texture.reflectance))
+		|| parse_rgb(words[5], rgb))
 		return (1);
-	vec_product_scalar(normal, normal, height);
-	return (init_cylinder(cylinder, pos, normal, diameter / (t_real)2.0));
+	vec_product_scalar(pos_norm[1], pos_norm[1], height);
+	result = init_cylinder(cylinder, pos_norm[0], pos_norm[1],
+			diameter / (t_real)2.0);
+	if (!result)
+		vec_copy(cylinder->texture.reflectance, rgb);
+	return (result);
 }

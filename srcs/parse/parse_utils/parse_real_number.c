@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:54:18 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/18 19:26:50 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/23 18:07:04 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ static int	is_valid_real_number_form(const char *str)
 	int					is_dot_included;
 
 	is_dot_included = 0;
+	if (*str == '-')
+		++str;
+	if (*str == '\0' || *str == '.')
+		return (0);
 	while (*str != '\0')
 	{
 		if (*str == '.')

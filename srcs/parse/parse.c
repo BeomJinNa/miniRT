@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 16:28:46 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/23 20:36:24 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,50 @@
 // {"co", 3, {F_RT_RATIO, F_RT_N_VEC, F_RT_NUM, F_RT_NUM, F_RT_RGB}, 0, {}},
 // };
 
-static int	validate_line(const char*const line)
+static int	is_line_invalid(void *line)
 {
 	const char	*iter = line;
 	const char	*word_start;
 
 	if (*iter == ' ')
 		return (0);
-	while (*iter != '\0' && *iter != '\n')
+	while (*iter != '\0')
 	{
 		while (*iter == ' ')
 		{
 			++iter;
 		}
 		word_start = iter;
-		while (*iter != '\0' && *iter != '\n' && *iter != ' ')
+		while (*iter != '\0' && *iter != ' ')
 		{
-			if (*iter == ',' && ft_isalnum(*(iter + 1)))
+			if (*iter == ',' && !((iter[1] == '-' && ft_isdigit(iter[2]))
+					|| ft_isdigit(iter[1])))
 			{
-				return (0);
+				printf("error at <1>: %s\n", iter);
+				return (1);
 			}
 			++iter;
 		}
 		if (word_start == iter)
-			return (0);
+		{
+			printf("error at <3>: %s / %s\n", word_start, iter);
+			return (1);
+		}
 		++iter;
 	}
-	return (1);
+	return (0);
 }
 
+void	remove_endl(void *str)
+{
+	char	*cstr;
+	size_t	len;
+
+	cstr = str;
+	len = ft_strlen(cstr);
+	if (cstr[len - 1] == '\n')
+		cstr[len - 1] = '\0';
+}
 /*
 Each type of element can be separated by one or more line break(s).
 Each type of information from an element
@@ -88,6 +103,7 @@ t_list	*read_all_line(char *filename)
 	char		*line;
 	t_list		*lines;
 
+	lines = NULL;
 	if (fd == -1)
 	{
 		printf("failed to open file.\n");
@@ -98,9 +114,10 @@ t_list	*read_all_line(char *filename)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (line[0] != '\0')
+		if (line[0] == '\0' || line[0] == '\n')
+			free(line);
+		else
 			ft_lstadd_back(&lines, ft_lstnew(line));
-		free(line);
 	}
 	close(fd);
 	return (lines);
@@ -149,26 +166,81 @@ int	is_str_ends_with(char *str, const char *postfix)
 	len_postfix = ft_strlen(postfix);
 	if (len_str < len_postfix)
 		return (0);
-	return (!!ft_strncmp(str + (len_str - len_postfix), (char *)postfix,
-			len_str - len_postfix + 1));
+	return (!ft_strncmp(str + (len_str - len_postfix), (char *)postfix,
+			len_postfix));
+}
+
+void	print_vector(const char *prefix, t_vector v)
+{
+	printf("%s : (%f,%f,%f)", prefix, v[0], v[1], v[2]);
+}
+
+void	print_light_info(void *ptr)
+{
+	t_light*const	light = ptr;
+
+	printf("[light]");
+	print_vector("\n\tpos", light->position);
+	print_vector("\n\trgb", light->color);
+	printf("\n");
+}
+
+void	print_object_info(void *ptr)
+{
+	t_object*const	obj = ptr;
+	if (obj->type == M_OBJECT_TYPE_PLANE)
+	{
+		printf("[plane]");
+		print_vector("\n\tpos", obj->u_data.plane.position);
+		print_vector("\n\tnormal", obj->u_data.plane.normal_unit);
+		print_vector("\n\trgb", obj->texture.reflectance);
+		printf("\n");
+	}
+	else if (obj->type == M_OBJECT_TYPE_CYLINDER)
+	{
+		printf("[cylinder]");
+		print_vector("\n\tpos", obj->u_data.cylinder.position);
+		print_vector("\n\tnormal", obj->u_data.cylinder.normal_unit);
+		print_vector("\n\trgb", obj->texture.reflectance);
+		printf("\n\theight: %f", obj->u_data.cylinder.height);
+		printf("\n\tdiameter: %f\n", obj->u_data.cylinder.radius * (t_real)2.0);
+		printf("\n");
+	}
+	else if (obj->type == M_OBJECT_TYPE_SPHERE)
+	{
+		printf("[sphere]");
+		print_vector("\n\tpos", obj->u_data.sphere.position);
+		print_vector("\n\trgb", obj->texture.reflectance);
+		printf("\n\tdiameter: %f", obj->u_data.sphere.radius * (t_real)2.0);
+		printf("\n");
+	}
+	else
+	{
+		printf("[unknown object type]\n");
+	}
 }
 
 int	parse(char *filename, t_data *data)
 {
 	t_list	*file_content;
 
+	data->objects = NULL;
+	data->images = NULL;
+	data->lights = NULL;
+	data->objects = NULL;
+	data->tree = NULL;
 	if (!is_str_ends_with(filename, ".rt"))
 		return (1);
 	file_content = read_all_line(filename);
-	if (lst_every(file_content, (int (*)(void *))validate_line))
+	ft_lstiter(file_content, remove_endl);
+	if (lst_every(file_content, is_line_invalid)
+		|| lst_every_arg(file_content, convert_line_to_obj, data))
 	{
 		ft_lstclear(&file_content, free);
 		return (1);
 	}
-	if (lst_every_arg(file_content, (int (*)(void *, void *))convert_line_to_obj, data))
-	{
-		ft_lstclear(&file_content, free);
-		return (1);
-	}
+	printf("[ambient]\trgb : (%f,%f,%f)\n", data->ambient[0], data->ambient[1], data->ambient[2]);
+	ft_lstiter(data->lights, (void (*)(void *))print_light_info);
+	ft_lstiter(data->objects, print_object_info);
 	return (0);
 }

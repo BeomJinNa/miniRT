@@ -83,6 +83,8 @@ SRCS	= srcs/color/color.c \
 		  srcs/parse/parse_utils/parse_vector.c \
 		  srcs/parse/tokenize.c \
 		  srcs/parse/utils/ptr_utils.c \
+		  srcs/object/list.c \
+		  srcs/print.c \
 		  srcs/main.c
 		  #testfiles/test_bicubic_resizing.c
 

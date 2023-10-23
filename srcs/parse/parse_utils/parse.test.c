@@ -50,6 +50,15 @@ void test_parse_real_number()
 	parser_tester_real(".12", 0, 0, parse_real_number);
 	parser_tester_real("12.", 0, 0, parse_real_number);
 	parser_tester_real(".", 0, 0, parse_real_number);
+	parser_tester_real("-12", 1, -12.0, parse_real_number);
+	parser_tester_real("-0.12", 1, -0.12, parse_real_number);
+	parser_tester_real("-12.12", 1, -12.12, parse_real_number);
+	parser_tester_real("-12.12.", 0, 0, parse_real_number);
+	parser_tester_real("-.12.12", 0, 0, parse_real_number);
+	parser_tester_real("-12..12", 0, 0, parse_real_number);
+	parser_tester_real("-.12", 0, 0, parse_real_number);
+	parser_tester_real("-12.", 0, 0, parse_real_number);
+	parser_tester_real("-.", 0, 0, parse_real_number);
 }
 
 void	test_parse_normal_vector()

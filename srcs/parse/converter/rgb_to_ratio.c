@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:20:44 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 16:04:42 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/23 18:41:36 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 t_real	*rgb_to_ratio(t_real *buff, t_real *rgb, t_real ratio)
 {
-	return (vec_product_scalar(buff,
-			vec_divide_scalar(buff, vec_norm(buff, rgb), 1.0)
-			, 255.0));
+	return (vec_product_scalar(buff, vec_divide_scalar(buff, rgb, 255.0), ratio));
 }

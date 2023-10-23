@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:36:56 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 16:19:37 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/23 20:26:33 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,16 @@ static int	parse_words_to_plane(char **words, t_object *plane)
 	t_vector		position;
 	t_vector		normal;
 	t_vector		rgb;
+	int				result;
 
 	if (parse_vector(words[1], position)
-		|| parse_vector(words[2], normal)
-		|| parse_vector(words[3], rgb))
+		|| parse_normalized_vector(words[2], normal)
+		|| parse_rgb(words[3], rgb))
 		return (1);
 	vec_copy(plane->texture.reflectance, rgb_to_ratio(rgb, rgb, (t_real)1.0));
-	return (init_plane(plane, position, normal, 0));
+
+	result = init_plane(plane, position, normal, 30.0);
+	if (!result)
+		vec_copy(plane->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
+	return (result);
 }
