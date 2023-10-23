@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/06 11:07:40 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 21:52:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_intersection	return_intersection(t_ray *ray,
 		vec_copy(output.transmittance, plane->texture.transmittance);
 		output.reflection_ratio = plane->texture.reflection_ratio;
 	}
-	if (plane->texture.flags & FLAG_TEXTURE_BUMP) //Need to Add BUMP module
+	if (plane->texture.flags & FLAG_TEXTURE_BUMP)
 		;
 	return (output);
 }

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 03:02:18 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 21:52:26 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 	else
 		disp_to_plane = ray_center - cylinder->height;
 	dist_to_normal = disp_to_plane * gap.sine / gap.cosine;
-	if (dist_to_normal < -cylinder->radius
-		|| dist_to_normal > cylinder->radius + cylinder->height * gap.sine / gap.cosine)
+	if (dist_to_normal < -cylinder->radius || dist_to_normal
+		> cylinder->radius + cylinder->height * gap.sine / gap.cosine)
 		return (return_nothing());
 	if (dist_to_normal < cylinder->radius)
 		return (get_buffer_cylinder_plane(ray, cylinder, gap.cosine));
