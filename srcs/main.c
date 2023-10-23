@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:53:11 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 18:21:31 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/23 21:27:46 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
 #include "libft.h"
+#include "parse/parse.h"
+#include <stdio.h>
 
 void		run_mlx(t_stat *stat);
 void		free_malloced_memories(t_stat *stat);
@@ -26,7 +28,11 @@ int	main(int argc, char **argv)
 	if (argc != 2 && argc != 4)
 		return (-1);
 	//OPEN, PARSE
-	set_stat(&stat); //TEST
+	if (parse(argv[1], &stat.data))
+	{
+		printf("parse error\n");
+		return (1);
+	}
 	set_window_size(argc, argv, &stat);
 	run_mlx(&stat);
 	free_malloced_memories(&stat);
