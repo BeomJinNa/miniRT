@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/10/24 21:13:26 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/24 23:14:34 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void	render_map(t_stat *stat)
 			get_a_pixel(stat, fov_unit, i, j++);
 		i++;
 	}
+	if (cam->image.size_width * cam->image.size_height % 65536 != 0)
+		printf("\033[90m(%d/%d)\033[0m\n",
+			cam->image.size_width * cam->image.size_height,
+			cam->image.size_width * cam->image.size_height);
 	printf("Done!\n");
 }
 

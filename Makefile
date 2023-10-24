@@ -45,6 +45,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/kd_tree/traverse_tree.c \
 		  srcs/object/init_object.c \
 		  srcs/object/list.c \
+		  srcs/object/print_object.c \
 		  srcs/object/search_bounding_volume.c \
 		  srcs/object/set_bounding_volume.c \
 		  srcs/parse/converter/convert_line_to_ambient_light.c \

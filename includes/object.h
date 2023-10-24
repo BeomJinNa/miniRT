@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 16:20:17 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/24 23:03:53 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,4 +150,5 @@ int		get_flag_region_info(t_vector point, t_bv *bv);
 void	*move_point_onto_plane(t_vector point, t_vector normal_unit,
 			t_real position, int axis);
 t_list	*listdup(t_list *list);
+void	print_object_info_in_one_line(void *object);
 #endif
