@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/10/24 23:14:34 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/24 23:46:56 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	render_map(t_stat *stat)
 
 	cam->spherical_theta = vec_get_polar_angle_theta(cam->normal_unit);
 	cam->spherical_phi = vec_get_polar_angle_phi(cam->normal_unit);
-	printf("rendering...\n");
+	printf("rendering...\n\n");
 	i = 0;
 	while (i < cam->image.size_height)
 	{
@@ -37,10 +37,7 @@ void	render_map(t_stat *stat)
 			get_a_pixel(stat, fov_unit, i, j++);
 		i++;
 	}
-	if (cam->image.size_width * cam->image.size_height % 65536 != 0)
-		printf("\033[90m(%d/%d)\033[0m\n",
-			cam->image.size_width * cam->image.size_height,
-			cam->image.size_width * cam->image.size_height);
+	printf("\033[Am\r                                                    \r");
 	printf("Done!\n");
 }
 
@@ -60,6 +57,7 @@ static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
 	ray = set_ray(cam->position, direction, 1);
 	if ((i * cam->image.size_width + j) % 65536 == 0)
 	{
+		printf("\033[Am\r                                                    \r");
 		printf("\033[90m(%d/%d)\033[0m\n", i * cam->image.size_width + j,
 			cam->image.size_width * cam->image.size_height);
 	}
