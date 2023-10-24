@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 23:27:17 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/24 21:13:26 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
 	ray = set_ray(cam->position, direction, 1);
 	if ((i * cam->image.size_width + j) % 65536 == 0)
 	{
-		printf("(%d/%d)\n", i * cam->image.size_width + j,
+		printf("\033[90m(%d/%d)\033[0m\n", i * cam->image.size_width + j,
 			cam->image.size_width * cam->image.size_height);
 	}
 	shoot_a_ray(cam->image.data[i * cam->image.size_width + j],

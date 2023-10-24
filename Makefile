@@ -138,6 +138,11 @@ fclean :
 	rm -f libmlx.dylib
 	make clean
 
+.PHONY: ore
+ore :
+	make oclean
+	make all
+
 .PHONY: re
 re :
 	make fclean

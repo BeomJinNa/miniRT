@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 22:23:16 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 20:38:23 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/24 21:25:55 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,20 @@ void	img_mlx_pixel_put(t_img *data, int x, int y, int color)
 
 void	img_mlx_image_put(t_img *data, t_image8 *image)
 {
-	const int	size = image->size_height * image->size_width;
-	int			index;
+	int	row;
+	int	column;
 
-	index = 0;
-	while (index < size)
+	row = 0;
+	while (row < image->size_height)
 	{
-		*((unsigned int *)data->addr + index)
-			= *((unsigned int *)&image->data[index]);
-		index++;
+		column = 0;
+		while (column < image->size_width)
+		{
+			img_mlx_pixel_put(data, column, row,
+				*(int *)&image->data[get_index(row, column, image)]);
+			column++;
+		}
+		row++;
 	}
 }
 
