@@ -6,14 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:46:37 by bena              #+#    #+#             */
-/*   Updated: 2023/09/30 20:46:58 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 01:21:38 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef S_RAY_H
 # define S_RAY_H
 
-#include "vector.h"
+# include "vector.h"
 
 typedef struct s_ray
 {

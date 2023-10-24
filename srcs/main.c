@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:53:11 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 21:33:25 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 01:49:00 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 {
 	t_stat	stat;
 
+	ft_memset(&stat, 0, sizeof(stat));
 	if (argc != 2 && argc != 4)
 		return (-1);
 	if (parse(argv[1], &stat.data))

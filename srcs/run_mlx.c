@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 06:50:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 21:38:18 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 01:25:04 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 int			close_window(t_stat *stat);
 void		alloc_hooks(t_stat *stat);
 void		print_data(t_data *data);
-void		render_map(t_stat *stat);
 static void	init_mlx(t_stat *stat);
 static int	create_map(t_stat *stat);
 static int	fail_creating_map(void *pointer, t_list *list);
@@ -32,7 +31,7 @@ void	run_mlx(t_stat *stat)
 	if (create_map(stat))
 		close_window(stat);
 	print_data(&stat->data);
-	render_map(stat);
+	render_map(stat, M_DEFAULT_PREVIEW_SCALE);
 	draw_image(stat);
 	mlx_loop(stat->mlx);
 }

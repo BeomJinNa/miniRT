@@ -6,12 +6,12 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:53:36 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 17:35:08 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 01:54:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "object.h"
+#include "stat.h"
 
 void	set_bv_on_plane(t_object *plane);
 void	set_bv_on_cylinder(t_object *cylinder);
@@ -38,8 +38,10 @@ int	init_plane(t_object *object, t_vector position,
 			t_vector normal, t_real radius)
 {
 	if (object == NULL || position == NULL
-		|| normal == NULL || is_vector_zero(normal) || radius <= 0)
+		|| normal == NULL || is_vector_zero(normal) || radius < 0)
 		return (1);
+	if (radius < M_VECTOR_MIN_SCALE)
+		radius = M_OBJECT_PLANE_DEFAULT_RADIUS;
 	ft_memset(object, 0, sizeof(t_object));
 	object->type = M_OBJECT_TYPE_PLANE;
 	vec_copy(object->u_data.plane.position, position);

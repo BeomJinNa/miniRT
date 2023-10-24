@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/24 23:03:53 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 01:53:53 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "vector.h"
 # include "image.h"
 # include "s_list.h"
+
+# define M_OBJECT_PLANE_DEFAULT_RADIUS 1000.0
 
 typedef struct s_object	t_object;
 

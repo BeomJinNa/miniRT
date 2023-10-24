@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:38:24 by bena              #+#    #+#             */
-/*   Updated: 2023/09/29 17:16:31 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 02:37:16 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,12 @@ enum e_keycodes
 };
 
 void	reset_settings(t_stat *stat);
+void	camera_move_forward(t_stat *stat);
+void	camera_move_backward(t_stat *stat);
+void	camera_move_leftside(t_stat *stat);
+void	camera_move_rightside(t_stat *stat);
+void	camera_rotate_up(t_stat *stat);
+void	camera_rotate_down(t_stat *stat);
+void	camera_rotate_left(t_stat *stat);
+void	camera_rotate_right(t_stat *stat);
 #endif

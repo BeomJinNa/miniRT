@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/10/24 23:46:56 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 02:10:09 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,25 @@
 #include <math.h>
 #include <stdio.h>
 
+static void	render_map_module(t_stat *stat);
+static void	set_polar_coordinates_of_cam(t_cam *cam);
 static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j);
 
-void	render_map(t_stat *stat)
+void	render_map(t_stat *stat, t_real scale_factor)
+{
+	t_cam *const	cam = &stat->data.cam;
+
+	cam->image.size_height = stat->win_height;
+	cam->image.size_width = stat->win_width;
+	if (0 < scale_factor && scale_factor < 1.0f)
+	{
+		cam->image.size_height = (int)(stat->win_height * scale_factor);
+		cam->image.size_width = (int)(stat->win_width * scale_factor);
+	}
+	render_map_module(stat);
+}
+
+static void	render_map_module(t_stat *stat)
 {
 	t_cam *const	cam = &stat->data.cam;
 	const t_real	diagonal
@@ -26,8 +42,7 @@ void	render_map(t_stat *stat)
 	int				i;
 	int				j;
 
-	cam->spherical_theta = vec_get_polar_angle_theta(cam->normal_unit);
-	cam->spherical_phi = vec_get_polar_angle_phi(cam->normal_unit);
+	set_polar_coordinates_of_cam(cam);
 	printf("rendering...\n\n");
 	i = 0;
 	while (i < cam->image.size_height)
@@ -39,6 +54,14 @@ void	render_map(t_stat *stat)
 	}
 	printf("\033[Am\r                                                    \r");
 	printf("Done!\n");
+}
+
+static void	set_polar_coordinates_of_cam(t_cam *cam)
+{
+	if (cam->normal_unit[0] > M_VECTOR_MIN_SCALE
+		|| cam->normal_unit[1] > M_VECTOR_MIN_SCALE)
+		cam->spherical_theta = vec_get_polar_angle_theta(cam->normal_unit);
+	cam->spherical_phi = vec_get_polar_angle_phi(cam->normal_unit);
 }
 
 static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)

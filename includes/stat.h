@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/24 23:47:08 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 02:19:59 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include "tree.h"
 
-# define M_VECTOR_MIN_SCALE 1e-5f
+# define M_VECTOR_MIN_SCALE 0.00001f
+# define M_DEFAULT_PREVIEW_SCALE 0.25f
+# define M_CAMERA_ROTATION_ANGLE 15.0f
 
 enum e_config
 {
@@ -35,7 +37,7 @@ typedef struct s_status	t_stat;
 struct s_data
 {
 	t_tree		*tree;
-	t_list 		*objects;
+	t_list		*objects;
 	t_list		*lights;
 	t_list		*images;
 	t_cam		cam;
@@ -56,4 +58,6 @@ struct s_status
 
 void	free_malloced_memories(t_stat *stat);
 void	draw_image(t_stat *stat);
+void	render_map(t_stat *stat, t_real scale_factor);
 #endif
+//# define M_VECTOR_MIN_SCALE 1e-5f
