@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:42:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 20:40:24 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 02:44:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_sensor
 {
 	int			size_width;
 	int			size_height;
+	int			size_memory;
 	t_vector	*data;
 }	t_sensor;
 

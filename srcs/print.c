@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:58:38 by bena              #+#    #+#             */
-/*   Updated: 2023/10/24 23:11:05 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 06:08:55 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,15 @@ static void	print_lights(void *lights)
 		"blue : \033[90m%.1f\033[0m\n",
 		ptr->position[0], ptr->position[1], ptr->position[2],
 		ptr->color[0], ptr->color[1], ptr->color[2]);
+}
+
+void	print_manual(void)
+{
+	printf("\033[35mMove Camera Position : \033[0mW A S D E Q"
+		" \033[90m(forward/backward/left/right/up/down)\n"
+		"\033[35mRotate Camera Direction :"
+		" \033[0mH J K L \033[90m(up/down/left/right)\n"
+		"\033[35mZoom : \033[0mI O \033[90m(in/out)\n"
+		"\033[35mHigh Resolution Rendering : \033[0mF\n"
+		"\033[35mReset Settings : \033[0mR\n\n");
 }

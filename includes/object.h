@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 01:53:53 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 05:30:46 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include "s_list.h"
 
 # define M_OBJECT_PLANE_DEFAULT_RADIUS 1000.0
+# define M_CAMERA_ROTATION_ANGLE 5.0
+# define M_CAMERA_MAX_FOV 180.0f
+# define M_CAMERA_MIN_FOV 3.0f
+# define M_CAMERA_FOV_SCALE_SENSITIVITY 1.1
 
 typedef struct s_object	t_object;
 

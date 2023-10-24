@@ -6,12 +6,13 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 02:10:09 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 06:27:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "stat.h"
+#include "libft.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -25,6 +26,7 @@ void	render_map(t_stat *stat, t_real scale_factor)
 
 	cam->image.size_height = stat->win_height;
 	cam->image.size_width = stat->win_width;
+	ft_memset(cam->image.data, 0, cam->image.size_memory);
 	if (0 < scale_factor && scale_factor < 1.0f)
 	{
 		cam->image.size_height = (int)(stat->win_height * scale_factor);
@@ -58,8 +60,8 @@ static void	render_map_module(t_stat *stat)
 
 static void	set_polar_coordinates_of_cam(t_cam *cam)
 {
-	if (cam->normal_unit[0] > M_VECTOR_MIN_SCALE
-		|| cam->normal_unit[1] > M_VECTOR_MIN_SCALE)
+	if (is_real_zero(cam->normal_unit[0]) == 0
+		|| is_real_zero(cam->normal_unit[1]) == 0)
 		cam->spherical_theta = vec_get_polar_angle_theta(cam->normal_unit);
 	cam->spherical_phi = vec_get_polar_angle_phi(cam->normal_unit);
 }

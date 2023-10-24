@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset_settings.c                                   :+:      :+:    :+:   */
+/*   re_render.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 04:37:17 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 05:52:25 by bena             ###   ########.fr       */
+/*   Created: 2023/10/25 04:08:15 by bena              #+#    #+#             */
+/*   Updated: 2023/10/25 05:03:32 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
 
-void	reset_settings(t_stat *stat)
+void	re_render_image_on_mlx(t_stat *stat)
 {
-	t_cam *const	cam = &stat->data.cam;
+	delete_cam_info();
+	render_map(stat, M_DEFAULT_PREVIEW_SCALE);
+	draw_image(stat);
+	print_cam_info(stat);
+}
 
-	cam->fov = stat->data.cam_init_fov;
-	vec_copy(cam->position, stat->data.cam_init_position);
-	vec_copy(cam->normal_unit, stat->data.cam_init_direction);
-	re_render_image_on_mlx(stat);
+void	render_hires_image_on_mlx(t_stat *stat)
+{
+	delete_cam_info();
+	render_map(stat, 1.0f);
+	draw_image(stat);
+	print_cam_info(stat);
 }

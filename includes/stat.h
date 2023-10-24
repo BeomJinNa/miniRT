@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 02:19:59 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 06:18:29 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include "tree.h"
 
 # define M_VECTOR_MIN_SCALE 0.00001f
-# define M_DEFAULT_PREVIEW_SCALE 0.25f
-# define M_CAMERA_ROTATION_ANGLE 15.0f
+# define M_DEFAULT_PREVIEW_SCALE 0.16f
 
 enum e_config
 {
@@ -28,7 +27,7 @@ enum e_config
 	M_TREE_MAX_DEPTH = 10,
 	M_TREE_MIN_LEAF_SIZE = 1,
 	M_SCATTER_SAMPLE_SIZE = 10,
-	M_SCATTER_MAX_DEPTH = 2,
+	M_SCATTER_MAX_DEPTH = 1,
 };
 
 typedef struct s_data	t_data;
@@ -42,6 +41,9 @@ struct s_data
 	t_list		*images;
 	t_cam		cam;
 	t_vector	ambient;
+	t_vector	cam_init_position;
+	t_vector	cam_init_direction;
+	t_real		cam_init_fov;
 };
 
 struct s_status
@@ -59,5 +61,10 @@ struct s_status
 void	free_malloced_memories(t_stat *stat);
 void	draw_image(t_stat *stat);
 void	render_map(t_stat *stat, t_real scale_factor);
+void	print_cam_info(t_stat *stat);
+void	delete_cam_info(void);
+void	print_manual(void);
+void	re_render_image_on_mlx(t_stat *stat);
+void	render_hires_image_on_mlx(t_stat *stat);
 #endif
 //# define M_VECTOR_MIN_SCALE 1e-5f

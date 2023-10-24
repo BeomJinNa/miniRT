@@ -4,7 +4,7 @@ CC			= cc
 
 COMMONFLAGS	=
 
-CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter
+CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter -O2
 
 LDFLAGS		= $(COMMONFLAGS) \
 			  $(foreach lib, $(TARGET_LIBDIR), -L$(lib)) \
@@ -30,7 +30,9 @@ SRCS	= srcs/color/color.c \
 		  srcs/color/color_mix.c \
 		  srcs/draw_image.c \
 		  srcs/free.c \
+		  srcs/hooks/camera/fov.c \
 		  srcs/hooks/camera/move.c \
+		  srcs/hooks/camera/move2.c \
 		  srcs/hooks/camera/rotate.c \
 		  srcs/hooks/hooks.c \
 		  srcs/hooks/reset_settings.c \
@@ -77,8 +79,10 @@ SRCS	= srcs/color/color.c \
 		  srcs/ray_tracer/get_intersection/cylinder_utils.c \
 		  srcs/ray_tracer/get_intersection/plane.c \
 		  srcs/ray_tracer/get_intersection/sphere.c \
+		  srcs/ray_tracer/print_cam_info.c \
 		  srcs/ray_tracer/ray_condition.c \
 		  srcs/ray_tracer/ray_operations.c \
+		  srcs/ray_tracer/re_render.c \
 		  srcs/ray_tracer/render.c \
 		  srcs/ray_tracer/set_ray.c \
 		  srcs/ray_tracer/shoot_a_ray.c \

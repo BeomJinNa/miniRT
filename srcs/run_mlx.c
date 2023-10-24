@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 06:50:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 01:25:04 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 06:08:09 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	run_mlx(t_stat *stat)
 	if (create_map(stat))
 		close_window(stat);
 	print_data(&stat->data);
+	print_manual();
 	render_map(stat, M_DEFAULT_PREVIEW_SCALE);
+	print_cam_info(stat);
 	draw_image(stat);
 	mlx_loop(stat->mlx);
 }
@@ -47,6 +49,13 @@ static void	init_mlx(t_stat *stat)
 				stat->title);
 	stat->data.cam.image.size_height = stat->win_height;
 	stat->data.cam.image.size_width = stat->win_width;
+	if (stat->data.cam.fov < M_CAMERA_MIN_FOV)
+		stat->data.cam.fov = M_CAMERA_MIN_FOV;
+	else if (stat->data.cam.fov > M_CAMERA_MAX_FOV)
+		stat->data.cam.fov = M_CAMERA_MAX_FOV;
+	vec_copy(stat->data.cam_init_position, stat->data.cam.position);
+	vec_copy(stat->data.cam_init_direction, stat->data.cam.normal_unit);
+	stat->data.cam_init_fov = stat->data.cam.fov;
 }
 
 static int	create_map(t_stat *stat)
@@ -57,9 +66,11 @@ static int	create_map(t_stat *stat)
 	if (stat->data.cam.image.size_height < 1
 		|| stat->data.cam.image.size_width < 1)
 		return (-1);
-	stat->data.cam.image.data = (t_vector *)malloc(sizeof(t_vector)
-			* stat->data.cam.image.size_width
-			* stat->data.cam.image.size_height);
+	stat->data.cam.image.size_memory = sizeof(t_vector)
+		* stat->data.cam.image.size_width
+		* stat->data.cam.image.size_height;
+	stat->data.cam.image.data = (t_vector *)malloc(
+			stat->data.cam.image.size_memory);
 	if (stat->data.cam.image.data == NULL)
 		return (-1);
 	obj_list = listdup(stat->data.objects);

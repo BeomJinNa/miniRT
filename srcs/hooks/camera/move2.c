@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset_settings.c                                   :+:      :+:    :+:   */
+/*   move2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 04:37:17 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 05:52:25 by bena             ###   ########.fr       */
+/*   Created: 2023/10/25 01:01:41 by bena              #+#    #+#             */
+/*   Updated: 2023/10/25 04:10:34 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
+#include <math.h>
 
-void	reset_settings(t_stat *stat)
+void	camera_move_upward(t_stat *stat)
 {
 	t_cam *const	cam = &stat->data.cam;
+	t_vector		shift;
 
-	cam->fov = stat->data.cam_init_fov;
-	vec_copy(cam->position, stat->data.cam_init_position);
-	vec_copy(cam->normal_unit, stat->data.cam_init_direction);
+	get_new_unit_vector_by_polar(shift,
+		cam->spherical_theta, cam->spherical_phi - M_PI_2);
+	vec_add(cam->position, cam->position, shift);
+	re_render_image_on_mlx(stat);
+}
+
+void	camera_move_downward(t_stat *stat)
+{
+	t_cam *const	cam = &stat->data.cam;
+	t_vector		shift;
+
+	get_new_unit_vector_by_polar(shift,
+		cam->spherical_theta, cam->spherical_phi - M_PI_2);
+	vec_subtract(cam->position, cam->position, shift);
 	re_render_image_on_mlx(stat);
 }

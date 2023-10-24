@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:13:22 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 02:39:03 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 05:23:09 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,13 @@ static int	press_key(int keycode, t_stat *stat)
 	else if (keycode == KEY_S)
 		camera_move_backward(stat);
 	else if (keycode == KEY_A)
-		camera_move_leftside(stat);
+		camera_move_leftward(stat);
 	else if (keycode == KEY_D)
-		camera_move_rightside(stat);
+		camera_move_rightward(stat);
+	else if (keycode == KEY_E)
+		camera_move_upward(stat);
+	else if (keycode == KEY_Q)
+		camera_move_downward(stat);
 	else if (keycode == KEY_K)
 		camera_rotate_up(stat);
 	else if (keycode == KEY_J)
@@ -59,5 +63,11 @@ static int	press_key(int keycode, t_stat *stat)
 
 static int	press_key2(int keycode, t_stat *stat)
 {
+	if (keycode == KEY_F)
+		render_hires_image_on_mlx(stat);
+	if (keycode == KEY_I)
+		zoom_in(stat);
+	if (keycode == KEY_O)
+		zoom_out(stat);
 	return (0);
 }
