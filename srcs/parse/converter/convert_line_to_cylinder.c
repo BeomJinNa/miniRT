@@ -6,11 +6,12 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 20:35:20 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/25 16:21:09 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
+#include "convert_utils.h"
 #include "../utils/utils.h"
 #include "../parse_utils/parse_utils.h"
 #include "vector.h"
@@ -56,6 +57,6 @@ static int	parse_words_to_cylinder(char **words, t_object *cylinder)
 	result = init_cylinder(cylinder, pos_norm[0], pos_norm[1],
 			diameter / (t_real)2.0);
 	if (!result)
-		vec_copy(cylinder->texture.reflectance, rgb);
+		vec_copy(cylinder->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
 	return (result);
 }
