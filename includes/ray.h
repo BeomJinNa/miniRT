@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 02:09:16 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 08:48:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "object.h"
 # include "s_ray.h"
 # include "stat.h"
+
+# define M_SURFACE_OFFSET_SIZE 0.001
 
 typedef struct s_raygap
 {

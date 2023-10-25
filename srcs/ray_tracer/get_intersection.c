@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:06:06 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 03:01:39 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 09:29:22 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_intersection	get_intersection_on_cone(t_ray *ray, t_object *cone);
 t_intersection	get_intersection(t_ray *ray, t_object *object)
 {
 	t_intersection	output;
+	t_vector		offset;
 
 	if (object->type == M_OBJECT_TYPE_PLANE)
 		output = get_intersection_on_plane(ray, object);
@@ -33,6 +34,8 @@ t_intersection	get_intersection(t_ray *ray, t_object *object)
 		return (return_void_intersection());
 //	else if (object->type == M_OBJECT_TYPE_CONE)
 //		output = get_intersection_on_cone(ray, object);
+	vec_product_scalar(offset, output.normal_unit, M_SURFACE_OFFSET_SIZE);
+	vec_subtract(output.position, output.position, offset);
 	return (output);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 06:50:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 06:08:09 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 08:55:22 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	init_mlx(t_stat *stat)
 	vec_copy(stat->data.cam_init_position, stat->data.cam.position);
 	vec_copy(stat->data.cam_init_direction, stat->data.cam.normal_unit);
 	stat->data.cam_init_fov = stat->data.cam.fov;
+	stat->data.cam.image.exposure = 1.0f;
 }
 
 static int	create_map(t_stat *stat)

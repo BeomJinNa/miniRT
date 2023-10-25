@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:42:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 02:44:08 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 08:54:53 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_sensor
 	int			size_width;
 	int			size_height;
 	int			size_memory;
+	t_real		exposure;
 	t_vector	*data;
 }	t_sensor;
 
@@ -53,6 +54,6 @@ void	get_image_address(t_img *img);
 int		get_index(int row, int column, t_image8 *image);
 void	init_image8(t_image8 *image, int width, int height);
 void	resize_image8(t_image8 *buffer, t_image8 *source);
-void	tone_map_to_pixel8(t_pixel8 *buffer, t_vector pixel);
+void	tone_map_to_pixel8(t_pixel8 *buffer, t_vector pixel, t_real multiply);
 void	tone_map_image(t_image8 *image, t_sensor *sensor);
 #endif

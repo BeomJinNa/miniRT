@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 20:36:24 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/25 06:38:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,8 +239,10 @@ int	parse(char *filename, t_data *data)
 		ft_lstclear(&file_content, free);
 		return (1);
 	}
+	/*
 	printf("[ambient]\trgb : (%f,%f,%f)\n", data->ambient[0], data->ambient[1], data->ambient[2]);
 	ft_lstiter(data->lights, (void (*)(void *))print_light_info);
 	ft_lstiter(data->objects, print_object_info);
+	*/
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:28:04 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 01:37:32 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 09:41:03 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static void	add_value_from_spotlight(t_vector buffer,
 	vec_subtract(displacement, light->position, hitpoint->position);
 	distance = vec_size(displacement);
 	cosine = vec_dot_product(hitpoint->normal_unit, displacement) / distance;
-	vec_product_scalar(output, light->color, cosine / (distance * distance));
+	vec_product_scalar(output, light->color,
+		M_SCALING_SPOT_LIGHT * cosine / (distance * distance));
 	vec_product_element_wise(output, output, hitpoint->reflectance);
 	vec_add(buffer, buffer, output);
 }

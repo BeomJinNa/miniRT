@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset_settings.c                                   :+:      :+:    :+:   */
+/*   exposure.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 04:37:17 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 08:56:07 by bena             ###   ########.fr       */
+/*   Created: 2023/10/25 05:15:55 by bena              #+#    #+#             */
+/*   Updated: 2023/10/25 09:05:51 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
+#include <math.h>
 
-void	reset_settings(t_stat *stat)
+void	increase_exposure(t_stat *stat)
 {
 	t_cam *const	cam = &stat->data.cam;
 
-	cam->fov = stat->data.cam_init_fov;
-	cam->image.exposure = 1.0f;
-	vec_copy(cam->position, stat->data.cam_init_position);
-	vec_copy(cam->normal_unit, stat->data.cam_init_direction);
-	re_render_image_on_mlx(stat);
+	cam->image.exposure *= M_SQRT2;
+	if (cam->image.exposure > M_EXPOSURE_MAX)
+		cam->image.exposure = M_EXPOSURE_MAX;
+	re_draw_image_on_mlx(stat);
+}
+
+void	decrease_exposure(t_stat *stat)
+{
+	t_cam *const	cam = &stat->data.cam;
+
+	cam->image.exposure *= M_SQRT1_2;
+	if (cam->image.exposure < M_EXPOSURE_MIN)
+		cam->image.exposure = M_EXPOSURE_MIN;
+	re_draw_image_on_mlx(stat);
 }

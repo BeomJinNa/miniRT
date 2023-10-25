@@ -2,7 +2,7 @@
 
 CC			= cc
 
-COMMONFLAGS	=
+COMMONFLAGS	= -g
 
 CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter -O2
 
@@ -30,6 +30,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/color/color_mix.c \
 		  srcs/draw_image.c \
 		  srcs/free.c \
+		  srcs/hooks/camera/exposure.c \
 		  srcs/hooks/camera/fov.c \
 		  srcs/hooks/camera/move.c \
 		  srcs/hooks/camera/move2.c \

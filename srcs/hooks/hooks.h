@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:38:24 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 05:22:44 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 09:06:34 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,4 +156,6 @@ void	camera_rotate_left(t_stat *stat);
 void	camera_rotate_right(t_stat *stat);
 void	zoom_out(t_stat *stat);
 void	zoom_in(t_stat *stat);
+void	increase_exposure(t_stat *stat);
+void	decrease_exposure(t_stat *stat);
 #endif

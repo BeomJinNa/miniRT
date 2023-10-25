@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 03:47:14 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 06:08:46 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 09:19:03 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,20 @@ void	print_cam_info(t_stat *stat)
 		printf("\033[32mFOV       \033[37m%.1f \033[36mDegrees"
 			"\033[90m (--- mm)\n\033[0m",
 			cam->fov);
+	printf("\033[32mExposure  \033[37m%+.1f \033[36mStops\n\033[0m",
+		log2f(cam->image.exposure));
 }
 
 void	delete_cam_info(void)
 {
 	int	i;
 
-	printf("\r\033[7Am");
+	printf("\r\033[8Am");
 	i = 0;
-	while (i < 7)
+	while (i < 8)
 	{
 		printf("\033[Km\r \n");
 		i++;
 	}
-	printf("\033[7Am \r");
+	printf("\033[8Am \r");
 }

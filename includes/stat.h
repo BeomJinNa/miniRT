@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 06:18:29 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 09:41:40 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 # define M_VECTOR_MIN_SCALE 0.00001f
 # define M_DEFAULT_PREVIEW_SCALE 0.16f
+# define M_SCALING_SPOT_LIGHT 100
+# define M_EXPOSURE_MAX 100000.0f
+# define M_EXPOSURE_MIN 0.001f
 
 enum e_config
 {
@@ -26,7 +29,7 @@ enum e_config
 	M_WINDOW_HEIGHT_MAX = 1380,
 	M_TREE_MAX_DEPTH = 10,
 	M_TREE_MIN_LEAF_SIZE = 1,
-	M_SCATTER_SAMPLE_SIZE = 10,
+	M_SCATTER_SAMPLE_SIZE = 30,
 	M_SCATTER_MAX_DEPTH = 1,
 };
 
@@ -66,5 +69,5 @@ void	delete_cam_info(void);
 void	print_manual(void);
 void	re_render_image_on_mlx(t_stat *stat);
 void	render_hires_image_on_mlx(t_stat *stat);
+void	re_draw_image_on_mlx(t_stat *stat);
 #endif
-//# define M_VECTOR_MIN_SCALE 1e-5f

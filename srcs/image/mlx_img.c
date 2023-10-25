@@ -6,12 +6,14 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 22:23:16 by bena              #+#    #+#             */
-/*   Updated: 2023/10/24 21:25:55 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 07:26:19 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "image.h"
 #include <mlx.h>
+
+int	trgb_from_pixel8(t_pixel8 *pixel);
 
 void	img_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
@@ -33,7 +35,8 @@ void	img_mlx_image_put(t_img *data, t_image8 *image)
 		while (column < image->size_width)
 		{
 			img_mlx_pixel_put(data, column, row,
-				*(int *)&image->data[get_index(row, column, image)]);
+				trgb_from_pixel8(
+					&image->data[row * image->size_width + column]));
 			column++;
 		}
 		row++;
