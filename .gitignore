@@ -4,3 +4,6 @@ compile_flags.txt
 *.dylib
 *.swiftdoc
 *.swiftmodule
+miniRT
+*.a
+*.swiftsourceinfo
