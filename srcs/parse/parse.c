@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/25 06:38:10 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 17:02:47 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,8 @@ int	parse(char *filename, t_data *data)
 	if (!is_str_ends_with(filename, ".rt"))
 		return (1);
 	file_content = read_all_line(filename);
+	if (file_content == NULL)
+		return (1);
 	ft_lstiter(file_content, remove_endl);
 	if (lst_every(file_content, is_line_invalid)
 		|| lst_every_arg(file_content, convert_line_to_obj, data))

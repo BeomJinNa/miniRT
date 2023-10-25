@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:39:58 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 20:25:53 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/25 16:27:07 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_object	*convert_line_to_sphere(char *line)
 	t_object*const	new_obj = malloc(sizeof(t_object));
 	char**const		words = ft_split(line, ' ');
 
-	// TODO: object에 rgb 입히기
 	if (ptr_len((void **)words) != 4
 		|| parse_words_to_sphere((char **)words, new_obj))
 	{

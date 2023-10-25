@@ -1,0 +1,8 @@
+|    |                                              |                                                        |                                            |       |                      |
+|----|----------------------------------------------|--------------------------------------------------------|--------------------------------------------|-------|----------------------|
+| A  | ratio [0.0,1.0]                              | rgb (r,g,b) [0, 255]                                   |                                            |       |                      |
+| C  | 카메라 좌표 (x,y,z) [-INF, INF]              | orientation vector(normalized) (x,y,z) [-1, 1]         |                                            |       |                      |
+| L  | 광원 좌표 (x,y,z) [-INF, INF]                | brightness ratio [0.0, 1.0]                            | rgb <unused in mandatory> (r,g,b) [0, 255] |       |                      |
+| sp | 구의 중심 좌표 (x,y,z) [-INF, INF]           | 지름                                                   | rgb (r,g,b) [0, 255]                       |       |                      |
+| pl | 평면 위에 있는 점의 좌표 (x,y,z) [-INF, INF] | vector(normalized) (x,y,z) [-1, 1]                     | rgb (r,g,b) [0, 255]                       | 반지름 |                      |
+| cy | 원기둥의 중심 좌표 (x,y,z) [-INF, INF]       | vector(normalized) of axis of cylinder (x,y,z) [-1, 1] | 지름                                       | 높이  | rgb (r,g,b) [0, 255] |
