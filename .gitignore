@@ -1,2 +1,6 @@
 compile_flags.txt
 .clang-format
+*.o
+*.dylib
+*.swiftdoc
+*.swiftmodule
