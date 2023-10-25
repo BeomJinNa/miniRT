@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 05:30:46 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 04:03:58 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define M_CAMERA_MAX_FOV 180.0f
 # define M_CAMERA_MIN_FOV 3.0f
 # define M_CAMERA_FOV_SCALE_SENSITIVITY 1.1
+# define M_DEFAULT_REFLECTION_RATIO 0
 
 typedef struct s_object	t_object;
 
@@ -44,8 +45,9 @@ enum e_object_marker
 
 enum e_texture_flags
 {
-	FLAG_TEXTURE_IMAGE	= 1 << 0,
-	FLAG_TEXTURE_BUMP	= 1 << 1,
+	FLAG_TEXTURE_IMAGE		= 1 << 0,
+	FLAG_TEXTURE_BUMP		= 1 << 1,
+	FLAG_TEXTURE_CHECKER	= 1 << 2,
 };
 
 enum e_plane_flags

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 21:52:48 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 03:39:14 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,26 @@ t_intersection	get_intersection_on_plane(t_ray *ray, t_object *plane)
 {
 	t_plane *const	plane_ptr = &plane->u_data.plane;
 	t_vector		temp;
-	t_vector		point;
-	t_real			proj_displacement;
+	t_vector		hitpoint;
+	t_real			displacement;
 	t_real			proj_ray;
 
 	vec_subtract(temp, plane_ptr->position, ray->position);
-	proj_displacement = vec_dot_product(temp, plane_ptr->normal_unit);
-	if (is_real_zero(proj_displacement))
+	displacement = vec_dot_product(temp, plane_ptr->normal_unit);
+	if (is_real_zero(displacement))
 		return (return_void_intersection());
 	proj_ray = vec_dot_product(ray->normal_unit, plane_ptr->normal_unit);
 	if (is_real_zero(proj_ray))
 		return (return_void_intersection());
-	if (proj_displacement / proj_ray < 0)
+	displacement /= proj_ray;
+	if (displacement < 0)
 		return (return_void_intersection());
-	vec_copy(temp, ray->normal_unit);
-	vec_product_scalar(temp, temp, proj_displacement / proj_ray);
-	vec_add(point, ray->position, temp);
-	if (is_point_in_range(point, plane_ptr->position, plane_ptr->radius) == 0)
+	vec_product_scalar(temp, ray->normal_unit, displacement);
+	vec_add(hitpoint, ray->position, temp);
+	if (is_point_in_range(hitpoint,
+			plane_ptr->position, plane_ptr->radius) == 0)
 		return (return_void_intersection());
-	return (return_intersection(ray, plane, temp, vec_size(temp)));
+	return (return_intersection(ray, plane, hitpoint, displacement));
 }
 
 static t_intersection	return_intersection(t_ray *ray,

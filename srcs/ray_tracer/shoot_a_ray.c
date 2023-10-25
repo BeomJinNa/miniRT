@@ -6,12 +6,13 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:51:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 08:16:46 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 05:56:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "stat.h"
+#include <stddef.h>
 
 static void	get_value_from_hitpoint(t_vector buffer,
 				t_intersection *hitpoint, t_data *data, int depth);
@@ -24,7 +25,7 @@ void	shoot_a_ray(t_vector buffer, t_ray ray, t_data *data, int depth)
 	if (depth > M_SCATTER_MAX_DEPTH)
 		return ;
 	hitpoint = get_closest_intersection(&ray, data);
-	if (hitpoint.object == M_OBJECT_TYPE_NONE)
+	if (hitpoint.object == NULL)
 		return ;
 	get_value_from_hitpoint(buffer, &hitpoint, data, depth);
 	vec_product_scalar(buffer, buffer, ray.weight);

@@ -2,7 +2,7 @@
 
 CC			= cc
 
-COMMONFLAGS	= -g
+COMMONFLAGS	=
 
 CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter -O2
 

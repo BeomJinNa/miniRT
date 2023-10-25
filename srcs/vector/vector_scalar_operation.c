@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:52:35 by bena              #+#    #+#             */
-/*   Updated: 2023/10/08 18:03:46 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 01:02:13 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,13 @@ void	*vec_divide_scalar(t_vector buffer, t_vector a, t_real b)
 	buffer[0] = a[0] * inverse;
 	buffer[1] = a[1] * inverse;
 	buffer[2] = a[2] * inverse;
+	return (buffer);
+}
+
+void	*vec_invert(t_vector buffer, t_vector source)
+{
+	buffer[0] = -source[0];
+	buffer[1] = -source[1];
+	buffer[2] = -source[2];
 	return (buffer);
 }

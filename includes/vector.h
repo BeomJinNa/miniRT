@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:47:36 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 19:32:00 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 04:08:07 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ t_real	vec_dot_product(const t_vector a, const t_vector b);
 void	*vec_cross_product(t_vector buffer, t_vector a, t_vector b);
 void	*vec_product_scalar(t_vector buffer, t_vector a, t_real b);
 void	*vec_divide_scalar(t_vector buffer, t_vector a, t_real b);
+void	*vec_invert(t_vector buffer, t_vector source);
 void	*vec_product_element_wise(t_vector buffer, t_vector a, t_vector b);
 void	*vec_divide_element_wise(t_vector buffer, t_vector a, t_vector b);
+void	*vec_abs(t_vector buffer, t_vector source);
 t_real	vec_size(const t_vector vec);
 void	*vec_norm(t_vector buffer, t_vector vec);
 t_real	vec_cosine_similarity(const t_vector a, const t_vector b);

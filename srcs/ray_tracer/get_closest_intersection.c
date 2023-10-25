@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:52:52 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 23:14:46 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 05:49:01 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	find_closest_object(t_object *object, void *arg)
 	t_intersection			buffer;
 
 	buffer = get_intersection(hitpoint->ray, object);
-	if (hitpoint->object == NULL || buffer.distance < hitpoint->distance)
-		if (buffer.object != NULL)
+	if (buffer.object != NULL)
+		if (hitpoint->object == NULL || buffer.distance < hitpoint->distance)
 			*hitpoint = buffer;
 }

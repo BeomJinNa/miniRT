@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 18:57:19 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 01:37:21 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 04:43:20 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ void	compute_scattering_lights(t_vector buffer,
 	if (M_SCATTER_SAMPLE_SIZE < 1 || depth > M_SCATTER_MAX_DEPTH)
 		return ;
 	weight = (1 - hitpoint->reflection_ratio) / (t_real)M_SCATTER_SAMPLE_SIZE;
-	sampled_size = 0;
 	polar_coordinates[1] = vec_get_polar_angle_theta(hitpoint->normal_unit);
 	polar_coordinates[2] = vec_get_polar_angle_phi(hitpoint->normal_unit);
+	sampled_size = 0;
 	while (sampled_size < M_SCATTER_SAMPLE_SIZE)
 	{
 		temp_ray = get_next_ray_from_halton_sequence(hitpoint, weight,
 				polar_coordinates[1], polar_coordinates[2]);
-		shoot_a_ray(scattered_light, temp_ray, data, depth);
-		vec_add(buffer, buffer, scattered_light);
+		if (temp_ray.weight > 0)
+		{
+			shoot_a_ray(scattered_light, temp_ray, data, depth);
+			vec_add(buffer, buffer, scattered_light);
+		}
 		sampled_size++;
 	}
 }

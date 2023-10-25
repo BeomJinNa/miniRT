@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 22:56:27 by bena              #+#    #+#             */
-/*   Updated: 2023/10/24 23:04:26 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 01:58:19 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	print_object_info_in_one_line(void *object)
 		printf("Cylinder");
 	else if (ptr->type == M_OBJECT_TYPE_CONE)
 		printf("Cone");
-	printf("\t\033[38;2;%d;%d;%dm(RGB: %03d, %03d, %03d)\033[90m",
-		(int)cl[0], (int)cl[1], (int)cl[2], (int)cl[0], (int)cl[1], (int)cl[2]);
+	printf("\t\033[38;2;%d;%d;%dm(RGB: %03d, %03d, %03d)\033[90m"
+		" | reflection ratio %.2f",
+		(int)cl[0], (int)cl[1], (int)cl[2], (int)cl[0], (int)cl[1], (int)cl[2],
+		ptr->texture.reflection_ratio);
 	if (ptr->type == M_OBJECT_TYPE_PLANE)
 		printf(" | Position (%+4.2f, %+4.2f, %+4.2f) | Radius %.3f | Direction "
 			"(%+5.2f, %+5.2f, %+5.2f)", pl->position[0], pl->position[1],
