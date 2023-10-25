@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:58:38 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 09:27:18 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 10:36:36 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,20 +87,6 @@ static void	print_lights(void *lights)
 		"\033[0m\n\n", ptr->position[0], ptr->position[1], ptr->position[2],
 		brightness, cl[0], cl[1], cl[2], cl[0], cl[1], cl[2]);
 }
-/*
-static void	print_lights(void *lights)
-{
-	t_light *const	ptr = (t_light *)lights;
-
-	printf("\033[32mSPOT LIGHT\033[0m\n"
-		"position : \033[90m(%+5.2f, %+5.2f, %+5.2f)\033[0m\n"
-		"red : \033[90m%.1f\033[0m\n"
-		"green : \033[90m%.1f\033[0m\n"
-		"blue : \033[90m%.1f\033[0m\n",
-		ptr->position[0], ptr->position[1], ptr->position[2],
-		ptr->color[0], ptr->color[1], ptr->color[2]);
-}
-*/
 
 void	print_manual(void)
 {

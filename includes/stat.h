@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 09:41:40 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/25 10:33:45 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define M_SCALING_SPOT_LIGHT 100
 # define M_EXPOSURE_MAX 100000.0f
 # define M_EXPOSURE_MIN 0.001f
+# define M_MOVING_DISTANCE 3.0f
 
 enum e_config
 {
@@ -29,8 +30,8 @@ enum e_config
 	M_WINDOW_HEIGHT_MAX = 1380,
 	M_TREE_MAX_DEPTH = 10,
 	M_TREE_MIN_LEAF_SIZE = 1,
-	M_SCATTER_SAMPLE_SIZE = 30,
-	M_SCATTER_MAX_DEPTH = 1,
+	M_SCATTER_SAMPLE_SIZE = 10,
+	M_SCATTER_MAX_DEPTH = 3,
 };
 
 typedef struct s_data	t_data;
