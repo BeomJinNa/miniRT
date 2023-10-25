@@ -22,7 +22,7 @@ LIBDIR		= libft/ \
 ARCH		= ft mlx
 
 LIBFT		= libft/libft.a
-MLX			= mlx/libmlx.dylib
+MLX			= libmlx.dylib
 
 #sources=======================================================================
 

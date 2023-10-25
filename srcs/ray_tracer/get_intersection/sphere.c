@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 21:53:05 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 06:20:43 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_intersection	get_intersection_on_sphere(t_ray *ray, t_object *sphere)
 		return (return_void_intersection());
 	vec_subtract(displacement, sphere_ptr->position, ray->position);
 	distance = vec_dot_product(displacement, ray->normal_unit);
+	if (distance < 0)
+		return (return_void_intersection());
 	vec_product_scalar(path, ray->normal_unit, distance);
 	vec_subtract(normal, path, displacement);
 	if (vec_dot_product(normal, normal)
