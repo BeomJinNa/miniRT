@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 16:43:40 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 18:35:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ t_hit_buffer		get_buffer_cylinder_plane(t_ray *ray,
 						t_cylinder *cylinder, t_real cosine);
 static t_hit_buffer	return_nothing(void);
 
+/*
+ * If the intersection point is not found,
+ * a zero vector is returned to normal_unit.
+ */
 t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 						t_cylinder *cylinder, t_real ray_center,
 						t_real dist_sq)
@@ -27,6 +31,7 @@ t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 	t_raygap		gap;
 	t_real			disp_to_plane;
 	t_real			dist_to_normal;
+	t_real			cosine;
 
 	gap.cosine = vec_dot_product(ray->normal_unit, cylinder->normal_unit);
 	gap.sine = sqrtf(1 - gap.cosine * gap.cosine);
@@ -37,10 +42,11 @@ t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 	if (gap.cosine > 0)
 		disp_to_plane = ray_center;
 	else
-		disp_to_plane = ray_center - cylinder->height;
-	dist_to_normal = disp_to_plane * gap.sine / gap.cosine;
+		disp_to_plane = cylinder->height - ray_center;
+	cosine = fabsf(gap.cosine);
+	dist_to_normal = disp_to_plane * gap.sine / cosine;
 	if (dist_to_normal < -gap.chord || dist_to_normal
-		> gap.chord + cylinder->height * gap.sine / gap.cosine)
+		> gap.chord + cylinder->height * gap.sine / cosine)
 		return (return_nothing());
 	if (dist_to_normal < gap.chord)
 		return (get_buffer_cylinder_plane(ray, cylinder, gap.cosine));
@@ -61,6 +67,7 @@ t_hit_buffer	get_buffer_cylinder_side(t_ray *ray,
 	output.dist = vec_dot_product(displacement, ray->normal_unit)
 		- (gap.chord / gap.sine);
 	vec_product_scalar(output.position, ray->normal_unit, output.dist);
+	vec_add(output.position, output.position, ray->position);
 	vec_subtract(output.normal_unit, output.position, cylinder->position);
 	vec_product_scalar(hitpoint_projection, cylinder->normal_unit,
 		vec_dot_product(output.normal_unit, cylinder->normal_unit));
@@ -82,12 +89,13 @@ t_hit_buffer	get_buffer_cylinder_plane(t_ray *ray,
 		vec_add(displacement, cylinder->position, cylinder->normal);
 		vec_subtract(displacement, displacement, ray->position);
 	}
-	output.dist = vec_dot_product(ray->normal_unit, displacement);
+	output.dist = vec_dot_product(displacement, cylinder->normal_unit)
+		/ cosine;
 	vec_product_scalar(displacement, ray->normal_unit, output.dist);
 	vec_add(output.position, ray->position, displacement);
 	vec_copy(output.normal_unit, cylinder->normal_unit);
-	if (cosine < 0)
-		vec_product_scalar(output.normal_unit, output.normal_unit, -1.0);
+	if (cosine > 0)
+		vec_invert(output.normal_unit, output.normal_unit);
 	return (output);
 }
 

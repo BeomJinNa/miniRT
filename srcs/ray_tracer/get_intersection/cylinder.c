@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 15:28:27 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 17:25:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ static int	is_this_exceptional_case(t_ray *ray, t_cylinder *cylinder)
 		return (0);
 	vec_product_scalar(center_on_ray_height, cylinder->normal_unit, ray_height);
 	vec_subtract(radius_to_ray, ray->position, center_on_ray_height);
-	if (vec_dot_product(radius_to_ray, radius_to_ray) <= cylinder->radius)
+	if (vec_dot_product(radius_to_ray, radius_to_ray)
+		< cylinder->radius * cylinder->radius)
 		return (1);
 	return (0);
 }
