@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:58:38 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 10:36:36 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 11:27:32 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	print_data(t_data *data)
 	print_cam(&data->cam);
 	print_ambient(data->ambient);
 	ft_lstiter(data->lights, print_lights);
-	printf("\n\033[32mK-D TREE STRUCTURE\033[0m\n");
-	print_tree(data->tree);
 	printf("\n\033[32mOBJECTS LIST\033[0m\n");
 	ft_lstiter(data->objects, print_object_info_in_one_line);
+	printf("\n\033[32mK-D TREE STRUCTURE\033[0m\n");
+	print_tree(data->tree);
 	printf("\n\033[33mEND INFORMATION\033[0m\n\n");
 	printf("\033[33m=============================================\033[0m\n\n");
 }
