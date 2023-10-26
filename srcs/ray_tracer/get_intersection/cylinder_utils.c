@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 06:52:08 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 16:43:40 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,52 @@
 #include "libft.h"
 #include <math.h>
 
+t_hit_buffer		get_buffer_cylinder_side(t_ray *ray,
+						t_cylinder *cylinder, t_real ray_center, t_raygap gap);
+t_hit_buffer		get_buffer_cylinder_plane(t_ray *ray,
+						t_cylinder *cylinder, t_real cosine);
 static t_hit_buffer	return_nothing(void);
 
+t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
+						t_cylinder *cylinder, t_real ray_center,
+						t_real dist_sq)
+{
+	t_raygap		gap;
+	t_real			disp_to_plane;
+	t_real			dist_to_normal;
+
+	gap.cosine = vec_dot_product(ray->normal_unit, cylinder->normal_unit);
+	gap.sine = sqrtf(1 - gap.cosine * gap.cosine);
+	gap.distance_sq = dist_sq;
+	gap.chord = sqrtf(cylinder->radius * cylinder->radius - dist_sq);
+	if (is_real_zero(gap.cosine))
+		return (get_buffer_cylinder_side(ray, cylinder, ray_center, gap));
+	if (gap.cosine > 0)
+		disp_to_plane = ray_center;
+	else
+		disp_to_plane = ray_center - cylinder->height;
+	dist_to_normal = disp_to_plane * gap.sine / gap.cosine;
+	if (dist_to_normal < -gap.chord || dist_to_normal
+		> gap.chord + cylinder->height * gap.sine / gap.cosine)
+		return (return_nothing());
+	if (dist_to_normal < gap.chord)
+		return (get_buffer_cylinder_plane(ray, cylinder, gap.cosine));
+	return (get_buffer_cylinder_side(ray, cylinder, ray_center, gap));
+}
+
 t_hit_buffer	get_buffer_cylinder_side(t_ray *ray,
-						t_cylinder *cylinder, t_real ray_center, t_raygap gap)
+					t_cylinder *cylinder, t_real ray_center, t_raygap gap)
 {
 	t_hit_buffer	output;
 	t_vector		nearest_position;
 	t_vector		displacement;
 	t_vector		hitpoint_projection;
-	t_real			chord_on_path_inside;
 
 	vec_product_scalar(nearest_position, cylinder->normal_unit, ray_center);
 	vec_add(nearest_position, nearest_position, cylinder->position);
 	vec_subtract(displacement, nearest_position, ray->position);
-	chord_on_path_inside
-		= sqrtf(cylinder->radius * cylinder->radius - gap.distance_sq);
 	output.dist = vec_dot_product(displacement, ray->normal_unit)
-		- (chord_on_path_inside / gap.sine);
+		- (gap.chord / gap.sine);
 	vec_product_scalar(output.position, ray->normal_unit, output.dist);
 	vec_subtract(output.normal_unit, output.position, cylinder->position);
 	vec_product_scalar(hitpoint_projection, cylinder->normal_unit,
@@ -42,7 +70,7 @@ t_hit_buffer	get_buffer_cylinder_side(t_ray *ray,
 }
 
 t_hit_buffer	get_buffer_cylinder_plane(t_ray *ray,
-						t_cylinder *cylinder, t_real cosine)
+					t_cylinder *cylinder, t_real cosine)
 {
 	t_hit_buffer	output;
 	t_vector		displacement;
@@ -61,32 +89,6 @@ t_hit_buffer	get_buffer_cylinder_plane(t_ray *ray,
 	if (cosine < 0)
 		vec_product_scalar(output.normal_unit, output.normal_unit, -1.0);
 	return (output);
-}
-
-t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
-						t_cylinder *cylinder, t_real ray_center,
-						t_real dist_sq)
-{
-	t_raygap		gap;
-	t_real			disp_to_plane;
-	t_real			dist_to_normal;
-
-	gap.cosine = vec_dot_product(ray->normal_unit, cylinder->normal_unit);
-	gap.sine = sqrtf(1 - gap.cosine * gap.cosine);
-	gap.distance_sq = dist_sq;
-	if (is_real_zero(gap.cosine))
-		return (get_buffer_cylinder_side(ray, cylinder, ray_center, gap));
-	if (gap.cosine > 0)
-		disp_to_plane = ray_center;
-	else
-		disp_to_plane = ray_center - cylinder->height;
-	dist_to_normal = disp_to_plane * gap.sine / gap.cosine;
-	if (dist_to_normal < -cylinder->radius || dist_to_normal
-		> cylinder->radius + cylinder->height * gap.sine / gap.cosine)
-		return (return_nothing());
-	if (dist_to_normal < cylinder->radius)
-		return (get_buffer_cylinder_plane(ray, cylinder, gap.cosine));
-	return (get_buffer_cylinder_side(ray, cylinder, ray_center, gap));
 }
 
 static t_hit_buffer	return_nothing(void)

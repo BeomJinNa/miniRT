@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 06:53:40 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 15:28:27 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,19 @@ t_intersection	get_intersection_on_cylinder(t_ray *ray, t_object *cylinder)
 static int	is_this_exceptional_case(t_ray *ray, t_cylinder *cylinder)
 {
 	t_vector	displacement;
-	t_vector	proj_displacement;
-	t_real		proj_disp_size;
+	t_real		ray_height;
+	t_vector	center_on_ray_height;
+	t_vector	radius_to_ray;
 
-	vec_subtract(displacement, cylinder->position, ray->position);
-	if (is_real_zero(vec_dot_product(displacement, cylinder->normal_unit)))
+	vec_subtract(displacement, ray->position, cylinder->position);
+	ray_height = vec_dot_product(displacement, cylinder->normal_unit);
+	if (is_real_zero(ray_height))
 		return (1);
-	proj_disp_size = vec_dot_product(displacement, cylinder->normal_unit);
-	if (proj_disp_size < 0 || proj_disp_size > cylinder->height)
+	if (ray_height < 0 || cylinder->height - M_VECTOR_MIN_SCALE < ray_height)
 		return (0);
-	vec_product_scalar(proj_displacement,
-		cylinder->normal_unit, proj_disp_size);
-	if (is_point_in_range(displacement, proj_displacement, cylinder->radius))
+	vec_product_scalar(center_on_ray_height, cylinder->normal_unit, ray_height);
+	vec_subtract(radius_to_ray, ray->position, center_on_ray_height);
+	if (vec_dot_product(radius_to_ray, radius_to_ray) <= cylinder->radius)
 		return (1);
 	return (0);
 }

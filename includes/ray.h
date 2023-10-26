@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 09:21:49 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 16:37:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_raygap
 	t_real	cosine;
 	t_real	sine;
 	t_real	distance_sq;
+	t_real	chord;
 }	t_raygap;
 
 typedef struct s_intersection_buffer
