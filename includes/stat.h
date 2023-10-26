@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 03:25:43 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 09:08:00 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ enum e_config
 	M_TREE_MAX_DEPTH = 10,
 	M_TREE_MIN_LEAF_SIZE = 1,
 	M_SCATTER_SAMPLE_SIZE = 10,
-	M_SCATTER_MAX_DEPTH = 2,
+	M_SCATTER_MAX_DEPTH = 1,
 };
 
 typedef struct s_data	t_data;

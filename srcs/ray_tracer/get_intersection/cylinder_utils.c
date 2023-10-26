@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/23 21:52:26 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 06:52:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ t_intersection	cylinder_intersection_on_plane(t_ray *ray, t_object *cylinder)
 
 	cosine = vec_dot_product(ray->normal_unit, cylinder_ptr->normal_unit);
 	hitpoint = get_buffer_cylinder_plane(ray, cylinder_ptr, cosine);
+	if (hitpoint.dist < 0)
+		return (return_void_intersection());
 	vec_copy(output.normal_unit, hitpoint.normal_unit);
 	vec_copy(output.position, hitpoint.position);
 	output.distance = hitpoint.dist;

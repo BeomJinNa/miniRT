@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:28:04 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 05:58:20 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 09:26:42 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	compute_lighting_from_spotlights(t_vector buffer,
 			vec_copy(ray.position, hitpoint->position);
 			vec_norm(ray.normal_unit, ray.normal_unit);
 			temp = get_closest_intersection(&ray, data);
-			if (temp.object == NULL)
+			if (temp.object == NULL
+				|| is_point_in_range(light->position,
+					hitpoint->position, temp.distance))
 				add_value_from_spotlight(buffer, hitpoint, light);
 		}
 		ptr = ptr->next;
@@ -53,8 +55,8 @@ static void	add_value_from_spotlight(t_vector buffer,
 	vec_subtract(displacement, light->position, hitpoint->position);
 	distance = vec_size(displacement);
 	cosine = vec_dot_product(hitpoint->normal_unit, displacement) / distance;
-	vec_product_scalar(output, light->color,
-		M_SCALING_SPOT_LIGHT * cosine / (distance * distance));
+	vec_product_scalar(output, light->color, (1 - hitpoint->reflection_ratio)
+		* M_SCALING_SPOT_LIGHT * cosine / (distance * distance));
 	vec_product_element_wise(output, output, hitpoint->reflectance);
 	vec_add(buffer, buffer, output);
 }

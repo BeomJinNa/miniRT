@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/20 18:18:02 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 06:53:40 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_intersection	get_intersection_on_cylinder(t_ray *ray, t_object *cylinder)
 			cylinder_ptr->position, cylinder_ptr->normal_unit);
 	hitpoint = calculate_hit_point_cylinder(ray,
 			cylinder_ptr, nearest_position, minimum_distance_sq);
-	if (is_vector_zero(hitpoint.normal_unit))
+	if (is_vector_zero(hitpoint.normal_unit) || hitpoint.dist < 0)
 		return (return_void_intersection());
 	return (return_intersection(ray, cylinder, &hitpoint));
 }
