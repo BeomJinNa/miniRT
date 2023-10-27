@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 18:35:08 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/27 12:00:40 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 	t_real			cosine;
 
 	gap.cosine = vec_dot_product(ray->normal_unit, cylinder->normal_unit);
-	gap.sine = sqrtf(1 - gap.cosine * gap.cosine);
+	gap.sine = sqrtf(1 - (gap.cosine * gap.cosine));
 	gap.distance_sq = dist_sq;
 	gap.chord = sqrtf(cylinder->radius * cylinder->radius - dist_sq);
 	if (is_real_zero(gap.cosine))
@@ -81,13 +81,15 @@ t_hit_buffer	get_buffer_cylinder_plane(t_ray *ray,
 {
 	t_hit_buffer	output;
 	t_vector		displacement;
+	t_vector		plane_center;
 
+	vec_copy(plane_center, cylinder->position);
 	if (cosine > 0)
-		vec_subtract(displacement, cylinder->position, ray->position);
+		vec_subtract(displacement, plane_center, ray->position);
 	else
 	{
-		vec_add(displacement, cylinder->position, cylinder->normal);
-		vec_subtract(displacement, displacement, ray->position);
+		vec_add(plane_center, cylinder->position, cylinder->normal);
+		vec_subtract(displacement, plane_center, ray->position);
 	}
 	output.dist = vec_dot_product(displacement, cylinder->normal_unit)
 		/ cosine;
