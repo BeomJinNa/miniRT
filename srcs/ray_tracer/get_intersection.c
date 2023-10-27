@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:06:06 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 06:18:39 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 03:32:40 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_intersection	get_intersection(t_ray *ray, t_object *object)
 		output = get_intersection_on_cylinder(ray, object);
 	else
 		return (return_void_intersection());
-//	else if (object->type == M_OBJECT_TYPE_CONE)
-//		output = get_intersection_on_cone(ray, object);
 	if (output.object == NULL)
 		return (return_void_intersection());
 	if (vec_dot_product(ray->normal_unit, output.normal_unit) > 0)
