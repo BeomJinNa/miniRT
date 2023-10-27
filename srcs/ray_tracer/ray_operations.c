@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 09:27:13 by bena              #+#    #+#             */
-/*   Updated: 2023/10/27 12:15:51 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 00:43:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,23 @@ t_real	get_nearest_point_with_ray(t_ray *ray,
 		vec_dot_product(proj_displacement, ray->normal_unit));
 	vec_subtract(vertical_unit, proj_displacement, vertical_unit);
 	temp = vec_size(vertical_unit) * temp;
+	vec_norm(displacement, displacement);
 	if (vec_dot_product(displacement, normal_unit)
 		> vec_dot_product(ray->normal_unit, normal_unit))
 		return (-temp);
 	return (temp);
+}
+
+t_real	get_distance_sq_between_line_and_point(t_vector point,
+			t_vector normal_unit, t_vector line_position)
+{
+	t_vector	displacement;
+	t_vector	nearest_point;
+
+	vec_subtract(displacement, point, line_position);
+	vec_product_scalar(displacement, normal_unit,
+		vec_dot_product(displacement, normal_unit));
+	vec_add(nearest_point, line_position, displacement);
+	vec_subtract(displacement, point, nearest_point);
+	return (vec_dot_product(displacement, displacement));
 }

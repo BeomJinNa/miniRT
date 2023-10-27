@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 16:37:48 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/27 15:47:18 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void			get_reflected_ray(t_vector buffer, t_vector ray_normal_unit,
 					t_vector surface_normal_unit);
 t_real			get_nearest_point_with_ray(t_ray *ray,
 					t_vector position, t_vector normal_unit);
+t_real			get_distance_sq_between_line_and_point(t_vector point,
+					t_vector normal_unit, t_vector line_position);
 void			compute_scattering_lights(t_vector buffer,
 					t_intersection *hitpoint, t_data *data, int depth);
 void			compute_lighting_from_spotlights(t_vector buffer,

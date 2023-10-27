@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 18:47:33 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 01:15:12 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static int	is_this_exceptional_case(t_ray *ray, t_cylinder *cylinder)
 	t_vector	center_on_ray_height;
 	t_vector	radius_to_ray;
 
+	if (is_real_zero(vec_dot_product(cylinder->normal_unit, ray->normal_unit)))
+		return (1);
 	vec_subtract(displacement, ray->position, cylinder->position);
 	ray_height = vec_dot_product(displacement, cylinder->normal_unit);
-	if (is_real_zero(ray_height))
-		return (1);
 	if (ray_height < 0 || cylinder->height < ray_height)
 		return (0);
 	vec_product_scalar(center_on_ray_height, cylinder->normal_unit, ray_height);

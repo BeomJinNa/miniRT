@@ -4,7 +4,7 @@ CC			= cc
 
 COMMONFLAGS	=
 
-CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter -O2
+CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-function -Wno-unused-parameter -O2
 
 LDFLAGS		= $(COMMONFLAGS) \
 			  $(foreach lib, $(TARGET_LIBDIR), -L$(lib)) \

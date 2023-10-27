@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/27 12:00:40 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 00:36:49 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_hit_buffer	return_nothing(void);
  * If the intersection point is not found,
  * a zero vector is returned to normal_unit.
  */
+
 t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 						t_cylinder *cylinder, t_real ray_center,
 						t_real dist_sq)
@@ -31,7 +32,7 @@ t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 	t_raygap		gap;
 	t_real			disp_to_plane;
 	t_real			dist_to_normal;
-	t_real			cosine;
+	t_real			tangent;
 
 	gap.cosine = vec_dot_product(ray->normal_unit, cylinder->normal_unit);
 	gap.sine = sqrtf(1 - (gap.cosine * gap.cosine));
@@ -43,10 +44,10 @@ t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 		disp_to_plane = ray_center;
 	else
 		disp_to_plane = cylinder->height - ray_center;
-	cosine = fabsf(gap.cosine);
-	dist_to_normal = disp_to_plane * gap.sine / cosine;
+	tangent = gap.sine / fabsf(gap.cosine);
+	dist_to_normal = disp_to_plane * tangent;
 	if (dist_to_normal < -gap.chord || dist_to_normal
-		> gap.chord + cylinder->height * gap.sine / cosine)
+		> gap.chord + cylinder->height * tangent)
 		return (return_nothing());
 	if (dist_to_normal < gap.chord)
 		return (get_buffer_cylinder_plane(ray, cylinder, gap.cosine));
