@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/25 16:21:09 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/27 19:32:29 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdlib.h>
 
 static int	parse_words_to_cylinder(char **words, t_object *cylinder);
+static int	parse_additional(char **words, int basic_form_len, t_object *obj);
 
 /*
 cy position       normal       diameter  height  rgb
@@ -28,14 +29,16 @@ t_object	*convert_line_to_cylinder(char *line)
 {
 	t_object*const	new_obj = malloc(sizeof(t_object));
 	char**const		words = ft_split(line, ' ');
+	size_t			word_len;
 
-	if (ptr_len((void **)words) != 6
-		|| parse_words_to_cylinder(words, new_obj))
+	word_len = ptr_len((void **)words);
+	if (word_len < 6 || parse_words_to_cylinder(words, new_obj))
 	{
 		free(new_obj);
 		recursive_free(words, 2);
 		return (NULL);
 	}
+	if (word_len > 6)
 	return (new_obj);
 }
 
@@ -59,4 +62,27 @@ static int	parse_words_to_cylinder(char **words, t_object *cylinder)
 	if (!result)
 		vec_copy(cylinder->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
 	return (result);
+}
+
+char *find_word(char **words, const char *to_find)
+{
+	const size_t	to_find_len = ft_strlen(to_find);
+
+	while (words != NULL)
+	{
+		if (ft_strncmp(*words, to_find, to_find_len) == 0)
+			return (words);
+		words++;
+	}
+	return (NULL);
+}
+
+static int	parse_additional(char **words, int basic_form_len, t_object *obj)
+{
+	const size_t	word_len = ptr_len((void **)words);
+
+	if (basic_form_len == word_len)
+		return (0);
+	find_word(words + basic_form_len, "chk");
+	return (0);
 }

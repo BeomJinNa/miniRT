@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/25 17:02:47 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/27 19:15:26 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,43 +25,34 @@
 #include <stdio.h>
 #include <math.h>
 
-// const t_rt_object_format	formats[] = {
-// {"A", 2, {F_RT_RATIO, F_RT_RGB}, 0, {}},
-// {"C", 3, {F_RT_VEC, F_RT_N_VEC, F_RT_NUM}, 0, {}},
-// {"L", 3, {F_RT_VEC, F_RT_NUM, F_RT_RGB}, 0, {}},
-// {"sp", 3, {F_RT_RATIO, F_RT_NUM, F_RT_RGB}, 0, {}},
-// {"pl", 3, {F_RT_RATIO, F_RT_N_VEC, F_RT_RGB}, 0, {}},
-// {"cy", 3, {F_RT_RATIO, F_RT_N_VEC, F_RT_NUM, F_RT_NUM, F_RT_RGB}, 0, {}},
-// {"co", 3, {F_RT_RATIO, F_RT_N_VEC, F_RT_NUM, F_RT_NUM, F_RT_RGB}, 0, {}},
-// };
-
 static int	is_line_invalid(void *line)
 {
 	const char	*iter = line;
 	const char	*word_start;
 
 	if (*iter == ' ')
-		return (0);
+	{
+		print_parse_error("line start with space : ", line);
+		return (1);
+	}
 	while (*iter != '\0')
 	{
 		while (*iter == ' ')
-		{
 			++iter;
-		}
 		word_start = iter;
 		while (*iter != '\0' && *iter != ' ')
 		{
 			if (*iter == ',' && !((iter[1] == '-' && ft_isdigit(iter[2]))
 					|| ft_isdigit(iter[1])))
 			{
-				printf("error at <1>: %s\n", iter);
+				print_parse_error("parse error at : ", line);
 				return (1);
 			}
 			++iter;
 		}
 		if (word_start == iter)
 		{
-			printf("error at <3>: %s / %s\n", word_start, iter);
+			print_parse_error("parse error at : ", line);
 			return (1);
 		}
 		++iter;
@@ -79,6 +70,7 @@ void	remove_endl(void *str)
 	if (cstr[len - 1] == '\n')
 		cstr[len - 1] = '\0';
 }
+
 /*
 Each type of element can be separated by one or more line break(s).
 Each type of information from an element
@@ -106,7 +98,7 @@ t_list	*read_all_line(char *filename)
 	lines = NULL;
 	if (fd == -1)
 	{
-		printf("failed to open file.\n");
+		print_parse_error("failed to open file", filename);
 		return (NULL);
 	}
 	while (1)
@@ -120,6 +112,8 @@ t_list	*read_all_line(char *filename)
 			ft_lstadd_back(&lines, ft_lstnew(line));
 	}
 	close(fd);
+	if (lines == NULL)
+		print_parse_error("failed to read file.\n", "");
 	return (lines);
 }
 
@@ -220,6 +214,40 @@ void	print_object_info(void *ptr)
 	}
 }
 
+void	count_ACL(void *pline, void *pcount)
+{
+	char*const	line = pline;
+	int*const	count = pcount;
+
+	if (ft_strncmp("A ", line, 2) == 0)
+		++count[0];
+	else if (ft_strncmp("C ", line, 2) == 0)
+		++count[1];
+	else if (ft_strncmp("L ", line, 2) == 0)
+		++count[2];
+}
+
+int	is_ACL_unique(t_list *file_content)
+{
+	int	acl_count[3];
+
+	ft_memset(acl_count, 0, sizeof(acl_count));
+	ft_lstiter(file_content, acl_count);
+	if (acl_count[0] == 0)
+		print_parse_error("Ambient light is required in .rt format.", "");
+	else if (acl_count[0] > 1)
+		print_parse_error("Ambient light is more than one .rt format.", "");
+	if (acl_count[1] == 0)
+		print_parse_error("Camera is required in .rt format.", "");
+	else if (acl_count[1] > 1)
+		print_parse_error("Camera is more than one .rt format.", "");
+	if (acl_count[2] == 0)
+		print_parse_error("Light is required in .rt format.", "");
+	else if (acl_count[2] > 1)
+		print_parse_error("Light is more than one .rt format.", "");
+	return (acl_count[0] == 1 && acl_count[1] == 1 && acl_count[2] == 1);
+}
+
 int	parse(char *filename, t_data *data)
 {
 	t_list	*file_content;
@@ -235,7 +263,8 @@ int	parse(char *filename, t_data *data)
 	if (file_content == NULL)
 		return (1);
 	ft_lstiter(file_content, remove_endl);
-	if (lst_every(file_content, is_line_invalid)
+	if (is_ACL_unique(file_content)
+		|| lst_every(file_content, is_line_invalid)
 		|| lst_every_arg(file_content, convert_line_to_obj, data))
 	{
 		ft_lstclear(&file_content, free);
