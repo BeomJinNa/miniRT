@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/27 19:32:29 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/27 20:11:19 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ t_object	*convert_line_to_cylinder(char *line)
 	size_t			word_len;
 
 	word_len = ptr_len((void **)words);
-	if (word_len < 6 || parse_words_to_cylinder(words, new_obj))
+	if (word_len < 6 || parse_words_to_cylinder(words, new_obj)
+		|| parse_additional(words, word_len, new_obj))
 	{
 		free(new_obj);
 		recursive_free(words, 2);
 		return (NULL);
 	}
-	if (word_len > 6)
 	return (new_obj);
 }
 
@@ -83,6 +83,10 @@ static int	parse_additional(char **words, int basic_form_len, t_object *obj)
 
 	if (basic_form_len == word_len)
 		return (0);
-	find_word(words + basic_form_len, "chk");
+	if (find_word(words + basic_form_len, "chk"))
+		obj->texture.flags = FLAG_TEXTURE_CHECKER;
 	return (0);
 }
+
+// 추가되는 옵션들 : checker board / reflection / radius(plane)
+// 각 옵션이 어떤 옵션인
