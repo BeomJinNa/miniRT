@@ -53,6 +53,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/object/print_object.c \
 		  srcs/object/search_bounding_volume.c \
 		  srcs/object/set_bounding_volume.c \
+		  srcs/parse/converter/convert_additional_params.c \
 		  srcs/parse/converter/convert_line_to_ambient_light.c \
 		  srcs/parse/converter/convert_line_to_camera.c \
 		  srcs/parse/converter/convert_line_to_cylinder.c \
@@ -62,6 +63,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/parse/converter/convert_line_to_sphere.c \
 		  srcs/parse/converter/rgb_to_ratio.c \
 		  srcs/parse/parse.c \
+		  srcs/parse/parse_error.c \
 		  srcs/parse/parse_utils/parse_degree.c \
 		  srcs/parse/parse_utils/parse_normalized_vector.c \
 		  srcs/parse/parse_utils/parse_ratio.c \

@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/27 19:15:26 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:06:57 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ void	print_object_info(void *ptr)
 	}
 }
 
-void	count_ACL(void *pline, void *pcount)
+int	count_ACL(void *pline, void *pcount)
 {
 	char*const	line = pline;
 	int*const	count = pcount;
@@ -225,6 +225,7 @@ void	count_ACL(void *pline, void *pcount)
 		++count[1];
 	else if (ft_strncmp("L ", line, 2) == 0)
 		++count[2];
+	return (0);
 }
 
 int	is_ACL_unique(t_list *file_content)
@@ -232,7 +233,7 @@ int	is_ACL_unique(t_list *file_content)
 	int	acl_count[3];
 
 	ft_memset(acl_count, 0, sizeof(acl_count));
-	ft_lstiter(file_content, acl_count);
+	lst_every_arg(file_content, count_ACL, acl_count);
 	if (acl_count[0] == 0)
 		print_parse_error("Ambient light is required in .rt format.", "");
 	else if (acl_count[0] > 1)
@@ -243,9 +244,11 @@ int	is_ACL_unique(t_list *file_content)
 		print_parse_error("Camera is more than one .rt format.", "");
 	if (acl_count[2] == 0)
 		print_parse_error("Light is required in .rt format.", "");
-	else if (acl_count[2] > 1)
+	else if (!M_BONUS && acl_count[2] > 1)
 		print_parse_error("Light is more than one .rt format.", "");
-	return (acl_count[0] == 1 && acl_count[1] == 1 && acl_count[2] == 1);
+	if ((!M_BONUS && acl_count[2] != 1) || (M_BONUS && acl_count[2] == 0))
+		return (0);
+	return (acl_count[0] == 1 || acl_count[1] == 1);
 }
 
 int	parse(char *filename, t_data *data)
@@ -258,11 +261,15 @@ int	parse(char *filename, t_data *data)
 	data->objects = NULL;
 	data->tree = NULL;
 	if (!is_str_ends_with(filename, ".rt"))
+	{
+		print_parse_error("filename should ends with .rt.\n", "");
 		return (1);
+	}
 	file_content = read_all_line(filename);
 	if (file_content == NULL)
 		return (1);
 	ft_lstiter(file_content, remove_endl);
+	printf("running\n");
 	if (is_ACL_unique(file_content)
 		|| lst_every(file_content, is_line_invalid)
 		|| lst_every_arg(file_content, convert_line_to_obj, data))

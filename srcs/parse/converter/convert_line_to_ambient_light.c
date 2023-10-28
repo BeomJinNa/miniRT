@@ -6,11 +6,12 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:18:54 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 20:02:38 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:05:54 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert_utils.h"
+#include "../parse.h"
 #include "../utils/utils.h"
 #include "../parse_utils/parse_utils.h"
 #include "vector.h"
@@ -20,6 +21,7 @@
 static int	parse_words_to_ambient(const char **words, t_real *ambient);
 static int	parse_words_to_ambient_bonus(const char **words, t_real *ambient);
 
+# define M_BONUS 1
 //   rat rgb
 // A 0.2 255,255,255
 int	convert_line_to_ambient(char *line, t_data *data)
@@ -28,14 +30,22 @@ int	convert_line_to_ambient(char *line, t_data *data)
 
 	if (words == NULL)
 		return (0);
-	if (!((ptr_len((void **)words) == 2
-				&& !parse_words_to_ambient(words, data->ambient))
-			|| (ptr_len((void **)words) == 3
-				&& !parse_words_to_ambient_bonus(words, data->ambient))))
+	if (M_BONUS)
 	{
+		if (parse_words_to_ambient_bonus(words, data->ambient))
+		{
+			print_parse_error("failed to parse ambient light in : ", line);
+			recursive_free(words, 2);
+			return (1);
+		}
+	}
+	else if (parse_words_to_ambient(words, data->ambient))
+	{
+		print_parse_error("failed to parse ambient light in : ", line);
 		recursive_free(words, 2);
 		return (1);
 	}
+	recursive_free(words, 2);
 	return (0);
 }
 

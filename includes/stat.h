@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stat.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 11:36:23 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/26 16:14:56 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "tree.h"
 
 # define M_VECTOR_MIN_SCALE 0.00001f
-# define M_DEFAULT_PREVIEW_SCALE 0.08f
+# define M_DEFAULT_PREVIEW_SCALE 0.1f
 # define M_SCALING_SPOT_LIGHT 100
 # define M_EXPOSURE_MAX 100000.0f
 # define M_EXPOSURE_MIN 0.001f

@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:38:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 16:04:48 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 16:15:06 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int			convert_line_to_light(char *line, t_data *data);
 t_object	*convert_line_to_sphere(char *line);
 t_object	*convert_line_to_plane(char *line);
 t_object	*convert_line_to_cylinder(char *line);
+int			parse_additional(char **words, size_t base_form_len, t_object *obj);
 
 #endif

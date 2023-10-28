@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/27 20:11:19 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 16:28:05 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include <stdlib.h>
 
 static int	parse_words_to_cylinder(char **words, t_object *cylinder);
-static int	parse_additional(char **words, int basic_form_len, t_object *obj);
 
 /*
 cy position       normal       diameter  height  rgb
@@ -33,7 +32,7 @@ t_object	*convert_line_to_cylinder(char *line)
 
 	word_len = ptr_len((void **)words);
 	if (word_len < 6 || parse_words_to_cylinder(words, new_obj)
-		|| parse_additional(words, word_len, new_obj))
+		|| parse_additional(words, 6, new_obj))
 	{
 		free(new_obj);
 		recursive_free(words, 2);
@@ -64,29 +63,5 @@ static int	parse_words_to_cylinder(char **words, t_object *cylinder)
 	return (result);
 }
 
-char *find_word(char **words, const char *to_find)
-{
-	const size_t	to_find_len = ft_strlen(to_find);
-
-	while (words != NULL)
-	{
-		if (ft_strncmp(*words, to_find, to_find_len) == 0)
-			return (words);
-		words++;
-	}
-	return (NULL);
-}
-
-static int	parse_additional(char **words, int basic_form_len, t_object *obj)
-{
-	const size_t	word_len = ptr_len((void **)words);
-
-	if (basic_form_len == word_len)
-		return (0);
-	if (find_word(words + basic_form_len, "chk"))
-		obj->texture.flags = FLAG_TEXTURE_CHECKER;
-	return (0);
-}
-
-// 추가되는 옵션들 : checker board / reflection / radius(plane)
+// 추가되는 옵션들 : checker board / reflection
 // 각 옵션이 어떤 옵션인
