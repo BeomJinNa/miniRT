@@ -62,6 +62,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/parse/converter/convert_line_to_plane.c \
 		  srcs/parse/converter/convert_line_to_sphere.c \
 		  srcs/parse/converter/rgb_to_ratio.c \
+		  srcs/parse/check_acl_unique.c \
 		  srcs/parse/parse.c \
 		  srcs/parse/parse_error.c \
 		  srcs/parse/parse_utils/parse_degree.c \
@@ -71,8 +72,9 @@ SRCS	= srcs/color/color.c \
 		  srcs/parse/parse_utils/parse_rgb.c \
 		  srcs/parse/parse_utils/parse_unsigned_number.c \
 		  srcs/parse/parse_utils/parse_vector.c \
-		  srcs/parse/tokenize.c \
+		  srcs/parse/utils/lst_utils.c \
 		  srcs/parse/utils/ptr_utils.c \
+		  srcs/parse/utils/str_utils.c \
 		  srcs/print.c \
 		  srcs/ray_tracer/compute_lighting_from_spotlights.c \
 		  srcs/ray_tracer/compute_scattering_lights.c \

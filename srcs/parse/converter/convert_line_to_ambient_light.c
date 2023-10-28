@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:18:54 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 21:34:12 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 22:07:19 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ static int	parse_words_to_ambient_bonus(const char **words, t_real *ambient);
 static int	ambient_mandatory(char *line, t_data *data, const char **words);
 static int	ambient_bonus(char *line, t_data *data, const char **words);
 
-
-//   rat rgb
-// A 0.2 255,255,255
+/*
+A ratio  [rgb](only in bonus)
+A 0.2    255,255,255
+*/
 int	convert_line_to_ambient(char *line, t_data *data)
 {
 	const char		**words = (const char **)ft_split(line, ' ');

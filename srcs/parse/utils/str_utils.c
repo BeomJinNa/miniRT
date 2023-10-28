@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_rgb.c                                        :+:      :+:    :+:   */
+/*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 15:18:40 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 22:07:49 by dowon            ###   ########.fr       */
+/*   Created: 2023/10/28 21:43:06 by dowon             #+#    #+#             */
+/*   Updated: 2023/10/28 21:43:26 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_utils.h"
+#include "libft.h"
+#include <stdlib.h>
 
-static int	validate_rgb(t_vector rgb)
+int	is_str_ends_with(char *str, const char *postfix)
 {
-	return (0 <= rgb[0] && rgb[0] <= 255.0
-		&& 0 <= rgb[1] && rgb[1] <= 255.0
-		&& 0 <= rgb[2] && rgb[2] <= 255.0);
-}
+	size_t	len_str;
+	size_t	len_postfix;
 
-int	parse_rgb(const char *str, t_vector rgb)
-{
-	int	result;
-
-	result = parse_vector(str, rgb);
-	if (result || !validate_rgb(rgb))
-		result = 1;
-	return (result);
+	if (str == NULL || postfix == NULL)
+		return (0);
+	len_str = ft_strlen(str);
+	len_postfix = ft_strlen(postfix);
+	if (len_str < len_postfix)
+		return (0);
+	return (!ft_strncmp(str + (len_str - len_postfix), (char *)postfix,
+			len_postfix));
 }
