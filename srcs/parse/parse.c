@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 21:59:48 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 22:23:27 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,13 @@ int	parse(char *filename, t_data *data)
 	if (file_content == NULL)
 		return (1);
 	ft_lstiter(file_content, remove_endl);
-	if (
-		lst_every(file_content, is_line_invalid)
+	if (lst_every(file_content, is_line_invalid)
 		|| !is_acl_unique(file_content)
 		|| lst_every_arg(file_content, convert_line_to_obj, data))
 	{
 		ft_lstclear(&file_content, free);
 		return (1);
 	}
+	ft_lstclear(&file_content, free);
 	return (0);
 }

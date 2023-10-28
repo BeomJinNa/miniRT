@@ -6,13 +6,14 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:54:18 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 19:42:05 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 22:27:57 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_utils.h"
 #include "libft.h"
 #include "../parse.h"
+#include "../utils/utils.h"
 #include <stdlib.h>
 
 static void	get_real_part(const char *str, t_real *real)
@@ -88,5 +89,6 @@ int	parse_real_number(const char *str, t_real *real)
 	*real = real_part + imaginary_part;
 	if (word[0][0] == '-')
 		*real = -*real;
+	recursive_free((void **)word, 2);
 	return (0);
 }
