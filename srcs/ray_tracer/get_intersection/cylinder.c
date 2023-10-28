@@ -6,11 +6,12 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/28 01:15:12 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 17:46:56 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <math.h>
 
 t_intersection			cylinder_intersection_on_plane(t_ray *ray,
 							t_object *cylinder);
@@ -23,6 +24,7 @@ static t_real			get_minimum_distance_square(t_ray *ray,
 							t_cylinder *cylinder, t_vector vertical);
 static t_intersection	return_intersection(t_ray *ray, t_object *cylinder,
 							t_hit_buffer *hitpoint);
+static void				apply_checker(t_intersection *output, t_real radius);
 
 t_intersection	get_intersection_on_cylinder(t_ray *ray, t_object *cylinder)
 {
@@ -95,11 +97,32 @@ static t_intersection	return_intersection(t_ray *ray, t_object *cylinder,
 	output.object = cylinder;
 	get_reflected_ray(output.reflection_direction_unit,
 		ray->normal_unit, output.normal_unit);
-	if ((cylinder->texture.flags & FLAG_TEXTURE_IMAGE) == 0)
-	{
-		vec_copy(output.reflectance, cylinder->texture.reflectance);
-		vec_copy(output.transmittance, cylinder->texture.transmittance);
-		output.reflection_ratio = cylinder->texture.reflection_ratio;
-	}
+	vec_copy(output.reflectance, cylinder->texture.reflectance);
+	vec_copy(output.transmittance, cylinder->texture.transmittance);
+	if (cylinder->texture.flags & FLAG_TEXTURE_CHECKER)
+		apply_checker(&output, cylinder->u_data.cylinder.radius);
 	return (output);
+}
+
+static void	apply_checker(t_intersection *output, t_real radius)
+{
+	const t_real	unit_arc = radius * M_PI / 6;
+	t_real			temp_theta;
+	t_real			temp_phi;
+	t_real			temp_height;
+	t_vector		temp_vec;
+
+	vec_subtract(temp_vec, output->position,
+		output->object->u_data.cylinder.position);
+	temp_height = vec_dot_product(
+			output->object->u_data.cylinder.normal_unit, temp_vec);
+	temp_theta = 0;
+	if (output->normal_unit[0] != 0 || output->normal_unit[1] != 0)
+		temp_theta = vec_get_polar_angle_theta(output->normal_unit);
+	temp_phi = vec_get_polar_angle_phi(output->normal_unit);
+	temp_phi += M_PI_2;
+	get_new_unit_vector_by_polar(temp_vec, temp_theta, temp_phi);
+	if ((int)floorf(temp_height / unit_arc)
+		% 2 == 0)
+		vec_product_scalar(output->reflectance, output->reflectance, 0.25);
 }

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:53:36 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 10:28:42 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 17:19:18 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	init_sphere(t_object *object, t_vector position, t_real radius)
 	vec_subtract_scalar(object->bv.min, position, radius);
 	object->texture.reflection_ratio = M_DEFAULT_REFLECTION_RATIO;
 	object->marker = M_OBJECT_MARK_INIT;
+	object->texture.flags |= FLAG_TEXTURE_CHECKER;//TEST
 	return (0);
 }
 
@@ -51,6 +52,7 @@ int	init_plane(t_object *object, t_vector position,
 	object->u_data.plane.radius = radius;
 	object->texture.reflection_ratio = M_PLANE_REFLECTION_RATIO;
 	object->marker = M_OBJECT_MARK_INIT;
+	object->texture.flags |= FLAG_TEXTURE_CHECKER;//TEST
 	set_bv_on_plane(object);
 	return (0);
 }
@@ -71,6 +73,7 @@ int	init_cylinder(t_object *object, t_vector position,
 		normal, object->u_data.cylinder.height);
 	object->texture.reflection_ratio = M_DEFAULT_REFLECTION_RATIO;
 	object->marker = M_OBJECT_MARK_INIT;
+	object->texture.flags |= FLAG_TEXTURE_CHECKER;//TEST
 	set_bv_on_cylinder(object);
 	return (0);
 }
@@ -91,6 +94,7 @@ int	init_cone(t_object *object, t_vector position,
 		normal, object->u_data.cone.height);
 	object->texture.reflection_ratio = M_DEFAULT_REFLECTION_RATIO;
 	object->marker = M_OBJECT_MARK_INIT;
+	object->texture.flags |= FLAG_TEXTURE_CHECKER;//TEST
 	set_bv_on_cone(object);
 	return (0);
 }

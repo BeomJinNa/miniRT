@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/28 03:51:05 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 17:49:40 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # define M_VECTOR_MIN_SCALE 0.00001f
 # define M_DEFAULT_PREVIEW_SCALE 0.08f
 # define M_SCALING_SPOT_LIGHT 100
-# define M_EXPOSURE_MAX 100000.0f
+# define M_EXPOSURE_MAX 100000000.0
 # define M_EXPOSURE_MIN 0.001f
 # define M_MOVING_DISTANCE 10.0f
+# ifndef M_BONUS
+#  define M_BONUS 0
+# endif
 
 enum e_config
 {
@@ -63,6 +66,7 @@ struct s_status
 };
 
 void	free_malloced_memories(t_stat *stat);
+void	print_error(char *str);
 void	draw_image(t_stat *stat);
 void	render_map(t_stat *stat, t_real scale_factor);
 void	print_cam_info(t_stat *stat);

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/28 00:36:49 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 16:17:25 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,8 @@ t_intersection	cylinder_intersection_on_plane(t_ray *ray, t_object *cylinder)
 	output.object = cylinder;
 	get_reflected_ray(output.reflection_direction_unit,
 		ray->normal_unit, output.normal_unit);
-	if ((cylinder->texture.flags & FLAG_TEXTURE_IMAGE) == 0)
-	{
-		vec_copy(output.reflectance, cylinder->texture.reflectance);
-		vec_copy(output.transmittance, cylinder->texture.transmittance);
-		output.reflection_ratio = cylinder->texture.reflection_ratio;
-	}
+	vec_copy(output.reflectance, cylinder->texture.reflectance);
+	vec_copy(output.transmittance, cylinder->texture.transmittance);
+	output.reflection_ratio = cylinder->texture.reflection_ratio;
 	return (output);
 }

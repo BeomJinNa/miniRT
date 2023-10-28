@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:04:31 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 08:31:19 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 17:53:44 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static void	migrate_output(t_image8 *buffer, t_image8 *clone)
 
 static void	malloc_failed(t_stat *stat, t_img *image, void *data)
 {
+	print_error("Image creation failed.\n");
 	if (image != NULL)
 		mlx_destroy_image(stat->mlx, image->img);
 	if (data != NULL)

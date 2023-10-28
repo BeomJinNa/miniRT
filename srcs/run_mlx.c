@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 06:50:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 08:55:22 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 17:52:25 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static int	create_map(t_stat *stat)
 
 static int	fail_creating_map(void *pointer, t_list *list)
 {
+	print_error("Map creation failed.\n");
 	if (pointer != NULL)
 		free(pointer);
 	if (list != NULL)

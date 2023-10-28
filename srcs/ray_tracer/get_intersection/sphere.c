@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 06:20:43 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 16:51:27 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static t_intersection	return_intersection(t_ray *ray,
 							t_object *sphere, t_vector normal, t_real dist);
+static void				apply_checker(t_intersection *output);
 
 t_intersection	get_intersection_on_sphere(t_ray *ray, t_object *sphere)
 {
@@ -55,13 +56,26 @@ static t_intersection	return_intersection(t_ray *ray,
 	output.object = sphere;
 	get_reflected_ray(output.reflection_direction_unit,
 		ray->normal_unit, output.normal_unit);
-	if ((sphere->texture.flags & FLAG_TEXTURE_IMAGE) == 0)
-	{
-		vec_copy(output.reflectance, sphere->texture.reflectance);
-		vec_copy(output.transmittance, sphere->texture.transmittance);
-		output.reflection_ratio = sphere->texture.reflection_ratio;
-	}
+	vec_copy(output.reflectance, sphere->texture.reflectance);
+	vec_copy(output.transmittance, sphere->texture.transmittance);
+	output.reflection_ratio = sphere->texture.reflection_ratio;
+	if (sphere->texture.flags & FLAG_TEXTURE_CHECKER)
+		apply_checker(&output);
 	if (sphere->texture.flags & FLAG_TEXTURE_BUMP)
 		;
 	return (output);
+}
+
+static void	apply_checker(t_intersection *output)
+{
+	t_real			temp_theta;
+	t_real			temp_phi;
+
+	temp_theta = 0;
+	if (output->normal_unit[0] != 0 || output->normal_unit[1] != 0)
+		temp_theta = vec_get_polar_angle_theta(output->normal_unit);
+	temp_phi = vec_get_polar_angle_phi(output->normal_unit);
+	if (((int)floorf(temp_theta / (M_PI / 6))
+			+ (int)floorf(temp_phi / (M_PI / 6))) % 2 == 0)
+		vec_product_scalar(output->reflectance, output->reflectance, 0.25);
 }
