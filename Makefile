@@ -112,11 +112,21 @@ TARGET_LIBDIR	= $(LIBDIR)
 TARGET_ARCH		= $(ARCH)
 TARGET_OBJS		= $(OBJS)
 
+ifdef BONUS
+	COMPILE = $(CC) $(CFLAGS) -c $< -o $@ $(foreach include, $(INCLUDE), -I$(include)) -D M_BONUS=1
+else
+	COMPILE = $(CC) $(CFLAGS) -c $< -o $@ $(foreach include, $(INCLUDE), -I$(include))
+endif
+
 #rules=========================================================================
 
 .PHONY: all
 all : $(TARGET_LIB)
 	make $(NAME)
+
+.PHONY: bonus
+bonus : $(TARGET_LIB)
+	make BONUS=0 $(NAME)
 
 $(NAME) : $(TARGET_OBJS)
 	$(CC) -o $@ $(TARGET_OBJS) $(LDFLAGS)
@@ -131,7 +141,7 @@ $(MLX) :
 #const options=================================================================
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(foreach include, $(INCLUDE), -I$(include))
+	$(COMPILE)
 
 .PHONY: oclean
 oclean:
@@ -149,6 +159,11 @@ fclean :
 	rm -f libmlx.dylib
 	make clean
 
+.PHONY: bore
+bore :
+	make oclean
+	make bonus
+
 .PHONY: ore
 ore :
 	make oclean
@@ -157,8 +172,4 @@ ore :
 .PHONY: re
 re :
 	make fclean
-	make all
-
-.PHONY: bonus
-bonus :
 	make all

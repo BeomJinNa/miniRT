@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:53:11 by bena              #+#    #+#             */
-/*   Updated: 2023/10/28 17:51:12 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 21:05:36 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void		free_malloced_memories(t_stat *stat);
 static void	set_window_size(int ac, char **av, t_stat *stat);
 
 int	main(int argc, char **argv)
-{ t_stat	stat;
+{
+	t_stat	stat;
 
 	ft_memset(&stat, 0, sizeof(stat));
 	if (argc != 2 && argc != 4)
