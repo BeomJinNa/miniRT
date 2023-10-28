@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 03:23:51 by bena              #+#    #+#             */
-/*   Updated: 2023/09/28 19:51:29 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 13:31:46 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "object.h"
 #include <stddef.h>
 
-static void		init_groups(t_list *list, t_bv *front, t_bv *back);
+static void		init_groups(t_bv *front, t_bv *back);
 static void		update_target_ptr(t_list **ptr, t_sp_buffer *buffer, t_bv *bv);
 static void		calc_cost(t_sp_buffer *buffer, t_bv front, t_bv back);
 static t_real	get_surface_area(t_bv *bv);
@@ -30,7 +30,7 @@ void	get_division_cost(t_sp_buffer *buffer, t_real divider, t_list *list)
 	buffer->cost = 0;
 	if (list == NULL)
 		return ;
-	init_groups(list, &group_front, &group_back);
+	init_groups(&group_front, &group_back);
 	ptr = list;
 	while (ptr)
 	{
@@ -48,7 +48,7 @@ void	get_division_cost(t_sp_buffer *buffer, t_real divider, t_list *list)
 	calc_cost(buffer, group_front, group_back);
 }
 
-static void	init_groups(t_list *list, t_bv *front, t_bv *back)
+static void	init_groups(t_bv *front, t_bv *back)
 {
 	init_bounding_volume(front);
 	init_bounding_volume(back);

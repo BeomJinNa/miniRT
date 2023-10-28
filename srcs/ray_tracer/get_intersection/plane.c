@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 03:39:14 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 14:00:16 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ static t_intersection	return_intersection(t_ray *ray,
 	output.object = plane;
 	get_reflected_ray(output.reflection_direction_unit,
 		ray->normal_unit, plane->u_data.plane.normal_unit);
-	if ((plane->texture.flags & FLAG_TEXTURE_IMAGE) == 0)
+	vec_copy(output.reflectance, plane->texture.reflectance);
+	vec_copy(output.transmittance, plane->texture.transmittance);
+	output.reflection_ratio = plane->texture.reflection_ratio;
+	if (plane->texture.flags & FLAG_TEXTURE_CHECKER)
 	{
-		vec_copy(output.reflectance, plane->texture.reflectance);
-		vec_copy(output.transmittance, plane->texture.transmittance);
-		output.reflection_ratio = plane->texture.reflection_ratio;
+		
 	}
 	if (plane->texture.flags & FLAG_TEXTURE_BUMP)
 		;
