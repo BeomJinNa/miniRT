@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:06:57 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 19:43:58 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,37 +25,24 @@
 #include <stdio.h>
 #include <math.h>
 
-static int	is_line_invalid(void *line)
+static int	is_line_invalid(void *pline)
 {
-	const char	*iter = line;
-	const char	*word_start;
+	const char	*line = pline;
 
-	if (*iter == ' ')
+	if (*line == ' ')
 	{
 		print_parse_error("line start with space : ", line);
 		return (1);
 	}
-	while (*iter != '\0')
+	if (ft_strlen(line) < 2)
 	{
-		while (*iter == ' ')
-			++iter;
-		word_start = iter;
-		while (*iter != '\0' && *iter != ' ')
-		{
-			if (*iter == ',' && !((iter[1] == '-' && ft_isdigit(iter[2]))
-					|| ft_isdigit(iter[1])))
-			{
-				print_parse_error("parse error at : ", line);
-				return (1);
-			}
-			++iter;
-		}
-		if (word_start == iter)
-		{
-			print_parse_error("parse error at : ", line);
-			return (1);
-		}
-		++iter;
+		print_parse_error("line is too short : ", line);
+		return (1);
+	}
+	if (line[ft_strlen(line)] == ' ')
+	{
+		print_parse_error("line ends with space : ", line);
+		return (1);
 	}
 	return (0);
 }
@@ -106,7 +93,7 @@ t_list	*read_all_line(char *filename)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (line[0] == '\0' || line[0] == '\n')
+		if (line[0] == '\0' || line[0] == '\n' || line[0] == '#')
 			free(line);
 		else
 			ft_lstadd_back(&lines, ft_lstnew(line));
@@ -248,7 +235,7 @@ int	is_ACL_unique(t_list *file_content)
 		print_parse_error("Light is more than one .rt format.", "");
 	if ((!M_BONUS && acl_count[2] != 1) || (M_BONUS && acl_count[2] == 0))
 		return (0);
-	return (acl_count[0] == 1 || acl_count[1] == 1);
+	return (acl_count[0] == 1 && acl_count[1] == 1);
 }
 
 int	parse(char *filename, t_data *data)
@@ -269,9 +256,9 @@ int	parse(char *filename, t_data *data)
 	if (file_content == NULL)
 		return (1);
 	ft_lstiter(file_content, remove_endl);
-	printf("running\n");
-	if (is_ACL_unique(file_content)
-		|| lst_every(file_content, is_line_invalid)
+	if (
+		lst_every(file_content, is_line_invalid)
+		|| !is_ACL_unique(file_content)
 		|| lst_every_arg(file_content, convert_line_to_obj, data))
 	{
 		ft_lstclear(&file_content, free);

@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:13:42 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 16:43:29 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:58:08 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "convert_utils.h"
 #include "../utils/utils.h"
 #include "../parse_utils/parse_utils.h"
+#include "../parse.h"
 #include "vector.h"
 #include "libft.h"
 #include <stdlib.h>
@@ -30,8 +31,6 @@ int	parse_additional(char **words, size_t base_form_len, t_object *obj)
 			obj->texture.flags = FLAG_TEXTURE_CHECKER;
 		else if (parse_ratio(words[base_form_len],
 				&obj->texture.reflection_ratio))
-			return (1);
-		else
 			return (1);
 	}
 	else if (word_len == base_form_len + 2)

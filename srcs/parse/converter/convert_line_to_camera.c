@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:14:58 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 17:59:26 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:45:13 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "../parse_utils/parse_utils.h"
 #include "../utils/utils.h"
+#include "../parse.h"
 #include <stdlib.h>
 
 static int	parse_words_to_camera(char**const words, t_cam *cam);
@@ -31,6 +32,8 @@ int	convert_line_to_camera(char *line, t_data *data)
 		return (1);
 	is_failed = (ptr_len((void **)words) != 4
 			|| parse_words_to_camera(words, &data->cam));
+	if (is_failed)
+		print_parse_error("failed to parse camera : ", line);
 	recursive_free(words, 2);
 	return (is_failed);
 }

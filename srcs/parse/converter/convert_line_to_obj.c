@@ -6,13 +6,14 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:32:06 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 20:04:16 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:17:15 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "converter.h"
 #include "convert_utils.h"
 #include "stat.h"
+#include "../parse.h"
 #include <stdlib.h>
 
 int	convert_line_to_obj(void *pline, void *pdata)
@@ -34,10 +35,11 @@ int	convert_line_to_obj(void *pline, void *pdata)
 		result_obj = convert_line_to_plane(line);
 	else if (ft_strncmp(line, "cy ", 3) == 0)
 		result_obj = convert_line_to_cylinder(line);
-	else
-		return (1);
 	if (result_obj == NULL)
+	{
+		print_parse_error("failed to create object : ", line);
 		return (1);
+	}
 	ft_lstadd_back(&data->objects, ft_lstnew(result_obj));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:39:27 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 18:19:48 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:22:37 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "vector.h"
 #include "stat.h"
+#include "../parse.h"
 #include "../parse_utils/parse_utils.h"
 #include "../utils/utils.h"
 #include <stdlib.h>
@@ -42,7 +43,10 @@ int	convert_line_to_light(char *line, t_data *data)
 			|| parse_words_to_light(words, light));
 	recursive_free(words, 2);
 	if (is_failed)
+	{
+		print_parse_error("failed to parse light : ", line);
 		free(light);
+	}
 	else
 		ft_lstadd_back(&data->lights, ft_lstnew(light));
 	return (is_failed);

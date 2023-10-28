@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 16:28:05 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:12:04 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_object	*convert_line_to_cylinder(char *line)
 		recursive_free(words, 2);
 		return (NULL);
 	}
+	recursive_free(words, 2);
 	return (new_obj);
 }
 

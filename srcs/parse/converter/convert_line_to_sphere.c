@@ -6,12 +6,13 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:39:58 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:10:30 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:58:21 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parse_utils/parse_utils.h"
 #include "../utils/utils.h"
+#include "../parse.h"
 #include "convert_utils.h"
 #include "stat.h"
 
@@ -30,6 +31,7 @@ t_object	*convert_line_to_sphere(char *line)
 		|| parse_words_to_sphere((char **)words, new_obj)
 		|| parse_additional(words, 4, new_obj))
 	{
+		print_parse_error("failed to parse sphere : ", line);
 		free(new_obj);
 		recursive_free(words, 2);
 		return (NULL);
@@ -43,14 +45,16 @@ static int	parse_words_to_sphere(char **words, t_object *obj)
 	t_vector		position;
 	t_real			diameter;
 	t_vector		rgb;
-	int				result;
+	int				is_failed;
 
 	if (parse_vector(words[1], position)
 		|| parse_degree(words[2], &diameter)
 		|| parse_rgb(words[3], rgb))
 		return (1);
-	result = init_sphere(obj, position, diameter / 2.0f);
-	if (!result)
+	is_failed = init_sphere(obj, position, diameter / 2.0f);
+	if (!is_failed)
 		vec_copy(obj->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
-	return (result);
+	else
+		print_to_stderr("failed to parse man\n", "");
+	return (is_failed);
 }

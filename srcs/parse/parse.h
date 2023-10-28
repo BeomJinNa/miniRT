@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:56:39 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/27 19:05:44 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:34:22 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ enum e_parse_error {
 
 int		parse(char *filename, t_data *data);
 void	print_parse_error(const char *str1, const char *str2);
+void	print_to_stderr(const char *str1, const char *str2);
 
 #endif

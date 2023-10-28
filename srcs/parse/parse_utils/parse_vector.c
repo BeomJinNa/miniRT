@@ -6,13 +6,14 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:54:47 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/18 18:43:07 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 19:43:02 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_utils.h"
 #include "libft.h"
 #include "../utils/utils.h"
+#include "../parse.h"
 #include <stdlib.h>
 
 static int	is_valid_vector_form(const char *str)
@@ -36,16 +37,22 @@ static int	is_valid_vector_form(const char *str)
 int	parse_vector(const char *str, t_vector v)
 {
 	char**const		word = ft_split(str, ',');
-	int				result;
+	int				is_failed;
 
+	is_failed = 0;
 	if (ptr_len((void **)word) != 3 || !is_valid_vector_form(str))
-		result = 1;
-	else
-		result = 0;
-	if (result || parse_real_number(word[0], &v[0])
+	{
+		print_parse_error("Not a valid form of vector : ", str);
+		is_failed = 1;
+	}
+	if (is_failed || parse_real_number(word[0], &v[0])
 		|| parse_real_number(word[1], &v[1])
 		|| parse_real_number(word[2], &v[2]))
-		result = 1;
+	{
+		print_parse_error("Failed to parse each number of vector \
+in word : ", str);
+		is_failed = 1;
+	}
 	recursive_free(word, 2);
-	return (result);
+	return (is_failed);
 }

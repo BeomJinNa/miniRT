@@ -6,11 +6,12 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:36:56 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:06:47 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:23:09 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
+#include "../parse.h"
 #include "../utils/utils.h"
 #include "../parse_utils/parse_utils.h"
 #include "convert_utils.h"
@@ -39,6 +40,7 @@ t_object	*convert_line_to_plane(char *line)
 		|| parse_words_to_plane(words, new_obj)
 		|| parse_additional(words, 4, new_obj))
 	{
+		print_parse_error("failed to parse plane : ", line);
 		free(new_obj);
 		recursive_free(words, 2);
 		return (NULL);

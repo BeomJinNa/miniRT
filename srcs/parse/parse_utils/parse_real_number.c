@@ -6,12 +6,13 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:54:18 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/23 18:07:04 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 19:42:05 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_utils.h"
 #include "libft.h"
+#include "../parse.h"
 #include <stdlib.h>
 
 static void	get_real_part(const char *str, t_real *real)
@@ -67,7 +68,7 @@ static int	is_valid_real_number_form(const char *str)
 	}
 	return (1);
 }
-#include <stdio.h>
+
 int	parse_real_number(const char *str, t_real *real)
 {
 	char**const	word = ft_split(str, '.');
@@ -75,7 +76,10 @@ int	parse_real_number(const char *str, t_real *real)
 	t_real		imaginary_part;
 
 	if (!is_valid_real_number_form(str))
+	{
+		print_parse_error("Not a valid real number form : ", str);
 		return (1);
+	}
 	get_real_part(word[0] + (word[0][0] == '-'), &real_part);
 	if (word[1] != NULL)
 		get_imaginary_part(word[1], &imaginary_part);
