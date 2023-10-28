@@ -4,7 +4,7 @@ CC			= cc
 
 COMMONFLAGS	=
 
-CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -Wno-unused-parameter -O2
+CFLAGS		= $(COMMONFLAGS) -Wall -Wextra -Werror -O2 -Wno-unused-parameter -Wno-unused-variable
 
 LDFLAGS		= $(COMMONFLAGS) \
 			  $(foreach lib, $(TARGET_LIBDIR), -L$(lib)) \
@@ -101,6 +101,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/vector/vector_transformation.c \
 		  srcs/main.c
 		  #testfiles/test_bicubic_resizing.c
+		  #testfiles/test_kd_tree_building.c
 
 OBJS	= $(SRCS:.c=.o)
 

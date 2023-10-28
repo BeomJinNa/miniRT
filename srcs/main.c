@@ -6,31 +6,29 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:53:11 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 06:36:54 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 17:51:12 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
 #include "libft.h"
 #include "parse/parse.h"
-#include <stdio.h>
 
 void		run_mlx(t_stat *stat);
 void		free_malloced_memories(t_stat *stat);
 static void	set_window_size(int ac, char **av, t_stat *stat);
 
 int	main(int argc, char **argv)
-{
-	t_stat	stat;
+{ t_stat	stat;
 
 	ft_memset(&stat, 0, sizeof(stat));
 	if (argc != 2 && argc != 4)
-		return (-1);
-	if (parse(argv[1], &stat.data))
 	{
-		printf("parse error\n");
+		print_error("Invalid arguments.\n");
 		return (1);
 	}
+	if (parse(argv[1], &stat.data))
+		return (1);
 	set_window_size(argc, argv, &stat);
 	run_mlx(&stat);
 	free_malloced_memories(&stat);

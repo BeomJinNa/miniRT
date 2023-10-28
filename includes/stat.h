@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 16:14:56 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:10:18 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # define M_VECTOR_MIN_SCALE 0.00001f
 # define M_DEFAULT_PREVIEW_SCALE 0.1f
 # define M_SCALING_SPOT_LIGHT 100
-# define M_EXPOSURE_MAX 100000.0f
+# define M_EXPOSURE_MAX 100000000.0
 # define M_EXPOSURE_MIN 0.001f
 # define M_MOVING_DISTANCE 10.0f
+# ifndef M_BONUS
+#  define M_BONUS 0
+# endif
 
 enum e_config
 {
@@ -30,7 +33,7 @@ enum e_config
 	M_WINDOW_HEIGHT_MAX = 1380,
 	M_TREE_MAX_DEPTH = 10,
 	M_TREE_MIN_LEAF_SIZE = 1,
-	M_SCATTER_SAMPLE_SIZE = 8,
+	M_SCATTER_SAMPLE_SIZE = 5,
 	M_SCATTER_MAX_DEPTH = 2,
 };
 
@@ -63,6 +66,7 @@ struct s_status
 };
 
 void	free_malloced_memories(t_stat *stat);
+void	print_error(char *str);
 void	draw_image(t_stat *stat);
 void	render_map(t_stat *stat, t_real scale_factor);
 void	print_cam_info(t_stat *stat);

@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:39:58 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:05:02 by dowon            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:10:30 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ t_object	*convert_line_to_sphere(char *line)
 static int	parse_words_to_sphere(char **words, t_object *obj)
 {
 	t_vector		position;
-	t_real			radius;
+	t_real			diameter;
 	t_vector		rgb;
 	int				result;
 
 	if (parse_vector(words[1], position)
-		|| parse_degree(words[2], &radius)
+		|| parse_degree(words[2], &diameter)
 		|| parse_rgb(words[3], rgb))
 		return (1);
-	result = init_sphere(obj, position, radius);
+	result = init_sphere(obj, position, diameter / 2.0f);
 	if (!result)
 		vec_copy(obj->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
 	return (result);

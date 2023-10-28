@@ -6,14 +6,16 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 03:39:14 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 16:53:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <math.h>
 
 static t_intersection	return_intersection(t_ray *ray,
 							t_object *plane, t_vector point, t_real dist);
+static void				apply_checker(t_intersection *output);
 
 t_intersection	get_intersection_on_plane(t_ray *ray, t_object *plane)
 {
@@ -53,13 +55,35 @@ static t_intersection	return_intersection(t_ray *ray,
 	output.object = plane;
 	get_reflected_ray(output.reflection_direction_unit,
 		ray->normal_unit, plane->u_data.plane.normal_unit);
-	if ((plane->texture.flags & FLAG_TEXTURE_IMAGE) == 0)
-	{
-		vec_copy(output.reflectance, plane->texture.reflectance);
-		vec_copy(output.transmittance, plane->texture.transmittance);
-		output.reflection_ratio = plane->texture.reflection_ratio;
-	}
+	vec_copy(output.reflectance, plane->texture.reflectance);
+	vec_copy(output.transmittance, plane->texture.transmittance);
+	output.reflection_ratio = plane->texture.reflection_ratio;
+	if (plane->texture.flags & FLAG_TEXTURE_CHECKER)
+		apply_checker(&output);
 	if (plane->texture.flags & FLAG_TEXTURE_BUMP)
 		;
 	return (output);
+}
+
+static void	apply_checker(t_intersection *output)
+{
+	t_real			temp_theta;
+	t_real			temp_phi;
+	t_vector		temp_horizontal;
+	t_vector		temp_vertical;
+
+	temp_theta = 0;
+	if (output->normal_unit[0] != 0 || output->normal_unit[1] != 0)
+		temp_theta = vec_get_polar_angle_theta(output->normal_unit);
+	temp_phi = vec_get_polar_angle_phi(output->normal_unit);
+	temp_phi += M_PI_2;
+	get_new_unit_vector_by_polar(temp_horizontal, temp_theta, temp_phi);
+	vec_cross_product(temp_vertical, output->normal_unit, temp_horizontal);
+	if (
+		((int)floorf(
+				(vec_dot_product(output->position, temp_horizontal) / 4))
+			+ (int)floorf(
+				(vec_dot_product(output->position, temp_vertical) / 4)))
+		% 2 == 0)
+		vec_product_scalar(output->reflectance, output->reflectance, 0.25);
 }

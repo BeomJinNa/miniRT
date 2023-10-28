@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 09:27:13 by bena              #+#    #+#             */
-/*   Updated: 2023/10/21 01:48:28 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/28 00:43:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,29 @@ t_real	get_nearest_point_with_ray(t_ray *ray,
 		vec_dot_product(displacement, vertical_unit));
 	vec_add(shift_ray_position, shift_ray_position, ray->position);
 	vec_subtract(proj_displacement, position, shift_ray_position);
-	temp = 1 / sqrtf(1 - vec_dot_product(ray->normal_unit, normal_unit));
+	temp = fminf(1.0f, vec_dot_product(ray->normal_unit, normal_unit));
+	temp = 1.0f / sqrtf(1.0f - (temp * temp));
 	vec_product_scalar(vertical_unit, ray->normal_unit,
 		vec_dot_product(proj_displacement, ray->normal_unit));
 	vec_subtract(vertical_unit, proj_displacement, vertical_unit);
 	temp = vec_size(vertical_unit) * temp;
+	vec_norm(displacement, displacement);
 	if (vec_dot_product(displacement, normal_unit)
 		> vec_dot_product(ray->normal_unit, normal_unit))
 		return (-temp);
 	return (temp);
+}
+
+t_real	get_distance_sq_between_line_and_point(t_vector point,
+			t_vector normal_unit, t_vector line_position)
+{
+	t_vector	displacement;
+	t_vector	nearest_point;
+
+	vec_subtract(displacement, point, line_position);
+	vec_product_scalar(displacement, normal_unit,
+		vec_dot_product(displacement, normal_unit));
+	vec_add(nearest_point, line_position, displacement);
+	vec_subtract(displacement, point, nearest_point);
+	return (vec_dot_product(displacement, displacement));
 }
