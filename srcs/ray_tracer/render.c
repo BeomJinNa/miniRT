@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/10/30 14:08:14 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/31 19:23:22 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ static void	set_polar_coordinates_of_cam(t_cam *cam)
 	cam->spherical_phi = vec_get_polar_angle_phi(cam->normal_unit);
 }
 
-int	g_i;//TEST
-int g_j;//TEST
-
 static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
 {
 	t_cam *const	cam = &stat->data.cam;
@@ -89,8 +86,6 @@ static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
 		printf("\033[90m(%d/%d)\033[0m\n", i * cam->image.size_width + j,
 			cam->image.size_width * cam->image.size_height);
 	}
-	g_i = i;//TEST
-	g_j = j;//TEST
 	shoot_a_ray(cam->image.data[i * cam->image.size_width + j],
 		ray, &stat->data, 1);
 }

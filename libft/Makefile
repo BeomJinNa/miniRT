@@ -1,7 +1,7 @@
 CC		=	cc
 AR		=	ar
 ARFLAGS	=	crs
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -O2
 
 NAME 	= 	libft.a
 

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:51:40 by bena              #+#    #+#             */
-/*   Updated: 2023/10/30 22:25:46 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/31 19:24:16 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ static t_hit_buffer	return_nothing(void);
  * If the intersection point is not found,
  * a zero vector is returned to normal_unit.
  */
-
-#include <stdio.h>//TEST
-extern int g_i;
-extern int g_j;
 t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 						t_cylinder *cylinder, t_real ray_center,
 						t_real dist_sq)
@@ -51,17 +47,10 @@ t_hit_buffer	calculate_hit_point_cylinder(t_ray *ray,
 	dist_to_normal = disp_to_plane * tangent;
 	if (dist_to_normal < -gap.chord || dist_to_normal
 		> gap.chord + cylinder->height * tangent)
-	{
-		printf("%d %d chord %f disp %f tan %f dist %f max %f\n", g_i, g_j,
-				gap.chord, disp_to_plane, tangent, dist_to_normal,
-				gap.chord + cylinder->height * tangent
-				);//TEST
 		return (return_nothing());
-	}
 	if (dist_to_normal < gap.chord)
 		return (get_buffer_cylinder_plane(ray, cylinder, gap.cosine));
-	return (return_nothing());
-	//return (get_buffer_cylinder_side(ray, cylinder, ray_center, gap));
+	return (get_buffer_cylinder_side(ray, cylinder, ray_center, gap));
 }
 
 t_hit_buffer	get_buffer_cylinder_side(t_ray *ray,

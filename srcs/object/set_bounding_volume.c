@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:07:25 by bena              #+#    #+#             */
-/*   Updated: 2023/10/30 18:34:14 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/31 19:23:00 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_bv_on_cylinder(t_object *cylinder)
 	t_bv	plane2;
 
 	plane1 = get_plane_bv(cylinder->u_data.cylinder.position,
-			cylinder->u_data.cylinder.normal, 10 * cylinder->u_data.cylinder.radius);//TEST
+			cylinder->u_data.cylinder.normal, cylinder->u_data.cylinder.radius);
 	vec_add(plane2.min, plane1.min, cylinder->u_data.cylinder.normal);
 	vec_add(plane2.max, plane1.max, cylinder->u_data.cylinder.normal);
 	cylinder->bv = plane1;
