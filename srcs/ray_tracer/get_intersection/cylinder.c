@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/31 17:48:57 by bena             ###   ########.fr       */
+/*   Updated: 2023/10/31 21:34:56 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static t_intersection	return_intersection(t_ray *ray, t_object *cylinder,
 		ray->normal_unit, output.normal_unit);
 	vec_copy(output.reflectance, cylinder->texture.reflectance);
 	vec_copy(output.transmittance, cylinder->texture.transmittance);
+	output.reflection_ratio = cylinder->texture.reflection_ratio;
 	if (cylinder->texture.flags & FLAG_TEXTURE_CHECKER)
 		apply_checker(&output, cylinder->u_data.cylinder.radius);
 	return (output);
