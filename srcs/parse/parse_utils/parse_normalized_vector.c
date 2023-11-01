@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:28:53 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:49:26 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:00:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static int	validate_normalized_vector(t_vector vec);
 
 int	parse_normalized_vector(const char *line, t_vector vec)
 {
-	int	result;
-
 	if (parse_vector(line, vec))
 		return (1);
 	if (!validate_normalized_vector(vec))
