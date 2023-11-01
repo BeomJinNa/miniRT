@@ -90,6 +90,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/ray_tracer/print_cam_info.c \
 		  srcs/ray_tracer/ray_condition.c \
 		  srcs/ray_tracer/ray_operations.c \
+		  srcs/ray_tracer/ray_transformation.c \
 		  srcs/ray_tracer/re_render.c \
 		  srcs/ray_tracer/render.c \
 		  srcs/ray_tracer/set_ray.c \

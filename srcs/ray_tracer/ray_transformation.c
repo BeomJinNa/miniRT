@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_create.c                                    :+:      :+:    :+:   */
+/*   ray_transformation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 01:02:27 by bena              #+#    #+#             */
-/*   Updated: 2023/11/01 21:13:09 by bena             ###   ########.fr       */
+/*   Created: 2023/11/01 19:53:06 by bena              #+#    #+#             */
+/*   Updated: 2023/11/01 20:51:13 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "type.h"
 #include <math.h>
 
-void	get_new_unit_vector_by_polar(t_vector buffer, t_real theta, t_real phi)
+t_real	get_converted_gyro_theta(t_real dtheta, t_real dphi)
 {
-	buffer[0] = cosf(theta) * sinf(phi);
-	buffer[1] = sinf(theta) * sinf(phi);
-	buffer[2] = cosf(phi);
-	if (phi < 0)
-	{
-		buffer[0] = -buffer[0];
-		buffer[1] = -buffer[1];
-	}
+	return (atan2f(sinf(dtheta), cosf(dphi) * cosf(dtheta)));
+}
+
+t_real	get_converted_gyro_phi(t_real dtheta, t_real dphi)
+{
+	return (asinf(-cosf(dtheta) * sinf(dphi)));
 }

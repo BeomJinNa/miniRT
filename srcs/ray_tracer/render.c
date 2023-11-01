@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/10/31 19:23:22 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/01 21:27:58 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,17 @@ static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
 	t_cam *const	cam = &stat->data.cam;
 	t_vector		direction;
 	t_ray			ray;
-	t_real			pixel_theta;
-	t_real			pixel_phi;
+	t_vector		pixel_coordinates;
+	t_vector		convert;
 
-	pixel_theta = cam->spherical_theta
-		+ (((cam->image.size_width - 1) / 2.0f) - j) * fov_unit;
-	pixel_phi = cam->spherical_phi
-		+ (i - ((cam->image.size_height - 1) / 2.0f)) * fov_unit;
-	get_new_unit_vector_by_polar(direction, pixel_theta, pixel_phi);
+	convert[0] = (((cam->image.size_width - 1) / 2.0f) - j) * fov_unit;
+	convert[1] = (((cam->image.size_height - 1) / 2.0f) - i) * fov_unit;
+	pixel_coordinates[0] = get_converted_gyro_theta(convert[0], convert[1]);
+	pixel_coordinates[1] = get_converted_gyro_phi(convert[0], convert[1]);
+	pixel_coordinates[0] += cam->spherical_theta;
+	pixel_coordinates[1] += cam->spherical_phi;
+	get_new_unit_vector_by_polar(direction,
+		pixel_coordinates[0], pixel_coordinates[1]);
 	ray = set_ray(cam->position, direction, 1);
 	if ((i * cam->image.size_width + j) % 65536 == 0)
 	{
