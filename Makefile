@@ -180,3 +180,7 @@ ore :
 re :
 	make fclean
 	make all
+
+.PHONY: norm
+norm :
+	norminette includes/ $(SRCS)

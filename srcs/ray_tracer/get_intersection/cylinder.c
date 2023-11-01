@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/11/02 05:08:06 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 06:28:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ static void	apply_checker(t_intersection *output, t_real radius)
 	vec_subtract(temp_vec, output->position, cylinder->position);
 	temp_phi = vec_dot_product(cylinder->normal_unit, temp_vec);
 	vec_product_scalar(temp_vec, cylinder->normal_unit, temp_phi);
+	vec_add(temp_vec, temp_vec, cylinder->position);
 	vec_subtract(temp_vec, output->position, temp_vec);
 	vec_norm(temp_vec, temp_vec);
 	if ((

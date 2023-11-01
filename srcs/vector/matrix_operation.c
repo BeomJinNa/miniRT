@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 03:05:56 by bena              #+#    #+#             */
-/*   Updated: 2023/11/02 05:27:46 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 06:13:03 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	mat_product(t_matrix buffer, t_matrix a, t_matrix b)
 
 void	mat_product_vector(t_vector buffer, t_matrix mat, t_vector vec)
 {
-	t_vector temp;
+	t_vector	temp;
 
 	temp[0] = vec_dot_product(mat[0], vec);
 	temp[1] = vec_dot_product(mat[1], vec);
