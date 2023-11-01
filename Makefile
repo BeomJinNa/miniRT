@@ -97,6 +97,7 @@ SRCS	= srcs/color/color.c \
 		  srcs/ray_tracer/shoot_a_ray.c \
 		  srcs/run_mlx.c \
 		  srcs/sort_memory.c \
+		  srcs/vector/matrix_operation.c \
 		  srcs/vector/vector_condition.c \
 		  srcs/vector/vector_constant.c \
 		  srcs/vector/vector_create.c \

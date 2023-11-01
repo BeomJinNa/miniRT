@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/28 16:35:27 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 04:08:42 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "image.h"
 # include "s_list.h"
 
-# define M_OBJECT_PLANE_DEFAULT_RADIUS 1000.0
+# define M_OBJECT_PLANE_DEFAULT_RADIUS 10000.0
 # define M_CAMERA_ROTATION_ANGLE 5.0
 # define M_CAMERA_MAX_FOV 180.0f
 # define M_CAMERA_MIN_FOV 3.0f
@@ -67,8 +67,10 @@ typedef struct s_cam
 {
 	t_vector	position;
 	t_vector	normal_unit;
+	t_vector	buffer_direction;
 	t_real		spherical_theta;
 	t_real		spherical_phi;
+	t_matrix	rotation;
 	t_real		fov;
 	t_sensor	image;
 }	t_cam;

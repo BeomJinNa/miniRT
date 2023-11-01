@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:04:30 by bena              #+#    #+#             */
-/*   Updated: 2023/11/01 20:18:17 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 04:03:07 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void			compute_lighting_from_spotlights(t_vector buffer,
 int				is_vec_watching_the_line(t_vector vec_position,
 					t_vector vec_normal_unit, t_vector line_position,
 					t_vector line_normal_unit);
-t_real			get_converted_gyro_theta(t_real dtheta, t_real dphi);
-t_real			get_converted_gyro_phi(t_real dtheta, t_real dphi);
+void			get_converted_gyro_direction(t_vector buffer, t_vector v,
+					t_real phi, t_vector convert);
 #endif
