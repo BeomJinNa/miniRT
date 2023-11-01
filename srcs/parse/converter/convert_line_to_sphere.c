@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:39:58 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:58:21 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_object	*convert_line_to_sphere(char *line)
 		|| parse_words_to_sphere((char **)words, new_obj)
 		|| parse_additional(words, 4, new_obj))
 	{
-		print_parse_error("failed to parse sphere : ", line);
+		parse_error("failed to parse sphere : ", line);
 		free(new_obj);
 		recursive_free(words, 2);
 		return (NULL);
@@ -55,6 +55,6 @@ static int	parse_words_to_sphere(char **words, t_object *obj)
 	if (!is_failed)
 		vec_copy(obj->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
 	else
-		print_to_stderr("failed to parse man\n", "");
+		parse_error("failed to parse man\n", "");
 	return (is_failed);
 }

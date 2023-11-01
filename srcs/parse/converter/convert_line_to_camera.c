@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:14:58 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:45:13 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	convert_line_to_camera(char *line, t_data *data)
 	is_failed = (ptr_len((void **)words) != 4
 			|| parse_words_to_camera(words, &data->cam));
 	if (is_failed)
-		print_parse_error("failed to parse camera : ", line);
+		parse_error("failed to parse camera : ", line);
 	recursive_free(words, 2);
 	return (is_failed);
 }

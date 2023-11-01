@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:28:53 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 16:00:28 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/01 21:31:22 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	parse_normalized_vector(const char *line, t_vector vec)
 		return (1);
 	if (!validate_normalized_vector(vec))
 	{
-		print_to_stderr("failed to validate normalized vector : ", line);
+		parse_error("failed to validate normalized vector : ", line);
+		parse_error("\tL size of vector must be in range : ", "[0.9, 1.1]");
 		return (1);
 	}
 	vec_norm(vec, vec);

@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:32:06 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:17:15 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	convert_line_to_obj(void *pline, void *pdata)
 		result_obj = convert_line_to_cylinder(line);
 	if (result_obj == NULL)
 	{
-		print_parse_error("failed to create object : ", line);
+		parse_error("failed to create object : ", line);
 		return (1);
 	}
 	ft_lstadd_back(&data->objects, ft_lstnew(result_obj));

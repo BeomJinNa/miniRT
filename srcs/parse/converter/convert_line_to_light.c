@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:39:27 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:22:37 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	convert_line_to_light(char *line, t_data *data)
 	recursive_free(words, 2);
 	if (is_failed)
 	{
-		print_parse_error("failed to parse light : ", line);
+		parse_error("failed to parse light : ", line);
 		free(light);
 	}
 	else

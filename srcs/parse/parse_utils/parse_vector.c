@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:54:47 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 19:43:02 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int	parse_vector(const char *str, t_vector v)
 	is_failed = 0;
 	if (ptr_len((void **)word) != 3 || !is_valid_vector_form(str))
 	{
-		print_parse_error("Not a valid form of vector : ", str);
+		parse_error("Not a valid form of vector : ", str);
 		is_failed = 1;
 	}
 	if (is_failed || parse_real_number(word[0], &v[0])
 		|| parse_real_number(word[1], &v[1])
 		|| parse_real_number(word[2], &v[2]))
 	{
-		print_parse_error("Failed to parse each number of vector \
+		parse_error("Failed to parse each number of vector \
 in word : ", str);
 		is_failed = 1;
 	}

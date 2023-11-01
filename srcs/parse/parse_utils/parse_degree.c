@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:40:24 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:47:19 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	parse_degree(const char *line, t_real *real)
 		return (1);
 	if (!validate_degree(*real))
 	{
-		print_to_stderr("failed to validate degree : ", line);
+		parse_error("failed to validate degree : ", line);
+		parse_error("\tL must be in range : ", "[0.0, 180.0]");
 		return (1);
 	}
 	return (0);
