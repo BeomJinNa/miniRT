@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/11/02 04:07:18 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 06:05:36 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ static void	set_polar_coordinates_of_cam(t_cam *cam)
 	set_rotation_matrix_phi(buffer2,
 		sinf(M_PI_2 - cam->spherical_phi), cosf(M_PI_2 - cam->spherical_phi));
 	mat_product(buffer3, buffer2, buffer1);
-	cam->buffer_direction[0] = vec_dot_product(cam->normal_unit, buffer3[0]);
-	cam->buffer_direction[1] = vec_dot_product(cam->normal_unit, buffer3[1]);
-	cam->buffer_direction[2] = vec_dot_product(cam->normal_unit, buffer3[2]);
+	mat_product_vector(cam->buffer_direction, buffer3, cam->normal_unit);
 }
 
 static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
@@ -91,10 +89,8 @@ static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
 	convert[0] = (((cam->image.size_width - 1) / 2.0f) - j) * fov_unit;
 	convert[1] = (i - ((cam->image.size_height - 1) / 2.0f)) * fov_unit;
 	get_converted_gyro_direction(temp,
-		cam->normal_unit, cam->spherical_phi, convert);
-	direction[0] = vec_dot_product(cam->rotation[0], temp);
-	direction[1] = vec_dot_product(cam->rotation[1], temp);
-	direction[2] = vec_dot_product(cam->rotation[2], temp);
+		cam->buffer_direction, cam->spherical_phi, convert);
+	mat_product_vector(direction, cam->rotation, temp);
 	ray = set_ray(cam->position, direction, 1);
 	if ((i * cam->image.size_width + j) % 65536 == 0)
 	{

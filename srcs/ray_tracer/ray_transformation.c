@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:53:06 by bena              #+#    #+#             */
-/*   Updated: 2023/11/02 04:07:57 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 06:05:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,5 @@ void	get_converted_gyro_direction(t_vector buffer, t_vector v,
 	set_rotation_matrix_phi(buffer2,
 		sinf(phi + convert[1] - M_PI_2), cosf(phi + convert[1] - M_PI_2));
 	mat_product(buffer3, buffer2, buffer1);
-	buffer[0] = vec_dot_product(buffer3[0], v);
-	buffer[1] = vec_dot_product(buffer3[1], v);
-	buffer[2] = vec_dot_product(buffer3[2], v);
+	mat_product_vector(buffer, buffer3, v);
 }
