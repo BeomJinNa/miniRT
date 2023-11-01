@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:18:54 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 22:07:19 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ static int	ambient_mandatory(char *line, t_data *data, const char **words)
 {
 	if (ptr_len((void **)words) != 2)
 	{
-		print_parse_error("failed to parse ambient light : ", line);
-		print_to_stderr("valid form : ", "A <ratio>");
+		parse_error("failed to parse ambient light : ", line);
+		parse_error("valid form : ", "A <ratio>");
 		return (1);
 	}
 	if (parse_words_to_ambient(words, data->ambient))
 	{
-		print_to_stderr("failed to parse ambient light : ", line);
-		print_to_stderr("valid form : ", "A <ratio>");
+		parse_error("failed to parse ambient light : ", line);
+		parse_error("valid form : ", "A <ratio>");
 		return (1);
 	}
 	return (0);
@@ -63,14 +63,14 @@ static int	ambient_bonus(char *line, t_data *data, const char **words)
 {
 	if (ptr_len((void **)words) != 3)
 	{
-		print_parse_error("failed to parse ambient light : ", line);
-		print_to_stderr("valid form : ", "A <ratio> <vector>");
+		parse_error("failed to parse ambient light : ", line);
+		parse_error("valid form : ", "A <ratio> <vector>");
 		return (1);
 	}
 	if (parse_words_to_ambient_bonus(words, data->ambient))
 	{
-		print_to_stderr("failed to parse ambient light : ", line);
-		print_to_stderr("valid form : ", "A <ratio> <vector>");
+		parse_error("failed to parse ambient light : ", line);
+		parse_error("valid form : ", "A <ratio> <vector>");
 		return (1);
 	}
 	return (0);

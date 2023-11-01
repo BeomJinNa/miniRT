@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 18:12:04 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 17:21:37 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "convert_utils.h"
 #include "../utils/utils.h"
 #include "../parse_utils/parse_utils.h"
+#include "../parse.h"
 #include "vector.h"
 #include "libft.h"
 #include <stdlib.h>
@@ -55,7 +56,10 @@ static int	parse_words_to_cylinder(char **words, t_object *cylinder)
 		|| parse_unsigned_number(words[3], &diameter)
 		|| parse_unsigned_number(words[4], &height)
 		|| parse_rgb(words[5], rgb))
+	{
+		parse_error("failed to parse cylinder", "");
 		return (1);
+	}
 	vec_product_scalar(pos_norm[1], pos_norm[1], height);
 	result = init_cylinder(cylinder, pos_norm[0], pos_norm[1],
 			diameter / (t_real)2.0);

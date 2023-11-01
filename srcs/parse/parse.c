@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 22:23:27 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ static int	is_line_invalid(void *pline)
 
 	if (*line == ' ')
 	{
-		print_parse_error("line start with space : ", line);
+		parse_error("line start with space : ", line);
 		return (1);
 	}
 	if (ft_strlen(line) < 2)
 	{
-		print_parse_error("line is too short : ", line);
+		parse_error("line is too short : ", line);
 		return (1);
 	}
 	if (line[ft_strlen(line)] == ' ')
 	{
-		print_parse_error("line ends with space : ", line);
+		parse_error("line ends with space : ", line);
 		return (1);
 	}
 	return (0);
@@ -85,7 +85,7 @@ t_list	*read_all_line(char *filename)
 	lines = NULL;
 	if (fd == -1)
 	{
-		print_parse_error("failed to open file", filename);
+		parse_error("failed to open file", filename);
 		return (NULL);
 	}
 	while (1)
@@ -100,7 +100,7 @@ t_list	*read_all_line(char *filename)
 	}
 	close(fd);
 	if (lines == NULL)
-		print_parse_error("failed to read file.\n", "");
+		parse_error("failed to read file.\n", "");
 	return (lines);
 }
 
@@ -115,7 +115,7 @@ int	parse(char *filename, t_data *data)
 	data->tree = NULL;
 	if (!is_str_ends_with(filename, ".rt"))
 	{
-		print_parse_error("filename should ends with .rt.\n", "");
+		parse_error("filename should ends with .rt.\n", "");
 		return (1);
 	}
 	file_content = read_all_line(filename);

@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:54:18 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 22:27:57 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	parse_real_number(const char *str, t_real *real)
 
 	if (!is_valid_real_number_form(str))
 	{
-		print_parse_error("Not a valid real number form : ", str);
+		parse_error("failed to validate real number : ", str);
 		return (1);
 	}
 	get_real_part(word[0] + (word[0][0] == '-'), &real_part);
