@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:14:12 by bena              #+#    #+#             */
-/*   Updated: 2023/10/28 17:49:48 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 19:37:02 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@
 
 void	free_malloced_memories(t_stat *stat)
 {
+	if (stat == NULL)
+		return ;
 	remove_tree(&stat->data.tree);
-	ft_lstclear(&stat->data.objects, free);
-	ft_lstclear(&stat->data.lights, free);
-	ft_lstclear(&stat->data.images, free);
+	if (stat->data.objects != NULL)
+		ft_lstclear(&stat->data.objects, free);
+	if (stat->data.lights != NULL)
+		ft_lstclear(&stat->data.lights, free);
+	if (stat->data.images != NULL)
+		ft_lstclear(&stat->data.images, free);
 	if (stat->data.cam.image.data != NULL)
 		free(stat->data.cam.image.data);
 }
