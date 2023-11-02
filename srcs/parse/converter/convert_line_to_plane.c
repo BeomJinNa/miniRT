@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:36:56 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/02 19:10:11 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 19:24:06 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ t_object	*convert_line_to_plane(char *line)
 		|| parse_additional(words, 4, new_obj))
 	{
 		parse_error("failed to parse plane : ", line);
+		parse_error("\tL valid form : ",
+			"pl <position vector> <direction vector (normal)> <rgb>");
 		free(new_obj);
 		recursive_free(words, 2);
 		return (NULL);
@@ -60,7 +62,7 @@ static int	parse_words_to_plane(char **words, t_object *plane)
 		|| parse_normalized_vector(words[2], normal)
 		|| parse_rgb(words[3], rgb))
 		return (1);
-	result = init_plane(plane, position, normal, 30.0);
+	result = init_plane(plane, position, normal, 0.0);
 	if (!result)
 		vec_copy(plane->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
 	return (result);

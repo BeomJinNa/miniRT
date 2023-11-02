@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:39:27 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/02 16:28:22 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:07:44 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	convert_line_to_light(char *line, t_data *data)
 	if (is_failed)
 	{
 		parse_error("failed to parse light : ", line);
+		parse_error("\tL valid form : ",
+			"L <position vector> <ratio> <rgb (only in bonus)>");
 		free(light);
 	}
 	else

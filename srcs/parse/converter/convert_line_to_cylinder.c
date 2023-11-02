@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/02 19:09:52 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 19:23:35 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@ t_object	*convert_line_to_cylinder(char *line)
 	size_t			word_len;
 
 	word_len = ptr_len((void **)words);
-	if (word_len < 6 || parse_words_to_cylinder(words, new_obj)
+	if (word_len < 6
+		|| parse_words_to_cylinder(words, new_obj)
 		|| parse_additional(words, 6, new_obj))
 	{
+		parse_error("failed to parse cylinder : ", line);
+		parse_error("\tL valid form : ",
+			"cy <center position vector> <axis vector (normal)>\
+<diameter> <height> <rgb>");
 		free(new_obj);
 		recursive_free(words, 2);
 		return (NULL);
