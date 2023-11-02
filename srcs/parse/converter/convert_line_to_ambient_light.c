@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:18:54 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/02 16:27:52 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:09:42 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "../parse_utils/parse_utils.h"
 #include "vector.h"
 #include "stat.h"
+#include "libft.h"
 #include <stdlib.h>
 
 static int	parse_words_to_ambient(const char **words, t_real *ambient);

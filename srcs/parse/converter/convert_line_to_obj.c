@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:32:06 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:10:02 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "convert_utils.h"
 #include "stat.h"
 #include "../parse.h"
+#include "libft.h"
 #include <stdlib.h>
 
 int	convert_line_to_obj(void *pline, void *pdata)

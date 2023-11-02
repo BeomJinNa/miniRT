@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:56:39 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/20 22:21:41 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:06:58 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "type.h"
 # include "vector.h"
-# include <stdlib.h>
 
 int		parse_normalized_vector(const char *line, t_vector vec);
 int		parse_real_number(const char *str, t_real *real);

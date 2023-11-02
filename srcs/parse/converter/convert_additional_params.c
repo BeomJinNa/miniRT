@@ -6,18 +6,15 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:13:42 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 17:24:32 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:03:18 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stat.h"
 #include "convert_utils.h"
 #include "../utils/utils.h"
 #include "../parse_utils/parse_utils.h"
 #include "../parse.h"
-#include "vector.h"
 #include "libft.h"
-#include <stdlib.h>
 
 static int	validate_checker(char *word)
 {

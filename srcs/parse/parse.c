@@ -6,14 +6,11 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:04:09 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "object.h"
-#include "tree.h"
-#include "vector.h"
 #include "parse.h"
 #include "stat.h"
 #include "converter/converter.h"
@@ -23,7 +20,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include <math.h>
 
 static int	is_line_invalid(void *pline)
 {

@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:54:47 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:04:21 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "libft.h"
 #include "../utils/utils.h"
 #include "../parse.h"
-#include <stdlib.h>
 
 static int	is_valid_vector_form(const char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:59:09 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 21:59:33 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:04:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "s_list.h"
 
 int	lst_every(const t_list *lst, int (*f)(void *))
 {

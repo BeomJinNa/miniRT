@@ -6,17 +6,14 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:56:39 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:06:55 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# include "type.h"
-# include "vector.h"
 # include "stat.h"
-# include <stdlib.h>
 
 enum e_parse_error {
 	PARSE_SUCCESS,

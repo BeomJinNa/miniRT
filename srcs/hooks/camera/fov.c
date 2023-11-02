@@ -6,12 +6,11 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 05:15:55 by bena              #+#    #+#             */
-/*   Updated: 2023/10/25 05:22:08 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 19:02:38 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stat.h"
-#include <math.h>
 
 void	zoom_out(t_stat *stat)
 {

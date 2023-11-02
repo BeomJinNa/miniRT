@@ -6,16 +6,16 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:38:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/10/28 16:15:06 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:06:44 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONVERT_UTILS_H
 # define CONVERT_UTILS_H
 
-# include "libft.h"
 # include "stat.h"
 # include "object.h"
+# include <stddef.h>
 
 t_real		*rgb_to_ratio(t_real *buff, t_real *rgb, t_real ratio);
 

@@ -6,11 +6,10 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 17:21:37 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:09:52 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stat.h"
 #include "convert_utils.h"
 #include "../utils/utils.h"
 #include "../parse_utils/parse_utils.h"
@@ -67,6 +66,3 @@ static int	parse_words_to_cylinder(char **words, t_object *cylinder)
 		vec_copy(cylinder->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
 	return (result);
 }
-
-// 추가되는 옵션들 : checker board / reflection
-// 각 옵션이 어떤 옵션인

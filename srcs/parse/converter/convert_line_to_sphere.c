@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:39:58 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/02 17:56:54 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:10:24 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "../utils/utils.h"
 #include "../parse.h"
 #include "convert_utils.h"
-#include "stat.h"
+#include "libft.h"
+#include <stdlib.h>
 
 static int	parse_words_to_sphere(char **words, t_object *obj);
 

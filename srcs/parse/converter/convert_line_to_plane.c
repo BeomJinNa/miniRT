@@ -6,15 +6,15 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:36:56 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 16:43:01 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:10:11 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stat.h"
 #include "../parse.h"
 #include "../utils/utils.h"
 #include "../parse_utils/parse_utils.h"
 #include "convert_utils.h"
+#include "libft.h"
 #include <stdlib.h>
 
 static int	parse_words_to_plane(char **words, t_object *plane);
