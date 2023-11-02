@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:53:28 by bena              #+#    #+#             */
-/*   Updated: 2023/11/02 04:08:42 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 18:48:37 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define M_CAMERA_MAX_FOV 180.0f
 # define M_CAMERA_MIN_FOV 3.0f
 # define M_CAMERA_FOV_SCALE_SENSITIVITY 1.1
-# define M_DEFAULT_REFLECTION_RATIO 0.7
+# define M_DEFAULT_REFLECTION_RATIO 0.4
 # define M_PLANE_REFLECTION_RATIO 0.2
 
 typedef struct s_object	t_object;
