@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:39:27 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 16:28:22 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	convert_line_to_light(char *line, t_data *data)
 			recursive_free(words, 2);
 		return (1);
 	}
-	is_failed = (ptr_len((void **)words) != 4
+	is_failed = (ptr_len((void **)words) != (3 + M_BONUS)
 			|| parse_words_to_light(words, light));
 	recursive_free(words, 2);
 	if (is_failed)
@@ -54,15 +54,20 @@ int	convert_line_to_light(char *line, t_data *data)
 
 static int	parse_words_to_light(char **words, t_light *light)
 {
-	t_vector		position;
 	t_vector		rgb;
 	t_real			brightness;
 
-	if (parse_vector(words[1], position)
-		|| parse_ratio(words[2], &brightness)
-		|| parse_rgb(words[3], rgb))
+	if (parse_vector(words[1], light->position)
+		|| parse_ratio(words[2], &brightness))
 		return (1);
-	vec_copy(light->position, position);
+	rgb[0] = 255;
+	rgb[1] = 255;
+	rgb[2] = 255;
+	if (M_BONUS)
+	{
+		if (parse_rgb(words[3], rgb))
+			return (1);
+	}
 	vec_copy(light->color, rgb_to_ratio(rgb, rgb, brightness));
 	return (0);
 }
