@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:14:12 by bena              #+#    #+#             */
-/*   Updated: 2023/11/02 19:43:52 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 20:06:07 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	free_malloced_memories(t_stat *stat)
 		ft_lstclear(&stat->data.lights, free_safe);
 	if (stat->data.images != NULL)
 		ft_lstclear(&stat->data.images, free_safe);
-	if (stat->data.cam.image.data != NULL)
-		free(stat->data.cam.image.data);
 }
 
 static void	free_safe(void *address)
