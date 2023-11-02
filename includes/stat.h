@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/11/02 06:20:22 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 17:30:30 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ enum e_config
 	M_WINDOW_HEIGHT_MAX = 1380,
 	M_TREE_MAX_DEPTH = 10,
 	M_TREE_MIN_LEAF_SIZE = 1,
-	M_SCATTER_SAMPLE_SIZE = 12,
-	M_SCATTER_MAX_DEPTH = 1,
+	M_SCATTER_SAMPLE_SIZE = 5,
+	M_SCATTER_MAX_DEPTH = 2,
 };
 
 typedef struct s_data	t_data;
