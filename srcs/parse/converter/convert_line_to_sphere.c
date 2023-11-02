@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:39:58 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 16:30:45 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 17:56:54 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	parse_words_to_sphere(char **words, t_object *obj)
 	int				is_failed;
 
 	if (parse_vector(words[1], position)
-		|| parse_degree(words[2], &diameter)
+		|| parse_unsigned_number(words[2], &diameter)
 		|| parse_rgb(words[3], rgb))
 		return (1);
 	is_failed = init_sphere(obj, position, diameter / 2.0f);
