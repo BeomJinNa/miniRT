@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:51:28 by bena              #+#    #+#             */
-/*   Updated: 2023/10/31 21:25:37 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 18:29:02 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static void	get_value_from_hitpoint(t_vector buffer,
 	vec_add(buffer, buffer, temp_output);
 	compute_lighting_from_spotlights(temp_output, hitpoint, data);
 	vec_add(buffer, buffer, temp_output);
-	compute_scattering_lights(temp_output, hitpoint, data, depth + 1);
-	vec_add(buffer, buffer, temp_output);
+	if (hitpoint->reflection_ratio < 1.0 - M_VECTOR_MIN_SCALE)
+	{
+		compute_scattering_lights(temp_output, hitpoint, data, depth + 1);
+		vec_add(buffer, buffer, temp_output);
+	}
 	vec_add(buffer, buffer, data->ambient);
 }
