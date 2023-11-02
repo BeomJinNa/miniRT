@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:16:21 by bena              #+#    #+#             */
-/*   Updated: 2023/11/01 21:27:58 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 06:05:36 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,22 @@ static void	render_map_module(t_stat *stat)
 
 static void	set_polar_coordinates_of_cam(t_cam *cam)
 {
+	t_matrix	buffer1;
+	t_matrix	buffer2;
+	t_matrix	buffer3;
+
 	if (is_real_zero(cam->normal_unit[0]) == 0
 		|| is_real_zero(cam->normal_unit[1]) == 0)
 		cam->spherical_theta = vec_get_polar_angle_theta(cam->normal_unit);
 	cam->spherical_phi = vec_get_polar_angle_phi(cam->normal_unit);
+	set_rotation_matrix_theta(cam->rotation,
+		sinf(cam->spherical_theta), cosf(cam->spherical_theta));
+	set_rotation_matrix_theta(buffer1,
+		sinf(-cam->spherical_theta), cosf(-cam->spherical_theta));
+	set_rotation_matrix_phi(buffer2,
+		sinf(M_PI_2 - cam->spherical_phi), cosf(M_PI_2 - cam->spherical_phi));
+	mat_product(buffer3, buffer2, buffer1);
+	mat_product_vector(cam->buffer_direction, buffer3, cam->normal_unit);
 }
 
 static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
@@ -71,17 +83,14 @@ static void	get_a_pixel(t_stat *stat, t_real fov_unit, int i, int j)
 	t_cam *const	cam = &stat->data.cam;
 	t_vector		direction;
 	t_ray			ray;
-	t_vector		pixel_coordinates;
 	t_vector		convert;
+	t_vector		temp;
 
 	convert[0] = (((cam->image.size_width - 1) / 2.0f) - j) * fov_unit;
-	convert[1] = (((cam->image.size_height - 1) / 2.0f) - i) * fov_unit;
-	pixel_coordinates[0] = get_converted_gyro_theta(convert[0], convert[1]);
-	pixel_coordinates[1] = get_converted_gyro_phi(convert[0], convert[1]);
-	pixel_coordinates[0] += cam->spherical_theta;
-	pixel_coordinates[1] += cam->spherical_phi;
-	get_new_unit_vector_by_polar(direction,
-		pixel_coordinates[0], pixel_coordinates[1]);
+	convert[1] = (i - ((cam->image.size_height - 1) / 2.0f)) * fov_unit;
+	get_converted_gyro_direction(temp,
+		cam->buffer_direction, cam->spherical_phi, convert);
+	mat_product_vector(direction, cam->rotation, temp);
 	ray = set_ray(cam->position, direction, 1);
 	if ((i * cam->image.size_width + j) % 65536 == 0)
 	{

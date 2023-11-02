@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:32:46 by bena              #+#    #+#             */
-/*   Updated: 2023/10/31 21:34:56 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 06:28:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,23 +108,28 @@ static t_intersection	return_intersection(t_ray *ray, t_object *cylinder,
 
 static void	apply_checker(t_intersection *output, t_real radius)
 {
-	const t_real	unit_arc = radius * M_PI / 6;
-	t_real			temp_theta;
-	t_real			temp_phi;
-	t_real			temp_height;
-	t_vector		temp_vec;
+	t_cylinder *const	cylinder = &output->object->u_data.cylinder;
+	t_real				temp_theta;
+	t_real				temp_phi;
+	t_vector			temp_vec;
+	t_vector			cylinder_center;
 
-	vec_subtract(temp_vec, output->position,
-		output->object->u_data.cylinder.position);
-	temp_height = vec_dot_product(
-			output->object->u_data.cylinder.normal_unit, temp_vec);
 	temp_theta = 0;
-	if (output->normal_unit[0] != 0 || output->normal_unit[1] != 0)
-		temp_theta = vec_get_polar_angle_theta(output->normal_unit);
-	temp_phi = vec_get_polar_angle_phi(output->normal_unit);
+	if (cylinder->normal_unit[0] != 0 || cylinder->normal_unit[1] != 0)
+		temp_theta = vec_get_polar_angle_theta(cylinder->normal_unit);
+	temp_phi = vec_get_polar_angle_phi(cylinder->normal_unit);
 	temp_phi += M_PI_2;
-	get_new_unit_vector_by_polar(temp_vec, temp_theta, temp_phi);
-	if ((int)floorf(temp_height / unit_arc)
-		% 2 == 0)
+	get_new_unit_vector_by_polar(cylinder_center, temp_theta, temp_phi);
+	vec_subtract(temp_vec, output->position, cylinder->position);
+	temp_phi = vec_dot_product(cylinder->normal_unit, temp_vec);
+	vec_product_scalar(temp_vec, cylinder->normal_unit, temp_phi);
+	vec_add(temp_vec, temp_vec, cylinder->position);
+	vec_subtract(temp_vec, output->position, temp_vec);
+	vec_norm(temp_vec, temp_vec);
+	if ((
+			(int)floorf(temp_phi / (radius * M_PI / 6.0))
+			+ (int)floorf((acosf(vec_dot_product(temp_vec, cylinder_center))
+					+ (M_PI / 12.0)) / (M_PI / 6.0))
+		) % 2 == 0)
 		vec_product_scalar(output->reflectance, output->reflectance, 0.25);
 }

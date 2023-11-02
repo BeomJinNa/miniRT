@@ -6,19 +6,23 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:53:06 by bena              #+#    #+#             */
-/*   Updated: 2023/11/01 20:51:13 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 06:05:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "type.h"
+#include "vector.h"
 #include <math.h>
 
-t_real	get_converted_gyro_theta(t_real dtheta, t_real dphi)
+void	get_converted_gyro_direction(t_vector buffer, t_vector v,
+			t_real phi, t_vector convert)
 {
-	return (atan2f(sinf(dtheta), cosf(dphi) * cosf(dtheta)));
-}
+	t_matrix	buffer1;
+	t_matrix	buffer2;
+	t_matrix	buffer3;
 
-t_real	get_converted_gyro_phi(t_real dtheta, t_real dphi)
-{
-	return (asinf(-cosf(dtheta) * sinf(dphi)));
+	set_rotation_matrix_theta(buffer1, sinf(convert[0]), cosf(convert[0]));
+	set_rotation_matrix_phi(buffer2,
+		sinf(phi + convert[1] - M_PI_2), cosf(phi + convert[1] - M_PI_2));
+	mat_product(buffer3, buffer2, buffer1);
+	mat_product_vector(buffer, buffer3, v);
 }

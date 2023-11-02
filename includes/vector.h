@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 03:47:36 by bena              #+#    #+#             */
-/*   Updated: 2023/10/26 04:08:07 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/02 05:28:11 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include "type.h"
 
-typedef t_real	t_vector[3];
+typedef t_real		t_vector[3];
+
+typedef t_vector	t_matrix[3];
 
 enum	e_axis_type
 {
@@ -53,4 +55,11 @@ void	get_new_unit_vector_by_polar(t_vector buffer,
 			t_real theta, t_real phi);
 void	vec_cutoff_max(t_vector buffer, t_vector a, t_real max);
 void	vec_cutoff_min(t_vector buffer, t_vector a, t_real min);
+t_real	vec_product_mat_column(t_vector vec, t_matrix mat, int column);
+void	mat_product(t_matrix buffer, t_matrix a, t_matrix b);
+void	mat_product_vector(t_vector buffer, t_matrix mat, t_vector vec);
+void	set_rotation_matrix_phi(t_matrix buffer,
+			t_real sinphi, t_real cosphi);
+void	set_rotation_matrix_theta(t_matrix buffer,
+			t_real sintheta, t_real costheta);
 #endif
