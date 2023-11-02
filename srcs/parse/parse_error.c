@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:41:16 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/02 16:33:12 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:54:18 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_error(const char *str1, const char *str2)
 		is_first_error = 0;
 		write(2, "Error\n<parse error> ", 20);
 		if (M_BONUS)
-			write(2, "BONUS!\n", 10);
+			write(2, "BONUS!\n", 7);
 		else
 			write(2, "MANDATORY!\n", 11);
 	}

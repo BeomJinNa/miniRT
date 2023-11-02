@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:55:15 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/02 19:41:13 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:45:54 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,10 @@ int	parse(char *filename, t_data *data)
 		return (1);
 	}
 	ft_lstclear(&file_content, free);
-	if (data->objects == NULL)
-	{
-		parse_error("No objects founded in file : ", filename);
-		return (1);
-	}
+	// if (data->objects == NULL)
+	// {
+	// 	parse_error("No objects founded in file : ", filename);
+	// 	return (1);
+	// }
 	return (0);
 }
