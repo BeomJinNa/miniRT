@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:18:54 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/02 16:27:52 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:05:58 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	convert_line_to_ambient(char *line, t_data *data)
 		|| parse_words_to_ambient(words, data->ambient))
 	{
 		parse_error("failed to parse ambient light : ", line);
-		parse_error("valid form : ", "A <ratio> <vector>");
+		parse_error("\tL valid form : ", "A <ratio> <rgb>");
 		recursive_free(words, 2);
 		return (1);
 	}

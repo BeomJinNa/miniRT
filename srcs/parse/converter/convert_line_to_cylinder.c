@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 21:40:22 by dowon             #+#    #+#             */
-/*   Updated: 2023/11/01 17:21:37 by dowon            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:20:37 by dowon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ t_object	*convert_line_to_cylinder(char *line)
 	size_t			word_len;
 
 	word_len = ptr_len((void **)words);
-	if (word_len < 6 || parse_words_to_cylinder(words, new_obj)
+	if (word_len < 6
+		|| parse_words_to_cylinder(words, new_obj)
 		|| parse_additional(words, 6, new_obj))
 	{
+		parse_error("failed to parse cylinder : ", line);
+		parse_error("\tL valid form : ",
+			"cy <center position vector> <axis vector (normal)>\
+<diameter> <height> <rgb>");
 		free(new_obj);
 		recursive_free(words, 2);
 		return (NULL);
@@ -67,6 +72,3 @@ static int	parse_words_to_cylinder(char **words, t_object *cylinder)
 		vec_copy(cylinder->texture.reflectance, rgb_to_ratio(rgb, rgb, 1.0));
 	return (result);
 }
-
-// 추가되는 옵션들 : checker board / reflection
-// 각 옵션이 어떤 옵션인
