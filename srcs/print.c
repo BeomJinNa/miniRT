@@ -93,7 +93,7 @@ void	print_manual(void)
 	printf("\033[35mMove Camera Position : \033[0mW A S D E Q"
 		" \033[90m(forward/backward/left/right/up/down)\n"
 		"\033[35mRotate Camera Direction :"
-		" \033[0mH J K L \033[90m(up/down/left/right)\n"
+		" \033[0mH J K L \033[90m(left/down/up/right)\n"
 		"\033[35mZoom : \033[0mI O \033[90m(in/out)\n"
 		"\033[35mExposure : \033[0mZ X \033[90m(decrease/increase)\n"
 		"\033[35mHigh Resolution Rendering : \033[0mF\n"
