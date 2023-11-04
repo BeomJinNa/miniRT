@@ -6,7 +6,7 @@
 /*   By: dowon <dowon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 03:58:53 by bena              #+#    #+#             */
-/*   Updated: 2023/11/02 18:57:56 by bena             ###   ########.fr       */
+/*   Updated: 2023/11/04 23:34:06 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "tree.h"
 
 # define M_VECTOR_MIN_SCALE 0.00001f
-# define M_DEFAULT_PREVIEW_SCALE 0.1f
+# define M_DEFAULT_PREVIEW_SCALE 0.04f
 # define M_SCALING_SPOT_LIGHT 100
 # define M_EXPOSURE_MAX 100000000.0
 # define M_EXPOSURE_MIN 0.001f
@@ -33,8 +33,8 @@ enum e_config
 	M_WINDOW_HEIGHT_MAX = 1380,
 	M_TREE_MAX_DEPTH = 10,
 	M_TREE_MIN_LEAF_SIZE = 1,
-	M_SCATTER_SAMPLE_SIZE = 3,
-	M_SCATTER_MAX_DEPTH = 1,
+	M_SCATTER_SAMPLE_SIZE = 5,
+	M_SCATTER_MAX_DEPTH = 2,
 };
 
 typedef struct s_data	t_data;
